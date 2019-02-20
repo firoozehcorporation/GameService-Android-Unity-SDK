@@ -30,8 +30,8 @@ namespace FiroozehGameServiceAndroid.Core
 #endif
 
 #if UNITY_ANDROID
-        public static AndroidJavaObject InitGameService(string clientId
-            ,string clientSecret,
+        public static void InitGameService(string clientId
+            , string clientSecret,
             DelegateCore.OnSuccessInit onSuccess,
             DelegateCore.OnError onError)
         {
@@ -39,13 +39,11 @@ namespace FiroozehGameServiceAndroid.Core
             var gameService = GetGameServiceInstance();
 
             gameService.Call("InitGameService", clientId, clientSecret,
-                new GameServiceCallback(callBack => {
+                new IGameServiceCallback(callBack => {
                         if(callBack.Equals("Success"))
                             onSuccess.Invoke(gameService);
                     },
                     onError.Invoke));
-
-            return gameService;
         }
 
 #endif
@@ -58,7 +56,7 @@ namespace FiroozehGameServiceAndroid.Core
             var loginService = GetGameLoginServiceInstance();
 
             loginService.Call("InitLoginService",
-                new GameServiceCallback(callBack => {
+                new IGameServiceCallback(callBack => {
                         if (callBack.Equals("Success"))
                             onSuccess.Invoke(loginService);
                     },

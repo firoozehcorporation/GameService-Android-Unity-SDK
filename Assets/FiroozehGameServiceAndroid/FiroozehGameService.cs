@@ -31,7 +31,7 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj != null)
             {
-                _gameServiceObj.Call("GetAchievement", new GameServiceCallback(Oncallback =>
+                _gameServiceObj.Call("GetAchievement", new IGameServiceCallback(Oncallback =>
                     {
                         callback.Invoke(JsonConvert.DeserializeObject<List<Achievement>>(Oncallback));
                  
@@ -49,7 +49,7 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj != null)
             {
-                _gameServiceObj.Call("UnlockAchievement", achievementId,_haveNotification, new GameServiceCallback(Oncallback => {
+                _gameServiceObj.Call("UnlockAchievement", achievementId,_haveNotification, new IGameServiceCallback(Oncallback => {
                         callback.Invoke(JsonConvert.DeserializeObject<Achievement>(Oncallback));
                     }
                     , error.Invoke));
@@ -62,7 +62,7 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj != null)
             {
-                _gameServiceObj.Call("ShowAchievementUI", new GameServiceCallback(Oncallback => { }
+                _gameServiceObj.Call("ShowAchievementUI", new IGameServiceCallback(Oncallback => { }
                     , error.Invoke));
             }
         }
@@ -73,7 +73,7 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj != null)
             {
-                _gameServiceObj.Call("ShowLeaderBoardUI", new GameServiceCallback(Oncallback => { }
+                _gameServiceObj.Call("ShowLeaderBoardUI", new IGameServiceCallback(Oncallback => { }
 
                     , error.Invoke));
             }
@@ -84,7 +84,7 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj != null)
             {
-                _gameServiceObj.Call("GetLeaderBoards", new GameServiceCallback(Oncallback => {
+                _gameServiceObj.Call("GetLeaderBoards", new IGameServiceCallback(Oncallback => {
                         callback.Invoke(JsonConvert.DeserializeObject<List<LeaderBoard>>(Oncallback));
                     }
                     , error.Invoke));
@@ -99,7 +99,7 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj != null)
             {
-                _gameServiceObj.Call("GetLeaderBoardData", leaderBoardId, new GameServiceCallback(oncallback => {
+                _gameServiceObj.Call("GetLeaderBoardData", leaderBoardId, new IGameServiceCallback(oncallback => {
                         callback.Invoke(JsonConvert.DeserializeObject<LeaderBoardDetails>(oncallback));
                     }, error.Invoke));
             }
@@ -115,7 +115,7 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj != null)
             {
-                _gameServiceObj.Call("SubmitScore", scoreId, scoreValue,_haveNotification,new GameServiceCallback(callback.Invoke, error.Invoke));
+                _gameServiceObj.Call("SubmitScore", scoreId, scoreValue,_haveNotification,new IGameServiceCallback(callback.Invoke, error.Invoke));
             }
         }
 #endif
@@ -130,7 +130,7 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj != null)
             {
-                _gameServiceObj.Call("SaveData", saveGameName, saveGameDescription, saveGameCover, saveGameData, new GameServiceCallback(callback.Invoke, error.Invoke));
+                _gameServiceObj.Call("SaveData", saveGameName, saveGameDescription, saveGameCover, saveGameData, new IGameServiceCallback(callback.Invoke, error.Invoke));
             }
         }
 #endif
@@ -139,7 +139,7 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj != null)
             {
-                _gameServiceObj.Call("GetLastSave", new GameServiceCallback(saveGameData.Invoke, error.Invoke));
+                _gameServiceObj.Call("GetLastSave", new IGameServiceCallback(saveGameData.Invoke, error.Invoke));
             }
         }
 #endif
@@ -159,7 +159,7 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj != null)
             {
-                _gameServiceObj.Call("GetSDKVersion", new GameServiceCallback(version.Invoke, error.Invoke));
+                _gameServiceObj.Call("GetSDKVersion", new IGameServiceCallback(version.Invoke, error.Invoke));
             }
         }
 
