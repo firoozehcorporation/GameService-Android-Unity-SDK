@@ -1,24 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using FiroozehGameServiceAndroid.Models;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
-
-[System.Serializable]
-public class LeaderBoardDetails
+namespace FiroozehGameServiceAndroid.Models
 {
-
-    public LeaderBoard leaderboard { set; get; }
-
-    public List<Score> scores { set; get; }
-
-    public override string ToString()
+    [System.Serializable]
+    public class LeaderBoardDetails
     {
-        return "LeaderBoardReceiver{" +
-                "leaderboard=" + leaderboard +
-                ", scores=" + scores +
-                '}';
-    }
+
+        public LeaderBoard leaderboard { set; get; }
+
+        public List<Score> scores { set; get; }
+
+        public override string ToString()
+        {
+            return "LeaderBoardReceiver{" +
+                   "leaderboard=" + leaderboard +
+                   ", scores=" + scores +
+                   '}';
+        }
      
+    }
 }
 

@@ -20,14 +20,14 @@ namespace FiroozehGameServiceAndroid.Interfaces
 
         }
 
-        void OnCallback(string Result)
+        void OnCallback(string result)
         {
-            _Oncallback.Invoke(Result);
+            _Oncallback.Invoke(result);
         }
 
-        void OnError(string Error)
+        void OnError(string error)
         {
-            _OnError.Invoke(Error);
+            _OnError.Invoke(error);
         }
 
 

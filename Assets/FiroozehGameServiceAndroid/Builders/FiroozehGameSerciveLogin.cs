@@ -12,7 +12,7 @@ namespace FiroozehGameServiceAndroid.Builders
      
             GameServicePluginHandler.InitGameLoginService(s =>
                 {
-                    s.Call("IsUserLoggedIn", new IGameServiceLoginCheck(
+                    s.Call("IsUserLoggedIn", new GameServiceLoginCheck(
                         userLogin.Invoke, error.Invoke));
                 } , error.Invoke);
         
@@ -24,7 +24,7 @@ namespace FiroozehGameServiceAndroid.Builders
 
             GameServicePluginHandler.InitGameLoginService(s =>
                 {
-                    s.Call("ShowLoginUI", new IGameServiceLoginCheck(
+                    s.Call("ShowLoginUI", new GameServiceLoginCheck(
                         isUserLogin.Invoke, error.Invoke));
                 }
                 , error.Invoke);

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Interfaces;
+using FiroozehGameServiceAndroid.Models;
 using Newtonsoft.Json;
 using UnityEngine;
 

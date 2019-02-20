@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FiroozehGameServiceAndroid.Models;
 using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Core

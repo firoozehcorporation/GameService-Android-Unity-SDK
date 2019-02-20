@@ -3,47 +3,47 @@ using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Core
 {
-    public sealed class GameServicePluginHandler {
+    public static class GameServicePluginHandler {
 
 #if UNITY_ANDROID
         private static AndroidJavaObject GetGameServiceInstance()
         {
-            var GameService = PluginProvider.GetGameService();
-            var UnityActivity = PluginProvider.GetUnityActivity();
+            var gameService = PluginProvider.GetGameService();
+            var unityActivity = PluginProvider.GetUnityActivity();
 
-            GameService.Call("SetUnityContext", UnityActivity);
+            gameService.Call("SetUnityContext", unityActivity);
 
-            return GameService;
+            return gameService;
         }
 #endif
 
 #if UNITY_ANDROID
         private static AndroidJavaObject GetGameLoginServiceInstance()
         {
-            var LoginService = PluginProvider.GetLoginService();
-            var UnityActivity = PluginProvider.GetUnityActivity();
+            var loginService = PluginProvider.GetLoginService();
+            var unityActivity = PluginProvider.GetUnityActivity();
 
-            LoginService.Call("SetUnityContext", UnityActivity);
+            loginService.Call("SetUnityContext", unityActivity);
 
-            return LoginService;
+            return loginService;
         }
 #endif
 
 #if UNITY_ANDROID
-        public static AndroidJavaObject InitGameService(string ClientId,string ClientSecret,DelegateCore.OnSuccessInit onSuccess, DelegateCore.OnError onError)
+        public static AndroidJavaObject InitGameService(string clientId
+            ,string clientSecret,
+            DelegateCore.OnSuccessInit onSuccess,
+            DelegateCore.OnError onError)
         {
    
             var gameService = GetGameServiceInstance();
 
-            gameService.Call("InitGameService", ClientId, ClientSecret,
-                new GameServiceCallback(CallBack => {
-                        if(CallBack.Equals("Success"))
+            gameService.Call("InitGameService", clientId, clientSecret,
+                new GameServiceCallback(callBack => {
+                        if(callBack.Equals("Success"))
                             onSuccess.Invoke(gameService);
                     },
-                    OnError =>
-                    {
-                        onError.Invoke(OnError);
-                    }));
+                    onError.Invoke));
 
             return gameService;
         }
@@ -58,16 +58,11 @@ namespace FiroozehGameServiceAndroid.Core
             var loginService = GetGameLoginServiceInstance();
 
             loginService.Call("InitLoginService",
-                new GameServiceCallback(CallBack => {
-                        if (CallBack.Equals("Success"))
+                new GameServiceCallback(callBack => {
+                        if (callBack.Equals("Success"))
                             onSuccess.Invoke(loginService);
                     },
-                    OnError =>
-                    {
-                        onError.Invoke(OnError);
-                    }));
-
-            return;
+                    onError.Invoke));
         }
 
 #endif
