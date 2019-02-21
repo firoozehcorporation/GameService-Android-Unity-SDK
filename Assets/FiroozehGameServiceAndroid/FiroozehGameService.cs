@@ -106,8 +106,7 @@ namespace FiroozehGameServiceAndroid
         }
 #endif
 #if UNITY_ANDROID
-        //TODO CHECK IT
-        public void SubmitScore(string scoreId
+        public void SubmitScore(string leaderBoardId
             ,int scoreValue,
             DelegateCore.OnCallback callback,
             DelegateCore.OnError error)
@@ -115,7 +114,7 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj != null)
             {
-                _gameServiceObj.Call("SubmitScore", scoreId, scoreValue,_haveNotification,new IGameServiceCallback(callback.Invoke, error.Invoke));
+                _gameServiceObj.Call("SubmitScore", leaderBoardId, scoreValue,_haveNotification,new IGameServiceCallback(callback.Invoke, error.Invoke));
             }
         }
 #endif
