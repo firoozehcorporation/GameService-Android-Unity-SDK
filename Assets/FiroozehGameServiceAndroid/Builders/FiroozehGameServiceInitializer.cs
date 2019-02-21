@@ -6,7 +6,6 @@ namespace FiroozehGameServiceAndroid.Builders
     {
 
         private  static FiroozehGameServiceInitializer _singleton;
-        private  bool _userLogin= true;
         private  bool _haveNotification= true;
         private  bool _checkAppStatus = true;
         private  static string _clientId, _clientSecret;
@@ -38,12 +37,6 @@ namespace FiroozehGameServiceAndroid.Builders
             throw new GameServiceException("Invalid ClientId or ClientSecret");
         }
 
-        public FiroozehGameServiceInitializer CheckUserLogin(bool checkIt)
-        {
-            _userLogin = checkIt;
-            return this;
-        }
-
         public FiroozehGameServiceInitializer IsNotificationEnable(bool enable)
         {
             _haveNotification = enable;
@@ -60,17 +53,7 @@ namespace FiroozehGameServiceAndroid.Builders
 
         public void Init(DelegateCore.OnSuccessInitService onSuccess,DelegateCore.OnError onError)
         {
-            if (!_userLogin)
-            {
-                GameServiceInitializer.Init(_clientId, _clientSecret,_checkAppStatus
-                    , s =>
-                    {
-                        onSuccess.Invoke(new FiroozehGameService(s, _haveNotification));
-                    }
-                    , onError.Invoke);
-            }
-            else
-            {
+           
                 FiroozehGameServiceLoginCheck.CheckUserLoginStatus(_checkAppStatus,isLogin
                             =>
                         {
@@ -101,7 +84,7 @@ namespace FiroozehGameServiceAndroid.Builders
 
                         onError.Invoke)
                     ;
-            }
+           
         }
 
     }
