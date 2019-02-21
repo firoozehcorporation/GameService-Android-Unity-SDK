@@ -1,6 +1,4 @@
 ﻿using FiroozehGameServiceAndroid.Core;
-using FiroozehGameServiceAndroid.Helpers;
-using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Builders
 {
@@ -64,72 +62,44 @@ namespace FiroozehGameServiceAndroid.Builders
         {
             if (!_userLogin)
             {
-                GameServiceInitializer.Init(_clientId, _clientSecret, s =>
+                GameServiceInitializer.Init(_clientId, _clientSecret,_checkAppStatus
+                    , s =>
                     {
                         onSuccess.Invoke(new FiroozehGameService(s, _haveNotification));
                     }
-                    , e =>
-                    {
-                        if (_checkAppStatus && e.Equals("GameServiceNotInstalled"))
-                            NotInstallDialog.ShowInstallDialog(Application.productName);
-                    
-                        onError.Invoke(e);
-                    });
+                    , onError.Invoke);
             }
             else
             {
-                FiroozehGameServiceLoginCheck.CheckUserLoginStatus(isLogin
+                FiroozehGameServiceLoginCheck.CheckUserLoginStatus(_checkAppStatus,isLogin
                             =>
                         {
                             if (isLogin)
                             {
 
-                                GameServiceInitializer.Init(_clientId, _clientSecret, s =>
+                                GameServiceInitializer.Init(_clientId, _clientSecret,_checkAppStatus, s =>
                                     {
                                         onSuccess.Invoke(new FiroozehGameService(s, _haveNotification));
                                     }
-                                    , e =>
-                                    {
-                                        if (_checkAppStatus && e.Equals("GameServiceNotInstalled"))
-                                            NotInstallDialog.ShowInstallDialog(Application.productName);
-                                        
-                                        onError.Invoke(e);
-                                    });
+                                    , onError.Invoke);
 
 
                             }
                             else
-                                FiroozehGameServiceLoginCheck.ShowLoginUI(r =>
+                                FiroozehGameServiceLoginCheck.ShowLoginUI(_checkAppStatus,r =>
                                 {
                                     if(r)
-                                        GameServiceInitializer.Init(_clientId, _clientSecret, s =>
+                                        GameServiceInitializer.Init(_clientId, _clientSecret,_checkAppStatus,
+                                            s =>
                                             {
                                                 onSuccess.Invoke(new FiroozehGameService(s, _haveNotification));
                                             }
-                                            , e =>
-                                            {
-                                                if (_checkAppStatus && e.Equals("GameServiceNotInstalled"))
-                                                    NotInstallDialog.ShowInstallDialog(Application.productName);
-                                         
-                                                onError.Invoke(e);
-                                            });
-                                }, e =>
-                                {
-                                    if (_checkAppStatus && e.Equals("GameServiceNotInstalled"))
-                                        NotInstallDialog.ShowInstallDialog(Application.productName);
-                                 
-                                    onError.Invoke(e);
-                                });
+                                            , onError.Invoke);
+                                }, onError.Invoke);
                             
                         },
 
-                        e =>
-                        {
-                            if (_checkAppStatus && e.Equals("GameServiceNotInstalled"))
-                                NotInstallDialog.ShowInstallDialog(Application.productName);
-                        
-                            onError.Invoke(e);
-                        })
+                        onError.Invoke)
                     ;
             }
         }

@@ -143,16 +143,6 @@ namespace FiroozehGameServiceAndroid
             }
         }
 #endif
-#if UNITY_ANDROID
-        public void DisposeService()
-        {
-            if (_gameServiceObj != null)
-            {
-                _gameServiceObj.Call("DisposeService");
-            }
-        }
-
-#endif
         
 #if UNITY_ANDROID
         public void GetSDKVersion(DelegateCore.OnCallback version, DelegateCore.OnError error)
