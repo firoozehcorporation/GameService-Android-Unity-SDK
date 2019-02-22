@@ -10,7 +10,7 @@
 
 ## : راه اندازی
 
-##### **ابتدا پلاگین گیم سرویس را از [دریافت](https://github.com/firoozehcorp/GameService_Unity_SDK/tree/master/Assets/package)  کنید**
+##### **ابتدا پلاگین گیم سرویس را از [دریافت](https://github.com/AR-Ghodrati/GameService_UnitySide/tree/master/Assets/package)  کنید**
 
 ##### سپس آن را به صورت پکیج یونیتی به پروژه بازی خود اضافه کنید
 
@@ -481,3 +481,12 @@ public void GetLeaderBoardDetails(string leaderBoardId,
 3. ##### InvalidInputs =  باشد NULL خالی یا  leaderBoardId در صورتی که
 
 4. ##### leaderboard_notfound =  جدول های مقایسه ای موجود نباشد leaderBoardId  در صورتی که برای 
+
+
+
+------
+
+###  :کتابخانه های استفاده شده
+
+#####  1- [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
+
