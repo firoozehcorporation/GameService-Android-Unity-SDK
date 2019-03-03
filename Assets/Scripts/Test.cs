@@ -22,6 +22,8 @@ public class Test : MonoBehaviour
                     g.ShowAchievementsUI(e=>{});
                     g.GetSDKVersion(v=>{},e=>{});
                     g.ShowLeaderBoardsUI(e=>{});
+                    g.GetUserData(r=>{},e=>{});
+                    g.RemoveLastSave(r=>{},e=>{});
                    
                 
                 }, 
