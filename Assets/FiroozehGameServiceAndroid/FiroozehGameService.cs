@@ -166,6 +166,29 @@ namespace FiroozehGameServiceAndroid
 #endif
 
       
+#if UNITY_ANDROID
+
+        public void ShowGamePageUi(DelegateCore.OnError error)
+        {
+            if (_gameServiceObj != null)
+                _gameServiceObj.Call("ShowGamePageUI", new IGameServiceCallback(Oncallback => { }
+
+                    , error.Invoke));
+            
+        }
+#endif
+        
+#if UNITY_ANDROID
+
+        public void ShowSurveyUi(DelegateCore.OnError error)
+        {
+            if (_gameServiceObj != null)
+                _gameServiceObj.Call("ShowSurveyUI", new IGameServiceCallback(Oncallback => { }
+
+                    , error.Invoke));
+            
+        }
+#endif
 
     }
 }

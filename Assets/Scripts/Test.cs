@@ -24,6 +24,9 @@ public class Test : MonoBehaviour
                     g.ShowLeaderBoardsUI(e=>{});
                     g.GetUserData(r=>{},e=>{});
                     g.RemoveLastSave(r=>{},e=>{});
+                    g.ShowSurveyUi(e=>{});
+                    g.ShowGamePageUi(e=>{});
+                    
                    
                 
                 }, 
