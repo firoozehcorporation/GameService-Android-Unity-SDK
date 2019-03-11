@@ -2,7 +2,7 @@
 
 namespace FiroozehGameServiceAndroid.Core
 {
-    public sealed class PluginProvider
+    public static class PluginProvider
     {
 
         public static AndroidJavaObject GetGameService()

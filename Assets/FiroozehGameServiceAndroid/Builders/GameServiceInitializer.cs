@@ -7,11 +7,10 @@ namespace FiroozehGameServiceAndroid.Builders
 #if UNITY_ANDROID
 		public static void Init(string clientId
 			, string clientSecret
-			,bool checkAppStatus
 			,DelegateCore.OnSuccessInit onInitGameServiceSuccess
 			,DelegateCore.OnError onInitGameServiceError){
 
-			GameServicePluginHandler.InitGameService(clientId, clientSecret,checkAppStatus,onInitGameServiceSuccess,onInitGameServiceError);
+			GameServicePluginHandler.InitGameService(clientId, clientSecret,onInitGameServiceSuccess,onInitGameServiceError);
 
 		}
 #endif

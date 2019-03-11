@@ -8,7 +8,8 @@ public class Test : MonoBehaviour
         FiroozehGameServiceInitializer
             .With("Your clientId","Your clientSecret")
             .IsNotificationEnable(true)
-            .CheckGameServiceInstallStatus(false)
+            .CheckGameServiceInstallStatus(true)
+            .CheckGameServiceOptionalUpdate(true)
             .Init(g =>
                 {
                     
