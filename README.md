@@ -16,6 +16,10 @@
 
 ## : راه اندازی
 
+### توجه : قبل از راه اندازی گیم سرویس و همچنین برای استفاده از آن از اتصال کاربر به اینترنت اطمینان حاصل کنید
+
+
+
 ##### **ابتدا پلاگین گیم سرویس را از [دریافت](https://github.com/AR-Ghodrati/GameService_UnitySide/tree/master/Assets/package)  کنید**
 
 ##### سپس آن را به صورت پکیج یونیتی به پروژه بازی خود اضافه کنید
@@ -34,15 +38,24 @@
 
 ##### را بزنید Import  پس از اضافه کردن محتوایات پکیج  نمایش داده می شود دکمه 
 
+
+
+#### از مسیر زیر دسترسی اینترنت را به بازی خود بدهید
+##### File -> Build Settings -> Android -> Player Settings -> Other Settings -> Internet Access -> Required
+
+![اضافه کردن پکیج](http://uupload.ir/files/hf4a_screen_shot_1397-12-25_at_9.38.23_am.png)
+
+
 ##### پس از اضافه کردن پکیج با دستور زیر می توانید به گیم سرویس دسترسی داشته باشید
 
 
 ```c#
-FiroozehGameServiceInitializer
-    .With("Your clientId","Your clientSecret")
-    .IsNotificationEnable(true)
-    .CheckGameServiceInstallStatus(true)
-    .Init(g =>
+ FiroozehGameServiceInitializer
+            .With("Your clientId","Your clientSecret")
+            .IsNotificationEnable(true)
+            .CheckGameServiceInstallStatus(true)
+            .CheckGameServiceOptionalUpdate(true)
+            .Init(g =>
         {
             // Use (g = GameService Obj) 
         }, 
@@ -135,12 +148,23 @@ public FiroozehGameServiceInitializer CheckGameServiceInstallStatus(bool check){
 #####    قرار دهید true را  check درصورتی که بخواهید وضعیت نصب بودن  گیم سرویس بر روی دستگاه کاربر را بررسی کند مقدار 
 
 
+------
+
+
+#### 4- CheckGameServiceOptionalUpdate
+
+```c#
+public FiroozehGameServiceInitializer CheckGameServiceOptionalUpdate(bool check){}
+```
+
+#####    قرار دهید true را  check درصورتی که بخواهید وضعیت بروز بودن گیم سرویس بر روی دستگاه کاربر را بررسی کند مقدار 
+
 
 ------
 
 
 
-#### 4- Init
+#### 5- Init
 
 
 
@@ -198,10 +222,12 @@ FiroozehGameServiceInitializer
             g.GetSaveGame(r=>{},e=>{});
             g.GetLeaderBoardDetails("LeaderBoardID",r=>{},e=>{});
             g.ShowAchievementsUI(e=>{});
-            g.GetSDKVersion(v=>{},e=>{});
             g.ShowLeaderBoardsUI(e=>{});
-           
-        
+            g.GetSDKVersion(v=>{},e=>{});
+            g.GetUserData(r=>{},e=>{});
+            g.RemoveLastSave(r=>{},e=>{});
+            g.ShowSurveyUi(e=>{});
+            g.ShowGamePageUi(e=>{});
         }, 
         e =>
         {
@@ -489,6 +515,188 @@ public void GetLeaderBoardDetails(string leaderBoardId,
 4. ##### leaderboard_notfound =  جدول های مقایسه ای موجود نباشد leaderBoardId  در صورتی که برای 
 
 
+
+------
+
+
+#### 8- ShowAchievementsUI
+
+
+
+```c#
+public void ShowAchievementsUI(DelegateCore.OnError error){}
+```
+
+
+
+#####   با این دستور می توانید  لیست دستاورد های بازی را به بازیکن نمایش دهید
+
+#### :ورودی ها
+
+1. ##### error = درصورت خطا به شما بازمیگردد
+
+
+
+#### : error خطاهای بخش 
+
+1. ##### UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
+
+2. ##### NetworkUnreachable = درصورتی که دستگاه کاربر به اینترنت دسترسی نداشته باشد
+
+
+
+------
+
+
+#### 9- ShowLeaderBoardsUI
+
+
+
+```c#
+public void ShowLeaderBoardsUI(DelegateCore.OnError error){}
+```
+
+
+#####   با این دستور می توانید  لیست های مقایسه ای بازی را به بازیکن نمایش دهید
+
+#### :ورودی ها
+
+1. ##### error = درصورت خطا به شما بازمیگردد
+
+
+
+#### : error خطاهای بخش 
+
+1. ##### UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
+
+2. ##### NetworkUnreachable = درصورتی که دستگاه کاربر به اینترنت دسترسی نداشته باشد
+
+
+
+------
+
+
+
+#### 10- GetSDKVersion
+
+
+
+```c#
+public void GetSDKVersion(DelegateCore.OnCallback version, DelegateCore.OnError error)
+```
+
+
+#####   با این دستور می توانید نسخه فعلی گیم سرویس را دریافت کنید
+
+#### :ورودی ها
+
+1. ##### callback = (نتیجه دریافت (نسخه گیم سرویس بازمیگردد
+2. ##### error = درصورت خطا به شما بازمیگردد
+
+
+#### : error خطاهای بخش 
+
+1. ##### UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
+
+------
+
+#### 11- GetUserData
+
+
+
+```c#
+ public void GetUserData(DelegateCore.OnGetUserData Data, DelegateCore.OnError error){}
+```
+
+
+#####   با این دستور می توانید اطلاعات بازیکن فعلی که بازی می کند را دریافت کنید
+
+#### :ورودی ها
+
+1. ##### Data = (نتیجه دریافت (کلاس یوزر برمیگردد
+2. ##### error = درصورت خطا به شما بازمیگردد
+
+
+#### : error خطاهای بخش 
+
+1. ##### UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
+
+2. ##### NetworkUnreachable = درصورتی که دستگاه کاربر به اینترنت دسترسی نداشته باشد
+
+------
+
+#### 12- RemoveLastSave
+
+
+
+```c#
+public void RemoveLastSave(DelegateCore.OnCallback saveGameData, DelegateCore.OnError error)
+```
+
+
+#####   با این دستور می توانید آخرین سیو کاربر فعلی را حذف کنید
+
+#### :ورودی ها
+
+1. ##### saveGameData = (بازمیگردد Done نتیجه (درصورت موفق بودن 
+2. ##### error = درصورت خطا به شما بازمیگردد
+
+
+#### : error خطاهای بخش 
+
+1. ##### UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
+
+2. ##### NetworkUnreachable = درصورتی که دستگاه کاربر به اینترنت دسترسی نداشته باشد
+
+3. ##### savegame_notfound = در صورتی که سیو بازی وجود نداشته  باشد
+
+------
+
+#### 13- ShowSurveyUi
+
+
+
+```c#
+public void ShowSurveyUi(DelegateCore.OnError error){}
+```
+
+
+#####   با این دستور صفحه نظر سنجی نسبت به بازی شما باز می شود 
+
+#### :ورودی ها
+
+1. ##### error = درصورت خطا به شما بازمیگردد
+
+
+#### : error خطاهای بخش 
+
+1. ##### UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
+
+2. ##### NetworkUnreachable = درصورتی که دستگاه کاربر به اینترنت دسترسی نداشته باشد
+
+------
+
+#### 14- ShowGamePageUi
+
+
+
+```c#
+public void ShowGamePageUi(DelegateCore.OnError error)
+```
+
+
+##### با این دستور صفحه بازی شما در برنامه گیم سرویس باز می شود 
+
+#### :ورودی ها
+
+1. ##### error = درصورت خطا به شما بازمیگردد
+
+
+#### : error خطاهای بخش 
+
+1. ##### UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
+
+2. ##### NetworkUnreachable = درصورتی که دستگاه کاربر به اینترنت دسترسی نداشته باشد
 
 ------
 
