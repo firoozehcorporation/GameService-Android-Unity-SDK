@@ -228,6 +228,10 @@ FiroozehGameServiceInitializer
             g.RemoveLastSave(r=>{},e=>{});
             g.ShowSurveyUi(e=>{});
             g.ShowGamePageUi(e=>{});
+            g.DownloadObbData("main.VersionCode.<PackageName>.obb",r=>{},e=>{});
+            g.DownloadBundleData("BundleData.zip",r=>{},e=>{});
+            
+
         }, 
         e =>
         {
@@ -699,6 +703,71 @@ public void ShowGamePageUi(DelegateCore.OnError error)
 2. ##### NetworkUnreachable = درصورتی که دستگاه کاربر به اینترنت دسترسی نداشته باشد
 
 ------
+
+#### 15- DownloadObbData
+
+
+
+```c# 
+public void DownloadObbData(string obbDataTag,DelegateCore.OnCallback downloadCallback,DelegateCore.OnError error)
+        {}
+```
+
+
+##### با این دستور دیتای بازی که با تگ در پنل ثبت کرده اید دانلود می شود 
+
+#### :ورودی ها
+
+1. ##### obbDataTag = تگ دیتای بازی که در پنل ثبت کرده اید
+2. ##### downloadCallback = باز میگردد Download_Finished درصورت دانلود کامل دیتا مقدار 
+3. ##### error = درصورت خطا به شما بازمیگردد
+
+#### : error خطاهای بخش 
+
+1. ##### UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
+
+2. ##### Download_Dismissed = درصورتی که دانلود توسط کاربر لغو شود
+
+3. ##### Download_Error = درصورتی که خطایی در دانلود رخ دهد
+
+4. ##### datapack_notfound =قرار داده اید وجود نداشته باشد obbDataTag درصورتی که فایلی با نامی که در 
+
+
+
+
+------
+
+#### 16- DownloadBundleData
+
+
+
+```c# 
+public void DownloadObbData(string bundleDataTag,DelegateCore.OnCallback downloadCallback,DelegateCore.OnError error)
+        {}
+```
+
+
+##### با این دستور فایل های بازی (باندل) که با تگ در پنل ثبت کرده اید دانلود می شود 
+
+#### :ورودی ها
+
+1. ##### bundleDataTag = تگ فایل های بازی (باندل) که در پنل ثبت کرده اید
+2. ##### downloadCallback = باز میگردد Download_Finished درصورت دانلود کامل فایل ها مقدار 
+3. ##### error = درصورت خطا به شما بازمیگردد
+
+#### : error خطاهای بخش 
+
+1. ##### UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
+
+2. ##### Download_Dismissed = درصورتی که دانلود توسط کاربر لغو شود
+
+3. ##### Download_Error = درصورتی که خطایی در دانلود رخ دهد
+
+4. ##### datapack_notfound =قرار داده اید وجود نداشته باشد bundleDataTag درصورتی که فایلی با نامی که در 
+
+
+------
+
 
 ###  :کتابخانه های استفاده شده
 
