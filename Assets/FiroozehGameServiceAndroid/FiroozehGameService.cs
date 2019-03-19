@@ -30,7 +30,8 @@ namespace FiroozehGameServiceAndroid
         public void GetAchievements(DelegateCore.OnGetAchievement callback,DelegateCore.OnError error)
         {
             if (_gameServiceObj != null)
-                _gameServiceObj.Call("GetAchievement", new IGameServiceCallback(Oncallback =>
+                _gameServiceObj.Call("GetAchievement"
+                    , new IGameServiceCallback(Oncallback =>
                     {
                         callback.Invoke(JsonConvert.DeserializeObject<List<Achievement>>(Oncallback));
                  
@@ -42,12 +43,16 @@ namespace FiroozehGameServiceAndroid
 #endif
 
 #if UNITY_ANDROID
-        public void UnlockAchievement(string achievementId, 
+        public void UnlockAchievement(
+            string achievementId, 
             DelegateCore.OnUnlockAchievement callback,
             DelegateCore.OnError error)
         {
             if (_gameServiceObj != null)
-                _gameServiceObj.Call("UnlockAchievement", achievementId,_haveNotification, new IGameServiceCallback(Oncallback => {
+                _gameServiceObj.Call("UnlockAchievement"
+                    , achievementId
+                    ,_haveNotification
+                    , new IGameServiceCallback(Oncallback => {
                         callback.Invoke(JsonConvert.DeserializeObject<Achievement>(Oncallback));
                     }
                     , error.Invoke));
@@ -59,7 +64,8 @@ namespace FiroozehGameServiceAndroid
         public void ShowAchievementsUI(DelegateCore.OnError error)
         {
             if (_gameServiceObj != null)
-                _gameServiceObj.Call("ShowAchievementUI", new IGameServiceCallback(Oncallback => { }
+                _gameServiceObj.Call("ShowAchievementUI"
+                    , new IGameServiceCallback(Oncallback => { }
                     , error.Invoke));
             
         }
@@ -69,7 +75,8 @@ namespace FiroozehGameServiceAndroid
         public void ShowLeaderBoardsUI(DelegateCore.OnError error)
         {
             if (_gameServiceObj != null)
-                _gameServiceObj.Call("ShowLeaderBoardUI", new IGameServiceCallback(Oncallback => { }
+                _gameServiceObj.Call("ShowLeaderBoardUI"
+                    , new IGameServiceCallback(Oncallback => { }
 
                     , error.Invoke));
             
@@ -79,7 +86,8 @@ namespace FiroozehGameServiceAndroid
         public void GetLeaderBoards(DelegateCore.OnGetLeaderBoards callback, DelegateCore.OnError error)
         {
             if (_gameServiceObj != null)
-                _gameServiceObj.Call("GetLeaderBoards", new IGameServiceCallback(Oncallback => {
+                _gameServiceObj.Call("GetLeaderBoards"
+                    , new IGameServiceCallback(Oncallback => {
                         callback.Invoke(JsonConvert.DeserializeObject<List<LeaderBoard>>(Oncallback));
                     }
                     , error.Invoke));
@@ -87,33 +95,42 @@ namespace FiroozehGameServiceAndroid
         }
 #endif
 #if UNITY_ANDROID
-        public void GetLeaderBoardDetails(string leaderBoardId,
+        public void GetLeaderBoardDetails(
+            string leaderBoardId,
             DelegateCore.OnGetLeaderBoardDetails callback,
             DelegateCore.OnError error)
 
         {
             if (_gameServiceObj != null)           
-                _gameServiceObj.Call("GetLeaderBoardData", leaderBoardId, new IGameServiceCallback(oncallback => {
+                _gameServiceObj.Call("GetLeaderBoardData"
+                    , leaderBoardId
+                    , new IGameServiceCallback(oncallback => {
                         callback.Invoke(JsonConvert.DeserializeObject<LeaderBoardDetails>(oncallback));
                     }, error.Invoke));
             
         }
 #endif
 #if UNITY_ANDROID
-        public void SubmitScore(string leaderBoardId
-            ,int scoreValue,
+        public void SubmitScore(
+            string leaderBoardId,
+            int scoreValue,
             DelegateCore.OnCallback callback,
             DelegateCore.OnError error)
 
         {
             if (_gameServiceObj != null)
-                _gameServiceObj.Call("SubmitScore", leaderBoardId, scoreValue,_haveNotification,new IGameServiceCallback(callback.Invoke, error.Invoke));
+                _gameServiceObj.Call("SubmitScore"
+                    , leaderBoardId
+                    , scoreValue
+                    ,_haveNotification
+                    ,new IGameServiceCallback(callback.Invoke, error.Invoke));
             
         }
 #endif
        
 #if UNITY_ANDROID
-        public void SaveGame(string saveGameName
+        public void SaveGame(
+             string saveGameName
             ,string saveGameDescription
             ,string saveGameCover
             ,string saveGameData
@@ -121,7 +138,12 @@ namespace FiroozehGameServiceAndroid
             , DelegateCore.OnError error)
         {
             if (_gameServiceObj != null)
-                _gameServiceObj.Call("SaveData", saveGameName, saveGameDescription, saveGameCover, saveGameData, new IGameServiceCallback(callback.Invoke, error.Invoke));
+                _gameServiceObj.Call("SaveData"
+                    , saveGameName
+                    , saveGameDescription
+                    , saveGameCover
+                    , saveGameData
+                    , new IGameServiceCallback(callback.Invoke, error.Invoke));
             
         }
 #endif
@@ -186,6 +208,39 @@ namespace FiroozehGameServiceAndroid
                 _gameServiceObj.Call("ShowSurveyUI", new IGameServiceCallback(Oncallback => { }
 
                     , error.Invoke));
+            
+        }
+#endif
+        
+#if UNITY_ANDROID
+
+        public void DownloadObbData(
+            string obbDataTag
+            ,DelegateCore.OnCallback downloadCallback
+            ,DelegateCore.OnError error)
+        {
+            if (_gameServiceObj != null)
+                _gameServiceObj.Call("DownloadObbDataFile"
+                    ,obbDataTag
+                    , new IGameServiceCallback(downloadCallback.Invoke
+                    , error.Invoke));
+            
+        }
+#endif
+
+        
+#if UNITY_ANDROID
+
+        public void DownloadBundleData(
+            string bundleDataTag
+            ,DelegateCore.OnCallback downloadCallback
+            ,DelegateCore.OnError error)
+        {
+            if (_gameServiceObj != null)
+                _gameServiceObj.Call("DownloadBundleDataFile"
+                    ,bundleDataTag
+                    , new IGameServiceCallback(downloadCallback.Invoke
+                        , error.Invoke));
             
         }
 #endif

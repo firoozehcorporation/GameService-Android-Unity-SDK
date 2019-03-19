@@ -28,6 +28,22 @@ public class Test : MonoBehaviour
                     g.ShowSurveyUi(e=>{});
                     g.ShowGamePageUi(e=>{});
                     
+                    
+                    g.DownloadObbData("main.VersionCode.<PackageName>.obb", r =>
+                        {
+                            if (r.Equals("Download_Finished"))
+                            {
+                                // Obb Data Downloaded!!! Load Base Scene
+                            } 
+                        },
+                        e =>
+                        {
+                            if(e.Equals("Download_Dismissed"))
+                                Application.Quit();
+                           
+                        });
+                    
+                    
                    
                 
                 }, 

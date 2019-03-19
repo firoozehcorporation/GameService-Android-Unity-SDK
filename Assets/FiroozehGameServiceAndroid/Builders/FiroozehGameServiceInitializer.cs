@@ -8,7 +8,7 @@ namespace FiroozehGameServiceAndroid.Builders
         private  static FiroozehGameServiceInitializer _singleton;
         private  bool _haveNotification= true;
         private  bool _checkAppStatus = true;
-        private  bool _checkOptionalUpdate = true;
+        private  bool _checkOptionalUpdate = true;    
         private  static string _clientId, _clientSecret;
         private  string TAG = "FiroozehGameServiceInitializer";
 
@@ -56,30 +56,30 @@ namespace FiroozehGameServiceAndroid.Builders
             return this;
         }
 
-
-
         public void Init(DelegateCore.OnSuccessInitService onSuccess,DelegateCore.OnError onError)
         {
            
-                FiroozehGameServiceLoginCheck.CheckUserLoginStatus(_checkAppStatus,_checkOptionalUpdate,isLogin
-                            =>
+                FiroozehGameServiceLoginCheck.CheckUserLoginStatus(
+                        _checkAppStatus
+                        ,_checkOptionalUpdate        
+                        ,isLogin=>
                         {
-                            if (isLogin)
-                            {
-
+                            if (isLogin)     
                                 GameServiceInitializer.Init(_clientId, _clientSecret, s =>
                                     {
                                         onSuccess.Invoke(new FiroozehGameService(s, _haveNotification));
                                     }
-                                    , onError.Invoke);
-
-
-                            }
+                                    , onError.Invoke);  
                             else
-                                FiroozehGameServiceLoginCheck.ShowLoginUI(_checkAppStatus,_checkOptionalUpdate,r =>
+                                FiroozehGameServiceLoginCheck.ShowLoginUI(
+                                    _checkAppStatus
+                                    ,_checkOptionalUpdate   
+                                    ,r =>
                                 {
                                     if(r)
-                                        GameServiceInitializer.Init(_clientId, _clientSecret,
+                                        GameServiceInitializer.Init(
+                                            _clientId,
+                                            _clientSecret,
                                             s =>
                                             {
                                                 onSuccess.Invoke(new FiroozehGameService(s, _haveNotification));
@@ -88,7 +88,6 @@ namespace FiroozehGameServiceAndroid.Builders
                                 }, onError.Invoke);
                             
                         },
-
                         onError.Invoke)
                     ;
            

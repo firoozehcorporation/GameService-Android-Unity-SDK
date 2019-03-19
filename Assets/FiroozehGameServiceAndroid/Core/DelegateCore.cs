@@ -15,6 +15,7 @@ namespace FiroozehGameServiceAndroid.Core
 
         public delegate void IsUserLogin(bool status);
 
+
         public delegate void OnGetAchievement(List<Achievement>achievements);
         public delegate void OnUnlockAchievement(Achievement unlockedObj);
 
