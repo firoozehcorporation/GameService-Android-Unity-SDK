@@ -43,6 +43,8 @@ public class Test : MonoBehaviour
                            
                         });
                     
+                    g.DownloadBundleData("BundleData.zip",r=>{},e=>{});
+                    
                     
                    
                 
