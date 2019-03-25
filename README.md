@@ -1,5 +1,3 @@
-
-
 <p align="center">
   <img width="250" height="250" src="http://uupload.ir/files/9e17_logo.png">
 </p>
@@ -12,7 +10,7 @@
 
 
 
- 
+
 
 ## : راه اندازی
 
@@ -20,7 +18,7 @@
 
 
 
-##### **ابتدا پلاگین گیم سرویس را از [دریافت](https://github.com/AR-Ghodrati/GameService_UnitySide/tree/master/Assets/package)  کنید**
+##### **ابتدا پلاگین گیم سرویس را از [دریافت](https://github.com/firoozehcorp/GameService_Unity_SDK/tree/master/Assets/package)  کنید**
 
 ##### سپس آن را به صورت پکیج یونیتی به پروژه بازی خود اضافه کنید
 
@@ -147,7 +145,6 @@ public FiroozehGameServiceInitializer CheckGameServiceInstallStatus(bool check){
 
 #####    قرار دهید true را  check درصورتی که بخواهید وضعیت نصب بودن  گیم سرویس بر روی دستگاه کاربر را بررسی کند مقدار 
 
-
 ------
 
 
@@ -158,7 +155,6 @@ public FiroozehGameServiceInitializer CheckGameServiceOptionalUpdate(bool check)
 ```
 
 #####    قرار دهید true را  check درصورتی که بخواهید وضعیت بروز بودن گیم سرویس بر روی دستگاه کاربر را بررسی کند مقدار 
-
 
 ------
 
@@ -228,9 +224,7 @@ FiroozehGameServiceInitializer
             g.RemoveLastSave(r=>{},e=>{});
             g.ShowSurveyUi(e=>{});
             g.ShowGamePageUi(e=>{});
-            g.DownloadObbData("main.VersionCode.<PackageName>.obb",r=>{},e=>{});
-            g.DownloadBundleData("BundleData.zip",r=>{},e=>{});
-            
+            g.DownloadObbData("main.VersionCode.<PackageName>.obb",r=>{},e=>{});            
 
         }, 
         e =>
@@ -274,7 +268,7 @@ public void GetLeaderBoards(DelegateCore.OnGetLeaderBoards callback, DelegateCor
 
 2. #####  NetworkUnreachable = درصورتی که دستگاه کاربر به اینترنت دسترسی نداشته باشد
 
-   
+    
 
 ------
 
@@ -478,7 +472,7 @@ public void GetSaveGame(DelegateCore.OnCallback saveGameData, DelegateCore.OnErr
 
 3. ##### savegame_notfound = در صورتی که سیو بازی وجود نداشته  باشد
 
-   
+    
 
    ------
 
@@ -719,52 +713,24 @@ public void DownloadObbData(string obbDataTag,DelegateCore.OnCallback downloadCa
 #### :ورودی ها
 
 1. ##### obbDataTag = تگ دیتای بازی که در پنل ثبت کرده اید
-2. ##### downloadCallback = باز میگردد Download_Finished درصورت دانلود کامل دیتا مقدار 
+
+2. ##### downloadCallback =  باز میگردد Data_Download_Finished درصورت دانلود کامل دیتا مقدار  
+
+   ##### باز میگردد Data_Downloaded در صورتی که دیتا موجود باشد مقدار 
+
 3. ##### error = درصورت خطا به شما بازمیگردد
 
 #### : error خطاهای بخش 
 
 1. ##### UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
 
-2. ##### Download_Dismissed = درصورتی که دانلود توسط کاربر لغو شود
+2. ##### Data_Download_Dismissed = درصورتی که دانلود توسط کاربر لغو شود
 
 3. ##### Download_Error = درصورتی که خطایی در دانلود رخ دهد
 
 4. ##### datapack_notfound =قرار داده اید وجود نداشته باشد obbDataTag درصورتی که فایلی با نامی که در 
 
-
-
-
-------
-
-#### 16- DownloadBundleData
-
-
-
-```c# 
-public void DownloadObbData(string bundleDataTag,DelegateCore.OnCallback downloadCallback,DelegateCore.OnError error)
-        {}
-```
-
-
-##### با این دستور فایل های بازی (باندل) که با تگ در پنل ثبت کرده اید دانلود می شود 
-
-#### :ورودی ها
-
-1. ##### bundleDataTag = تگ فایل های بازی (باندل) که در پنل ثبت کرده اید
-2. ##### downloadCallback = باز میگردد Download_Finished درصورت دانلود کامل فایل ها مقدار 
-3. ##### error = درصورت خطا به شما بازمیگردد
-
-#### : error خطاهای بخش 
-
-1. ##### UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
-
-2. ##### Download_Dismissed = درصورتی که دانلود توسط کاربر لغو شود
-
-3. ##### Download_Error = درصورتی که خطایی در دانلود رخ دهد
-
-4. ##### datapack_notfound =قرار داده اید وجود نداشته باشد bundleDataTag درصورتی که فایلی با نامی که در 
-
+    
 
 ------
 
@@ -773,12 +739,9 @@ public void DownloadObbData(string bundleDataTag,DelegateCore.OnCallback downloa
 
 #####  1- [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
 
-
 ------
 
 
 ### :بازی های تستی 
 
 ##### 1-[Flappy Bird](https://github.com/AR-Ghodrati/FlappyBirdGameServiceTest)
-
-
