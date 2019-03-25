@@ -31,23 +31,18 @@ public class Test : MonoBehaviour
                     
                     g.DownloadObbData("main.VersionCode.<PackageName>.obb", r =>
                         {
-                            if (r.Equals("Download_Finished"))
+                            if (r.Equals("Data_Download_Finished") || r.Equals("Data_Downloaded"))
                             {
-                                // Obb Data Downloaded!!! Load Base Scene
+                                // Now Obb Data Exist !!! Load Base Scene
                             } 
                         },
                         e =>
                         {
-                            if(e.Equals("Download_Dismissed"))
+                            if(e.Equals("Data_Download_Dismissed"))
                                 Application.Quit();
                            
                         });
-                    
-                    g.DownloadBundleData("BundleData.zip",r=>{},e=>{});
-                    
-                    
-                   
-                
+     
                 }, 
                 e =>
                 {

@@ -228,22 +228,5 @@ namespace FiroozehGameServiceAndroid
         }
 #endif
 
-        
-#if UNITY_ANDROID
-
-        public void DownloadBundleData(
-            string bundleDataTag
-            ,DelegateCore.OnCallback downloadCallback
-            ,DelegateCore.OnError error)
-        {
-            if (_gameServiceObj != null)
-                _gameServiceObj.Call("DownloadBundleDataFile"
-                    ,bundleDataTag
-                    , new IGameServiceCallback(downloadCallback.Invoke
-                        , error.Invoke));
-            
-        }
-#endif
-
     }
 }
