@@ -10,7 +10,7 @@ namespace FiroozehGameServiceAndroid.Interfaces
         private readonly DelegateCore.OnError _OnError;
 
         public IGameServiceLoginCheck(DelegateCore.IsUserLogin isUserLoggedIn, DelegateCore.OnError onError)
-            : base("ir.firoozeh.unitymodule.Interfaces.IGameServiceLoginCheck")
+            : base("ir.FiroozehCorp.UnityPlugin.Interfaces.IGameServiceLoginCheck")
         {
             _UserLogin = isUserLoggedIn;
             _OnError = onError;

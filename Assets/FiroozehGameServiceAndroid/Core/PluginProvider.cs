@@ -8,7 +8,7 @@ namespace FiroozehGameServiceAndroid.Core
         public static AndroidJavaObject GetGameService()
         {
 #if UNITY_ANDROID
-            var unityInstanter = new AndroidJavaClass("ir.firoozeh.unitymodule.Handlers.UnityGameService");
+            var unityInstanter = new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Handlers.UnityGameService");
             return unityInstanter.CallStatic<AndroidJavaObject>("GetInstance");
 #endif
         }
@@ -16,7 +16,7 @@ namespace FiroozehGameServiceAndroid.Core
         public static AndroidJavaObject GetLoginService()
         {
 #if UNITY_ANDROID
-            var unityInstanter = new AndroidJavaClass("ir.firoozeh.unitymodule.Handlers.UnityLogin");
+            var unityInstanter = new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Handlers.UnityLoginService");
             return unityInstanter.CallStatic<AndroidJavaObject>("GetInstance");
 #endif
         }
