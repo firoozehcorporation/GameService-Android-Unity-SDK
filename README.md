@@ -744,4 +744,4 @@ public void DownloadObbData(string obbDataTag,DelegateCore.OnCallback downloadCa
 
 ### :بازی های تستی 
 
-##### 1-[Flappy Bird](https://github.com/AR-Ghodrati/FlappyBirdGameServiceTest)
+##### 1-[Flappy Bird](https://github.com/firoozehcorp/FlappyBird_GameServiceTest)
