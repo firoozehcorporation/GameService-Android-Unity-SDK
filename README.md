@@ -18,7 +18,7 @@
 
 
 
-##### **ابتدا پلاگین گیم سرویس را از [دریافت](https://github.com/firoozehcorp/GameService_Unity_SDK/tree/master/Assets/package)  کنید**
+##### **ابتدا پلاگین گیم سرویس را از [دریافت](https://github.com/firoozehcorporation/GameService-Android-Unity-SDK/tree/master/Assets/package)  کنید**
 
 ##### سپس آن را به صورت پکیج یونیتی به پروژه بازی خود اضافه کنید
 
@@ -744,4 +744,4 @@ public void DownloadObbData(string obbDataTag,DelegateCore.OnCallback downloadCa
 
 ### :بازی های تستی 
 
-##### 1-[Flappy Bird](https://github.com/firoozehcorp/FlappyBird_GameServiceTest)
+##### 1-[Flappy Bird](https://github.com/firoozehcorporation/FlappyBird-GameService-Template)
