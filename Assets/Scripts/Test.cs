@@ -18,7 +18,7 @@ public class Test : MonoBehaviour
                     g.SaveGame("SaveName","Save Des",null,"20",r=>{},e=>{});
                     g.SubmitScore("LeaderBoardID",20,r=>{},e=>{});
                     g.UnlockAchievement("Achievement ID",r=>{},e=>{});
-                    g.GetSaveGame(r=>{},e=>{});
+                    g.GetSaveGame<object>(r=>{},e=>{});
                     g.GetLeaderBoardDetails("LeaderBoardID",r=>{},e=>{});
                     g.ShowAchievementsUI(e=>{});
                     g.GetSDKVersion(v=>{},e=>{});
@@ -46,7 +46,7 @@ public class Test : MonoBehaviour
                 }, 
                 e =>
                 {
-                    Debug.Log("FiroozehGameServiceInitializer: "+e);
+                    Debug.Log("FiroozehGameServiceInitializerError: "+e);
                 });
 
     }

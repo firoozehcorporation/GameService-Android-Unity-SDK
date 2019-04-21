@@ -133,7 +133,7 @@ namespace FiroozehGameServiceAndroid
              string saveGameName
             ,string saveGameDescription
             ,string saveGameCover
-            ,string saveGameData
+            ,object saveGameData
             , DelegateCore.OnCallback callback
             , DelegateCore.OnError error)
         {
@@ -142,16 +142,19 @@ namespace FiroozehGameServiceAndroid
                     , saveGameName
                     , saveGameDescription
                     , saveGameCover
-                    , saveGameData
+                    , JsonConvert.SerializeObject(saveGameData)
                     , new IGameServiceCallback(callback.Invoke, error.Invoke));
             
         }
 #endif
 #if UNITY_ANDROID
-        public void GetSaveGame(DelegateCore.OnCallback saveGameData, DelegateCore.OnError error)
+        public void GetSaveGame<T>(DelegateCore.OnSaveGame<T>saveGameData, DelegateCore.OnError error)
         {
             if (_gameServiceObj != null)
-                _gameServiceObj.Call("GetLastSave", new IGameServiceCallback(saveGameData.Invoke, error.Invoke));
+                _gameServiceObj.Call("GetLastSave", new IGameServiceCallback( save =>
+                {
+                    saveGameData.Invoke(JsonConvert.DeserializeObject<T>(save));
+                }, error.Invoke));
             
         }
 #endif
