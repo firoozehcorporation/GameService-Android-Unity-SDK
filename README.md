@@ -18,9 +18,9 @@
 
 
 
-##### **ابتدا پلاگین گیم سرویس را از [دریافت](https://github.com/firoozehcorporation/GameService-Android-Unity-SDK/tree/master/Assets/package)  کنید**
+#### **ابتدا پلاگین گیم سرویس را از [دریافت](https://github.com/firoozehcorporation/GameService-Android-Unity-SDK/tree/master/Assets/package)  کنید**
 
-##### سپس آن را به صورت پکیج یونیتی به پروژه بازی خود اضافه کنید
+#### سپس آن را به صورت پکیج یونیتی به پروژه بازی خود اضافه کنید
 
 
 
@@ -344,7 +344,7 @@ public void GetAchievements(DelegateCore.OnGetAchievement callback,DelegateCore.
 public void SaveGame(string saveGameName
             ,string saveGameDescription
             ,string saveGameCover
-            ,string saveGameData
+            ,object saveGameData
             , DelegateCore.OnCallback callback
             , DelegateCore.OnError error)
 {}
@@ -482,14 +482,14 @@ public void SaveGame(string saveGameName
 
 
 ```c#
-public void GetSaveGame(DelegateCore.OnCallback saveGameData, DelegateCore.OnError error){}
+public void GetSaveGame<T>(DelegateCore.OnSaveGame<T>saveGameData, DelegateCore.OnError error)
 ```
 
 
 
 ##### با این دستور می توانید تمامی لیست دستاورد های  بازی خود را که در پنل ثبت کرده اید دریافت کنید
 
-##### سیو متنی ذخیره شده شماست saveGameData  در این جا 
+##### کلاس سیو شماست saveGameData  در این جا 
 
 ##### به شما به صورت متی بازمیگردد error درصورتی که خطایی در دریافت رخ دهد در 
 
