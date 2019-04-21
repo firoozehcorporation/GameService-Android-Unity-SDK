@@ -760,4 +760,6 @@ public void DownloadObbData(string obbDataTag,DelegateCore.OnCallback downloadCa
 
 ### :بازی های تستی 
 
-##### 1-[Flappy Bird](https://github.com/firoozehcorporation/FlappyBird-GameService-Template)
+##### 1- [Flappy Bird Game](https://github.com/firoozehcorporation/FlappyBird-GameService-Template)
+
+##### 2- [ZigZag Game](https://github.com/firoozehcorporation/ZigZag-GameService-Template)
