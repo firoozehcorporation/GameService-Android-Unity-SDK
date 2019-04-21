@@ -14,17 +14,17 @@ namespace FiroozehGameServiceAndroid.Utils
 		/// <param name='str'>
 		/// String to be fixed.
 		/// </param>
-		public static string Fix(string str)
+		public static string FixText(string str)
 		{
 			return Fix(str, false, true);
 		}
 		
-		public static string Fix(string str, bool rtl)
+		public static string FixText(string str, bool rtl)
 		{
 			if(rtl)
 				
 			{
-				return Fix(str);
+				return FixText(str);
 			}
 			else
 			{
@@ -35,7 +35,7 @@ namespace FiroozehGameServiceAndroid.Utils
 				{
 					if(char.IsLower(word.ToLower()[word.Length/2]))
 					{
-						result += Fix(arabicToIgnore) + word + " ";
+						result += FixText(arabicToIgnore) + word + " ";
 						arabicToIgnore = "";
 					}
 					else
@@ -45,7 +45,7 @@ namespace FiroozehGameServiceAndroid.Utils
 					}
 				}
 				if(arabicToIgnore != "")
-					result += Fix(arabicToIgnore);
+					result += FixText(arabicToIgnore);
 				
 				return result;
 			}
@@ -229,7 +229,7 @@ internal class ArabicMapping
 internal class ArabicTable
 {
 	
-	private static Boo.Lang.List<ArabicMapping> mapList;
+	private static List<ArabicMapping> mapList;
 	private static ArabicTable arabicMapper;
 	
 	/// <summary>
@@ -237,7 +237,7 @@ internal class ArabicTable
 	/// </summary>
 	private ArabicTable()
 	{
-		mapList = new Boo.Lang.List<ArabicMapping>
+		mapList = new List<ArabicMapping>
 		{
 			new ArabicMapping((int) GeneralArabicLetters.Hamza, (int) IsolatedArabicLetters.Hamza),
 			new ArabicMapping((int) GeneralArabicLetters.Alef, (int) IsolatedArabicLetters.Alef),
@@ -302,18 +302,13 @@ internal class ArabicTable
 	/// </summary>
 	internal static ArabicTable ArabicMapper
 	{
-		get
-		{
-			if (arabicMapper == null)
-				arabicMapper = new ArabicTable();
-			return arabicMapper;
-		}
+		get { return arabicMapper ?? (arabicMapper = new ArabicTable()); }
 	}
 	
 	internal int Convert(int toBeConverted)
 	{
 		
-		foreach (ArabicMapping arabicMap in mapList)
+		foreach (var arabicMap in mapList)
 			if (arabicMap.from == toBeConverted)
 		{
 			return arabicMap.to;
@@ -342,11 +337,11 @@ internal class ArabicFixerTool
 	internal static bool showTashkeel = true;
     internal static bool combineTashkeel = true;
     internal static bool useHinduNumbers = false;
-	
-	
-	internal static string RemoveTashkeel(string str, out Boo.Lang.List<TashkeelLocation> tashkeelLocation)
+
+
+	private static string RemoveTashkeel(string str, out List<TashkeelLocation> tashkeelLocation)
 	{
-		tashkeelLocation = new Boo.Lang.List<TashkeelLocation>();
+		tashkeelLocation = new List<TashkeelLocation>();
 		var letters = str.ToCharArray();
 
 		var index = 0;
@@ -463,14 +458,14 @@ internal class ArabicFixerTool
 		return split.Aggregate("", (current, s) => current + s);
 	}
 	
-	internal static char[] ReturnTashkeel(char[] letters, Boo.Lang.List<TashkeelLocation> tashkeelLocation)
+	internal static char[] ReturnTashkeel(char[] letters, List<TashkeelLocation> tashkeelLocation)
 	{
 		char[] lettersWithTashkeel = new char[letters.Length + tashkeelLocation.Count];
 		
 		int letterWithTashkeelTracker = 0;
-		for(int i = 0; i<letters.Length; i++)
+		foreach (var t in letters)
 		{
-			lettersWithTashkeel[letterWithTashkeelTracker] = letters[i];
+			lettersWithTashkeel[letterWithTashkeelTracker] = t;
 			letterWithTashkeelTracker++;
 			foreach(var hLocation in tashkeelLocation)
 			{
@@ -492,7 +487,7 @@ internal class ArabicFixerTool
 	{
 		string test = "";
 
-		Boo.Lang.List<TashkeelLocation> tashkeelLocation;
+		List<TashkeelLocation> tashkeelLocation;
 		
 		string originString = RemoveTashkeel(str, out tashkeelLocation);
 		
@@ -604,9 +599,9 @@ internal class ArabicFixerTool
 			lettersFinal = ReturnTashkeel(lettersFinal, tashkeelLocation);
 
 
-		Boo.Lang.List<char> list = new Boo.Lang.List<char>();
+		List<char> list = new List<char>();
 
-		Boo.Lang.List<char> numberList = new Boo.Lang.List<char>();
+		List<char> numberList = new List<char>();
 		
 		for (var i = lettersFinal.Length - 1; i >= 0; i--)
 		{
