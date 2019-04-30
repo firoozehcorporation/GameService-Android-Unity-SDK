@@ -264,8 +264,7 @@ FiroozehGameServiceInitializer
 
 
 ```c#
-public void GetLeaderBoards(DelegateCore.OnGetLeaderBoards callback, DelegateCore.OnError error){}
-
+public void GetLeaderBoards(DelegateCore.OnGetLeaderBoards callback, DelegateCore.OnError error)
 ```
 
 
@@ -295,8 +294,7 @@ public void GetLeaderBoards(DelegateCore.OnGetLeaderBoards callback, DelegateCor
 
 
 ```c#
-public void GetAchievements(DelegateCore.OnGetAchievement callback,DelegateCore.OnError error){}
-
+public void GetAchievements(DelegateCore.OnGetAchievement callback,DelegateCore.OnError error)
 ```
 
 
@@ -332,8 +330,6 @@ public void SaveGame(string saveGameName
             ,object saveGameData
             , DelegateCore.OnCallback callback
             , DelegateCore.OnError error)
-{}
-
 ```
 
 
@@ -385,7 +381,6 @@ public void SaveGame(string saveGameName
             int scoreValue,
             DelegateCore.OnCallback callback,
             DelegateCore.OnError error)
- {}
 ```
 
 
@@ -429,7 +424,7 @@ public void SaveGame(string saveGameName
 ```c#
  public void UnlockAchievement(string achievementId, 
     DelegateCore.OnUnlockAchievement callback,
-    DelegateCore.OnError error){}
+    DelegateCore.OnError error)
 ```
 
 
@@ -501,7 +496,7 @@ public void GetSaveGame<T>(DelegateCore.OnSaveGame<T>saveGameData, DelegateCore.
 ```c#
 public void GetLeaderBoardDetails(string leaderBoardId,
             DelegateCore.OnGetLeaderBoardDetails callback,
-            DelegateCore.OnError error){}
+            DelegateCore.OnError error)
 ```
 
 
@@ -538,7 +533,7 @@ public void GetLeaderBoardDetails(string leaderBoardId,
 
 
 ```c#
-public void ShowAchievementsUI(DelegateCore.OnError error){}
+public void ShowAchievementsUI(DelegateCore.OnError error)
 ```
 
 
@@ -567,7 +562,7 @@ public void ShowAchievementsUI(DelegateCore.OnError error){}
 
 
 ```c#
-public void ShowLeaderBoardsUI(DelegateCore.OnError error){}
+public void ShowLeaderBoardsUI(DelegateCore.OnError error)
 ```
 
 
@@ -619,7 +614,7 @@ public void GetSDKVersion(DelegateCore.OnCallback version, DelegateCore.OnError 
 
 
 ```c#
- public void GetUserData(DelegateCore.OnGetUserData Data, DelegateCore.OnError error){}
+ public void GetUserData(DelegateCore.OnGetUserData Data, DelegateCore.OnError error)
 ```
 
 
@@ -671,7 +666,7 @@ public void RemoveLastSave(DelegateCore.OnCallback saveGameData, DelegateCore.On
 
 
 ```c#
-public void ShowSurveyUi(DelegateCore.OnError error){}
+public void ShowSurveyUi(DelegateCore.OnError error)
 ```
 
 
@@ -720,7 +715,6 @@ public void ShowGamePageUi(DelegateCore.OnError error)
 
 ```c# 
 public void DownloadObbData(string obbDataTag,DelegateCore.OnCallback downloadCallback,DelegateCore.OnError error)
-        {}
 ```
 
 
@@ -763,4 +757,3 @@ public void DownloadObbData(string obbDataTag,DelegateCore.OnCallback downloadCa
 ##### 1- [ZigZag Game](https://github.com/firoozehcorporation/ZigZag-GameService-Template)
 ##### 2- [2048_Game](https://github.com/firoozehcorporation/2048-GameService-Template)
 ##### 3-  [Flappy Bird Game](https://github.com/firoozehcorporation/FlappyBird-GameService-Template)
-
