@@ -5,7 +5,7 @@ public class Test : MonoBehaviour
 {
     private void Start()
     {
-        FiroozehGameServiceInitializer
+        FiroozehGameService
             .With("Your clientId","Your clientSecret")
             .IsNotificationEnable(true)
             .CheckGameServiceInstallStatus(true)

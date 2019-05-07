@@ -7,13 +7,13 @@ using UnityEngine;
 
 namespace FiroozehGameServiceAndroid
 {
-    public sealed class FiroozehGameService {
+    public sealed class GameService {
 
         private readonly AndroidJavaObject _gameServiceObj;
         private readonly bool _haveNotification;
 
 #if UNITY_ANDROID
-        public FiroozehGameService(AndroidJavaObject gameService, bool haveNotification)
+        public GameService(AndroidJavaObject gameService, bool haveNotification)
         {
             if (gameService != null)
             {

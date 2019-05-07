@@ -27,5 +27,10 @@ namespace FiroozehGameServiceAndroid.Core
             return unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
         }
 
+        public static AndroidJavaClass GetDeviceInformationUtilClass()
+        {
+           return new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Utils.DeviceInformationUtil");
+        }
+
     }
 }

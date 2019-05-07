@@ -8,7 +8,7 @@ namespace FiroozehGameServiceAndroid.Core
 
         public delegate void OnSuccessInit(AndroidJavaObject gameServiceObj);
 
-        public delegate void OnSuccessInitService(FiroozehGameService builder);
+        public delegate void OnSuccessInitService(GameService builder);
 
         public delegate void OnCallback(string result);
         public delegate void OnError(string error);

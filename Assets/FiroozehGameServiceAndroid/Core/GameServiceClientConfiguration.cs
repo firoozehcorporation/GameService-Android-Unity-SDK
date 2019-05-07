@@ -8,8 +8,40 @@ namespace FiroozehGameServiceAndroid.Core
         
         private readonly bool _haveNotification;
         private readonly bool _checkAppStatus;
-        private readonly bool _checkOptionalUpdate;    
+        private readonly bool _checkOptionalUpdate;
+        private readonly bool _enableLog;
         private readonly string _clientId, _clientSecret;
+
+
+        public bool HaveNotification
+        {
+            get { return _haveNotification; }
+        }
+
+        public bool CheckAppStatus
+        {
+            get { return _checkAppStatus; }
+        }
+
+        public bool CheckOptionalUpdate
+        {
+            get { return _checkOptionalUpdate; }
+        }
+
+        public bool EnableLog
+        {
+            get { return _enableLog; }
+        }
+
+        public string ClientId
+        {
+            get { return _clientId; }
+        }
+
+        public string ClientSecret
+        {
+            get { return _clientSecret; }
+        }
 
 
         private GameServiceClientConfiguration(Builder builder)
@@ -19,6 +51,7 @@ namespace FiroozehGameServiceAndroid.Core
             _clientId = builder.ClientId;
             _clientSecret = builder.ClientSecret;
             _checkOptionalUpdate = builder.CheckOptionalUpdate;
+            _enableLog = builder.EnableLog;
 
         }
         
@@ -27,6 +60,7 @@ namespace FiroozehGameServiceAndroid.Core
             private  bool _haveNotification= true;
             private  bool _checkAppStatus = true;
             private  bool _checkOptionalUpdate = false;    
+            private  bool _enableLog;
             private  string _clientId, _clientSecret;
 
             public Builder SetClientId(string clientId)
@@ -56,6 +90,12 @@ namespace FiroozehGameServiceAndroid.Core
             public Builder CheckGameServiceOptionalUpdate(bool check)
             {
                 _checkOptionalUpdate = check;
+                return this;
+            }
+
+            public Builder IsLogEnable(bool isEnable)
+            {
+                _enableLog = isEnable;
                 return this;
             }
             
@@ -88,6 +128,11 @@ namespace FiroozehGameServiceAndroid.Core
             public string ClientSecret
             {
                 get { return _clientSecret; }
+            }
+
+            public bool EnableLog
+            {
+                get { return _enableLog; }
             }
         }
     }
