@@ -15,10 +15,9 @@ namespace FiroozehGameServiceAndroid.Builders
         public static bool IsReady;
 
 
-        private  static InstanceType _instanceType;
         private  static Action<string> _errorAction;
         private  static GameServiceClientConfiguration _configuration;
-        private  string TAG = "FiroozehGameService";
+        private  const string Tag = "FiroozehGameService";
 
 
         public static void ConfigurationInstance(GameServiceClientConfiguration configuration)
@@ -34,36 +33,46 @@ namespace FiroozehGameServiceAndroid.Builders
             
             if (Instance != null)
             {
-                LogUtil.LogWarning("GameService Initialized Before , Do Nothing..");
+                LogUtil.LogWarning(Tag,"GameService Initialized Before , Do Nothing..");
                 return;
-            } 
-            
-            
+            }
+
+            switch (_configuration.InstanceType)
+            {
+               
+                case InstanceType.Native:
+                    // Initializer Native
+                    break;
+                case InstanceType.Auto:
+                    GameServiceAppInitializer.Init(_configuration,OnAppSuccessInit,OnAppErrorInit);       
+                    break;
+                default:
+                    LogUtil.LogError(Tag,"Invalid Instance Type , Auto Type Selected...");
+                    GameServiceAppInitializer.Init(_configuration,OnAppSuccessInit,OnAppErrorInit);       
+                    break;
+            }
              
-            if (DeviceInformationUtil.IsGameServiceAppInstalled())
-            {
-                _instanceType = InstanceType.App;
-                GameServiceAppInitializer.Init(_configuration,OnSuccessInit,OnErrorInit);       
-            }
-            else
-            {
-                _instanceType = InstanceType.Native;
-            }
+         
         }
 
-        private static void OnSuccessInit(GameService gameService)
+        private static void OnAppSuccessInit(GameService gameService)
         {
             Instance = gameService;
             IsReady = true;
+            LogUtil.LogDebug(Tag,"GameService Is Ready To Use!");
         }
         
-        private static void OnErrorInit(string error)
+        private static void OnAppErrorInit(string error)
         {
+            // Switch To Native Mode
+            if (error.Equals(ErrorList.GameServiceInstallDialogDismiss)
+                || error.Equals(ErrorList.GameServiceUpdateDialogDismiss)
+                || error.Equals(ErrorList.GameServiceNotInstalled))
+            {
+                // Native Mode Call
+            }
+            else
             _errorAction.Invoke(error);
         }
-        
-        
-        
-
     }
 }

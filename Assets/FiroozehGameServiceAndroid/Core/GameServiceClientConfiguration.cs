@@ -1,18 +1,26 @@
+using FiroozehGameServiceAndroid.Enums;
+
 namespace FiroozehGameServiceAndroid.Core
 {
     public class GameServiceClientConfiguration
     {
         
         public static GameServiceClientConfiguration DefaultConfiguration 
-        = new Builder().Build();
+        = new Builder(InstanceType.Auto).Build();
         
         private readonly bool _haveNotification;
         private readonly bool _checkAppStatus;
         private readonly bool _checkOptionalUpdate;
         private readonly bool _enableLog;
         private readonly string _clientId, _clientSecret;
+        private readonly InstanceType _type;
 
 
+        public InstanceType InstanceType
+        {
+            get { return _type; }
+        }
+        
         public bool HaveNotification
         {
             get { return _haveNotification; }
@@ -46,6 +54,7 @@ namespace FiroozehGameServiceAndroid.Core
 
         private GameServiceClientConfiguration(Builder builder)
         {
+            _type = builder.Type;
             _haveNotification = builder.HaveNotification;
             _checkAppStatus = builder.CheckAppStatus;
             _clientId = builder.ClientId;
@@ -62,6 +71,13 @@ namespace FiroozehGameServiceAndroid.Core
             private  bool _checkOptionalUpdate = false;    
             private  bool _enableLog;
             private  string _clientId, _clientSecret;
+            private  InstanceType _type;
+
+
+            public Builder(InstanceType instanceType)
+            {
+                _type = instanceType;
+            }
 
             public Builder SetClientId(string clientId)
             {
@@ -71,7 +87,7 @@ namespace FiroozehGameServiceAndroid.Core
             
             public Builder SetClientSecret(string clientSecret)
             {
-                _clientId = clientSecret;
+                _clientSecret = clientSecret;
                 return this;
             }
 
@@ -103,6 +119,11 @@ namespace FiroozehGameServiceAndroid.Core
             public GameServiceClientConfiguration Build()
             {
                 return new GameServiceClientConfiguration(this);
+            }
+
+            public InstanceType Type
+            {
+                get { return _type; }
             }
 
             public bool HaveNotification

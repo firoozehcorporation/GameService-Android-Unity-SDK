@@ -3,9 +3,9 @@ using FiroozehGameServiceAndroid.Core;
 
 namespace FiroozehGameServiceAndroid.Builders.App
 {
-    public static class GameServiceAppInitializer
+    internal static class GameServiceAppInitializer
     {
-        public static void Init(
+        internal static void Init(
             GameServiceClientConfiguration configuration
             ,Action<GameService> onSuccess
             ,Action<string> onError)
