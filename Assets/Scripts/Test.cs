@@ -18,10 +18,7 @@ public class Test : MonoBehaviour
             .Build();
         
         FiroozehGameService.ConfigurationInstance(config);
-        FiroozehGameService.Run(error =>
-        {
-            
-        });
+        FiroozehGameService.Run(Debug.LogError);
 
     }
 }

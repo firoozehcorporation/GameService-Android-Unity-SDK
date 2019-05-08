@@ -80,13 +80,14 @@ namespace FiroozehGameServiceAndroid.Builders
 
         private static void OnSuccessInit(GameService gameService)
         {
-            //Instance = (GameService) gameService;
+            Instance = gameService;
             IsReady = true;
             LogUtil.LogDebug(Tag,"GameService Is Ready To Use!");
         }
         
         private static void OnErrorInit(string error)
         {
+            LogUtil.LogError(Tag,error);
             // Switch To Native Mode
             if (error.Equals(ErrorList.GameServiceInstallDialogDismiss)
                 || error.Equals(ErrorList.GameServiceUpdateDialogDismiss)
