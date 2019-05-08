@@ -24,9 +24,9 @@ using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Core.App
 {
+    #if UNITY_ANDROID
     public static class AppPluginHandler {
 
-#if UNITY_ANDROID
         private static AndroidJavaObject GetGameServiceInstance()
         {
             var gameService = AppPluginProvider.GetGameService();
@@ -36,9 +36,7 @@ namespace FiroozehGameServiceAndroid.Core.App
 
             return gameService;
         }
-#endif
 
-#if UNITY_ANDROID
         private static AndroidJavaObject GetGameLoginServiceInstance()
         {
             var loginService = AppPluginProvider.GetLoginService();
@@ -48,9 +46,7 @@ namespace FiroozehGameServiceAndroid.Core.App
 
             return loginService;
         }
-#endif
 
-#if UNITY_ANDROID
         public static void InitGameService(
              string clientId
             ,string clientSecret,
@@ -70,10 +66,6 @@ namespace FiroozehGameServiceAndroid.Core.App
                     onError.Invoke));
         }
 
-#endif
-
-#if UNITY_ANDROID
-
         public static void InitGameLoginService(
              bool checkAppStatus
             ,bool checkOptionalUpdate
@@ -92,10 +84,6 @@ namespace FiroozehGameServiceAndroid.Core.App
                     },
                     onError.Invoke));
         }
-
-#endif
-
-
-
     }
+    #endif
 }

@@ -33,6 +33,7 @@ using UnityEngine;
 
 namespace FiroozehGameServiceAndroid
 {
+    #if UNITY_ANDROID
     public sealed class GameService
     {
 
@@ -41,7 +42,6 @@ namespace FiroozehGameServiceAndroid
         private readonly bool _haveNotification;
         private readonly GameServiceType _type;
 
-#if UNITY_ANDROID
         public GameService(AndroidJavaObject gameService, GameServiceType type ,bool haveNotification)
         {
             if (gameService != null)
@@ -52,10 +52,6 @@ namespace FiroozehGameServiceAndroid
             }
             else throw new GameServiceException("GameServiceObj Is NULL");
         }
-
-#endif
-
-#if UNITY_ANDROID
 
         public void GetAchievements(DelegateCore.OnGetAchievement callback,DelegateCore.OnError error)
         {
@@ -70,9 +66,6 @@ namespace FiroozehGameServiceAndroid
  
         }
 
-#endif
-
-#if UNITY_ANDROID
         public void UnlockAchievement(
             string achievementId, 
             DelegateCore.OnUnlockAchievement callback,
@@ -89,8 +82,6 @@ namespace FiroozehGameServiceAndroid
             
         }
 
-#endif
-#if UNITY_ANDROID
         public void ShowAchievementsUI(DelegateCore.OnError error)
         {
             if (_gameServiceObj == null) return;
@@ -107,8 +98,6 @@ namespace FiroozehGameServiceAndroid
                     , error.Invoke));
 
         }
-#endif
-#if UNITY_ANDROID
 
         public void ShowLeaderBoardsUI(DelegateCore.OnError error)
         {
@@ -127,8 +116,7 @@ namespace FiroozehGameServiceAndroid
                     , error.Invoke));
             
         }
-#endif
-#if UNITY_ANDROID
+
         public void GetLeaderBoards(DelegateCore.OnGetLeaderBoards callback, DelegateCore.OnError error)
         {
             if (_gameServiceObj == null) return;
@@ -140,8 +128,8 @@ namespace FiroozehGameServiceAndroid
                     , error.Invoke));
             
         }
-#endif
-#if UNITY_ANDROID
+
+        
         public void GetLeaderBoardDetails(
             string leaderBoardId,
             DelegateCore.OnGetLeaderBoardDetails callback,
@@ -157,8 +145,8 @@ namespace FiroozehGameServiceAndroid
                     }, error.Invoke));
             
         }
-#endif
-#if UNITY_ANDROID
+
+        
         public void SubmitScore(
             string leaderBoardId,
             int scoreValue,
@@ -175,9 +163,8 @@ namespace FiroozehGameServiceAndroid
                     ,new IGameServiceCallback(callback.Invoke, error.Invoke));
             
         }
-#endif
        
-#if UNITY_ANDROID
+
         public void SaveGame(
              string saveGameName
             ,string saveGameDescription
@@ -196,8 +183,7 @@ namespace FiroozehGameServiceAndroid
                     , new IGameServiceCallback(callback.Invoke, error.Invoke));
             
         }
-#endif
-#if UNITY_ANDROID
+
         public void GetSaveGame<T>(DelegateCore.OnSaveGame<T>saveGameData, DelegateCore.OnError error)
         {
             if (_gameServiceObj == null) return;
@@ -208,9 +194,8 @@ namespace FiroozehGameServiceAndroid
                 }, error.Invoke));
             
         }
-#endif
+
         
-#if UNITY_ANDROID
         public void GetSDKVersion(DelegateCore.OnCallback version, DelegateCore.OnError error)
         {
             if (_gameServiceObj == null) return;
@@ -226,9 +211,7 @@ namespace FiroozehGameServiceAndroid
             
         }
 
-#endif
 
-#if UNITY_ANDROID
         public void RemoveLastSave(DelegateCore.OnCallback saveGameData, DelegateCore.OnError error)
         {
             if (_gameServiceObj == null) return;
@@ -236,9 +219,8 @@ namespace FiroozehGameServiceAndroid
                 _gameServiceObj.Call("RemoveLastSave", new IGameServiceCallback(saveGameData.Invoke, error.Invoke));
             
         }
-#endif
 
-#if UNITY_ANDROID
+        
         public void GetUserData(DelegateCore.OnGetUserData saveGameData, DelegateCore.OnError error)
         {
             if (_gameServiceObj == null) return;
@@ -249,10 +231,7 @@ namespace FiroozehGameServiceAndroid
                 }, error.Invoke));
             
         }
-#endif
 
-      
-#if UNITY_ANDROID
 
         public void ShowGamePageUi(DelegateCore.OnError error)
         {
@@ -270,9 +249,7 @@ namespace FiroozehGameServiceAndroid
                     , error.Invoke));
             
         }
-#endif
-        
-#if UNITY_ANDROID
+
 
         public void ShowSurveyUi(DelegateCore.OnError error)
         {
@@ -290,9 +267,7 @@ namespace FiroozehGameServiceAndroid
                     , error.Invoke));
             
         }
-#endif
-        
-#if UNITY_ANDROID
+
 
         public void DownloadObbData(
             string obbDataTag
@@ -315,7 +290,6 @@ namespace FiroozehGameServiceAndroid
                     , error.Invoke));
             
         }
-#endif
-
     }
+    #endif
 }

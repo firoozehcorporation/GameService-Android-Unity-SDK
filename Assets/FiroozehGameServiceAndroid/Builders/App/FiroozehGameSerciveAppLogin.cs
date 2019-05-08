@@ -26,9 +26,9 @@ using FiroozehGameServiceAndroid.Interfaces.App;
 
 namespace FiroozehGameServiceAndroid.Builders.App
 {
+#if UNITY_ANDROID
     public static class FiroozehGameServiceAppLoginCheck
     {
-#if UNITY_ANDROID
         public static void CheckUserLoginStatus(
              bool checkAppStatus
             ,bool checkOptionalUpdate
@@ -49,8 +49,6 @@ namespace FiroozehGameServiceAndroid.Builders.App
                 } , error.Invoke);
         
         }
-#endif
-#if UNITY_ANDROID
         public static void ShowLoginUI(
             bool checkAppStatus
             ,bool checkOptionalUpdate  
@@ -69,7 +67,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
 
      
         }
+    }
 #endif
 
-    }
 }

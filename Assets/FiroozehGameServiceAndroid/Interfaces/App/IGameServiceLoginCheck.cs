@@ -23,6 +23,7 @@ using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Interfaces.App
 {
+    #if UNITY_ANDROID
     public class IGameServiceLoginCheck : AndroidJavaProxy
     {
 
@@ -46,4 +47,5 @@ namespace FiroozehGameServiceAndroid.Interfaces.App
             _OnError.Invoke(Error);
         }
     }
+    #endif
 }

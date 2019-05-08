@@ -22,8 +22,10 @@ using FiroozehGameServiceAndroid.Enums;
 * @author Alireza Ghodrati
 */
 
+
 namespace FiroozehGameServiceAndroid.Core
 {
+    #if UNITY_ANDROID
     public class GameServiceClientConfiguration
     {
         
@@ -179,4 +181,5 @@ namespace FiroozehGameServiceAndroid.Core
             }
         }
     }
+    #endif
 }

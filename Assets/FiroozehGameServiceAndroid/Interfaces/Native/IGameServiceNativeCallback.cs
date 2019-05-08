@@ -24,6 +24,7 @@ using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Interfaces.Native
 {
+    #if UNITY_ANDROID
     public class IGameServiceNativeCallback : AndroidJavaProxy
     {
         private readonly DelegateCore.OnCallback _oncallback;
@@ -48,4 +49,5 @@ namespace FiroozehGameServiceAndroid.Interfaces.Native
         }
 
     }
+    #endif
 }

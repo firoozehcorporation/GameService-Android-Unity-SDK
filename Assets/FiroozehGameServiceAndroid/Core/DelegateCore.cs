@@ -25,6 +25,7 @@ using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Core
 {
+    #if UNITY_ANDROID
     public static class DelegateCore {
 
         public delegate void OnSuccessInit(AndroidJavaObject gameServiceObj);
@@ -52,4 +53,5 @@ namespace FiroozehGameServiceAndroid.Core
         public delegate void OnGetUserData(User user);
 
     }
+    #endif
 }

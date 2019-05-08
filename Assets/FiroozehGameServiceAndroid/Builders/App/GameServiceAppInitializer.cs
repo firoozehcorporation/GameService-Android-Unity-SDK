@@ -26,6 +26,7 @@ using FiroozehGameServiceAndroid.Enums;
 
 namespace FiroozehGameServiceAndroid.Builders.App
 {
+    #if UNITY_ANDROID
     internal static class GameServiceAppInitializer
     {
         internal static void Init(
@@ -67,4 +68,6 @@ namespace FiroozehGameServiceAndroid.Builders.App
             
         }
     }
+#endif
+
 }

@@ -30,7 +30,7 @@ using FiroozehGameServiceAndroid.Utils;
 namespace FiroozehGameServiceAndroid.Builders
 {
     
-    
+    #if UNITY_ANDROID
     public sealed class FiroozehGameService
     {
 
@@ -101,4 +101,5 @@ namespace FiroozehGameServiceAndroid.Builders
 
       
     }
+    #endif
 }

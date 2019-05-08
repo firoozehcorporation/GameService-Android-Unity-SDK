@@ -25,11 +25,10 @@ using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Core.Native
 {
+    #if UNITY_ANDROID
     public static class NativePluginHandler
     {
-   
-        
-#if UNITY_ANDROID
+         
         public static AndroidJavaObject GetGameServiceInstance()
         {
             var gameService = NativePluginProvider.GetGameService();
@@ -38,10 +37,7 @@ namespace FiroozehGameServiceAndroid.Core.Native
             gameService.Call("SetUnityContext", unityActivity);
 
             return gameService;
-        }
-#endif
-        
-#if UNITY_ANDROID
+        }        
         public static void InitGameService(
             AndroidJavaObject gameService
             ,GameServiceClientConfiguration configuration
@@ -59,8 +55,7 @@ namespace FiroozehGameServiceAndroid.Core.Native
                         
                 }, onError.Invoke));
 
-        }
-#endif
-        
+        }        
     }
+  #endif
 }
