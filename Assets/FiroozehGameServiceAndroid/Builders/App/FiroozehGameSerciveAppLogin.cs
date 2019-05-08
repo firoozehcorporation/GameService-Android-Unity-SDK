@@ -32,6 +32,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
         public static void CheckUserLoginStatus(
              bool checkAppStatus
             ,bool checkOptionalUpdate
+             ,bool isLogEnable
             ,DelegateCore.IsUserLogin userLogin
             , DelegateCore.OnError error)
         {
@@ -40,6 +41,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
             AppPluginHandler.InitGameLoginService(
                  checkAppStatus
                 ,checkOptionalUpdate
+                 ,isLogEnable
                 ,s=>
                 {
                         s.Call("IsUserLoggedIn",
@@ -52,11 +54,12 @@ namespace FiroozehGameServiceAndroid.Builders.App
         public static void ShowLoginUI(
             bool checkAppStatus
             ,bool checkOptionalUpdate  
+            ,bool isLogEnable
             ,DelegateCore.IsUserLogin isUserLogin
             ,DelegateCore.OnError error)
         {
 
-           AppPluginHandler.InitGameLoginService(checkAppStatus,checkOptionalUpdate
+           AppPluginHandler.InitGameLoginService(checkAppStatus,checkOptionalUpdate,isLogEnable
                 ,s =>
                 {
                     s.Call("ShowLoginUI",

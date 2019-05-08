@@ -49,8 +49,9 @@ namespace FiroozehGameServiceAndroid.Core.App
 
         public static void InitGameService(
              string clientId
-            ,string clientSecret,
-            DelegateCore.OnSuccessInit onSuccess,
+            ,string clientSecret
+             ,bool logEnable
+            ,DelegateCore.OnSuccessInit onSuccess,
             DelegateCore.OnError onError)
         {
    
@@ -59,6 +60,7 @@ namespace FiroozehGameServiceAndroid.Core.App
             gameService.Call("InitGameService",
                 clientId,
                 clientSecret,
+                logEnable,
                 new IGameServiceCallback(callBack => {
                         if(callBack.Equals("Success"))
                             onSuccess.Invoke(gameService);
@@ -69,6 +71,7 @@ namespace FiroozehGameServiceAndroid.Core.App
         public static void InitGameLoginService(
              bool checkAppStatus
             ,bool checkOptionalUpdate
+             ,bool logEnable
             ,DelegateCore.OnSuccessInit onSuccess,
             DelegateCore.OnError onError)
         {
@@ -77,7 +80,8 @@ namespace FiroozehGameServiceAndroid.Core.App
 
             loginService.Call("InitLoginService",
                 checkAppStatus,
-                checkOptionalUpdate,
+                checkOptionalUpdate
+                ,logEnable,
                 new IGameServiceCallback(callBack => {
                         if (callBack.Equals("Success"))
                             onSuccess.Invoke(loginService);

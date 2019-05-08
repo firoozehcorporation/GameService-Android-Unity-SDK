@@ -38,12 +38,13 @@ namespace FiroozehGameServiceAndroid.Builders.App
                 FiroozehGameServiceAppLoginCheck.CheckUserLoginStatus(
                     configuration.CheckAppStatus
                     , configuration.CheckOptionalUpdate
+                    ,configuration.EnableLog
                     , isLogin =>
                     {
                         if (isLogin)
                         {
                             AppPluginHandler.InitGameService(
-                                configuration.ClientId,configuration.ClientSecret,
+                                configuration.ClientId,configuration.ClientSecret,configuration.EnableLog,
                                 s => { onSuccess.Invoke(new GameService(s,GameServiceType.App, configuration.HaveNotification)); }
                                 ,onError.Invoke);
                         }      
@@ -51,12 +52,13 @@ namespace FiroozehGameServiceAndroid.Builders.App
                             FiroozehGameServiceAppLoginCheck.ShowLoginUI(
                                 configuration.CheckAppStatus
                                 , configuration.CheckOptionalUpdate
+                                ,configuration.EnableLog
                                 , r =>
                                 {
                                     if (r)
                                     {
                                         AppPluginHandler.InitGameService(
-                                            configuration.ClientId, configuration.ClientSecret,
+                                            configuration.ClientId, configuration.ClientSecret,configuration.EnableLog,
                                             s =>
                                             {
                                                 onSuccess.Invoke(new GameService(s,GameServiceType.App, configuration.HaveNotification));

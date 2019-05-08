@@ -48,6 +48,7 @@ namespace FiroozehGameServiceAndroid.Core.Native
             gameService.Call("InitGameService"
                 ,configuration.ClientId
                 ,configuration.ClientSecret
+                ,configuration.EnableLog
                 ,new IGameServiceNativeCallback(c =>
                 {
                     if(c.Equals("Success"))
