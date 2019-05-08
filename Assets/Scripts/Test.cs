@@ -9,8 +9,8 @@ public class Test : MonoBehaviour
     {
         
         var config = new GameServiceClientConfiguration.Builder(InstanceType.Auto)
-            .SetClientId("mygame")
-            .SetClientSecret("h31r1kjwy8lap7lnrwd3x7")
+            .SetClientId("Flappy_Bird")
+            .SetClientSecret("z040ye7nv9grgtn292p29")
             .IsLogEnable(true)
             .IsNotificationEnable(true)
             .CheckGameServiceInstallStatus(true)
@@ -20,5 +20,10 @@ public class Test : MonoBehaviour
         FiroozehGameService.ConfigurationInstance(config);
         FiroozehGameService.Run(Debug.LogError);
 
+    }
+
+    private void Update()
+    {
+        FiroozehGameService.Instance.GetSDKVersion(v=>{},e=>{});
     }
 }

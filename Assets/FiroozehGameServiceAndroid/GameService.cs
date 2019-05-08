@@ -55,7 +55,12 @@ namespace FiroozehGameServiceAndroid
 
         public void GetAchievements(DelegateCore.OnGetAchievement callback,DelegateCore.OnError error)
         {
-            if (_gameServiceObj != null)
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
                 _gameServiceObj.Call("GetAchievement"
                     , new IGameServiceCallback(Oncallback =>
                     {
@@ -71,7 +76,12 @@ namespace FiroozehGameServiceAndroid
             DelegateCore.OnUnlockAchievement callback,
             DelegateCore.OnError error)
         {
-            if (_gameServiceObj != null)
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
                 _gameServiceObj.Call("UnlockAchievement"
                     , achievementId
                     ,_haveNotification
@@ -84,7 +94,13 @@ namespace FiroozehGameServiceAndroid
 
         public void ShowAchievementsUI(DelegateCore.OnError error)
         {
-            if (_gameServiceObj == null) return;
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
+            
             if (_type == GameServiceType.Native)
             {
 
@@ -101,7 +117,13 @@ namespace FiroozehGameServiceAndroid
 
         public void ShowLeaderBoardsUI(DelegateCore.OnError error)
         {
-            if (_gameServiceObj == null) return;
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
+            
             if (_type == GameServiceType.Native)
             {
 
@@ -119,7 +141,12 @@ namespace FiroozehGameServiceAndroid
 
         public void GetLeaderBoards(DelegateCore.OnGetLeaderBoards callback, DelegateCore.OnError error)
         {
-            if (_gameServiceObj == null) return;
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
             
                 _gameServiceObj.Call("GetLeaderBoards"
                     , new IGameServiceCallback(oncallback => {
@@ -136,8 +163,12 @@ namespace FiroozehGameServiceAndroid
             DelegateCore.OnError error)
 
         {
-            if (_gameServiceObj == null) return;    
-            
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }            
                 _gameServiceObj.Call("GetLeaderBoardData"
                     , leaderBoardId
                     , new IGameServiceCallback(oncallback => {
@@ -154,8 +185,12 @@ namespace FiroozehGameServiceAndroid
             DelegateCore.OnError error)
 
         {
-            if (_gameServiceObj == null) return;
-            
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }            
                 _gameServiceObj.Call("SubmitScore"
                     , leaderBoardId
                     , scoreValue
@@ -173,7 +208,12 @@ namespace FiroozehGameServiceAndroid
             , DelegateCore.OnCallback callback
             , DelegateCore.OnError error)
         {
-            if (_gameServiceObj == null) return;
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
             
                 _gameServiceObj.Call("SaveData"
                     , saveGameName
@@ -186,7 +226,12 @@ namespace FiroozehGameServiceAndroid
 
         public void GetSaveGame<T>(DelegateCore.OnSaveGame<T>saveGameData, DelegateCore.OnError error)
         {
-            if (_gameServiceObj == null) return;
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
             
                 _gameServiceObj.Call("GetLastSave", new IGameServiceCallback( save =>
                 {
@@ -195,10 +240,15 @@ namespace FiroozehGameServiceAndroid
             
         }
 
-        
+
         public void GetSDKVersion(DelegateCore.OnCallback version, DelegateCore.OnError error)
         {
-            if (_gameServiceObj == null) return;
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
             if (_type == GameServiceType.Native)
             {
 
@@ -214,7 +264,12 @@ namespace FiroozehGameServiceAndroid
 
         public void RemoveLastSave(DelegateCore.OnCallback saveGameData, DelegateCore.OnError error)
         {
-            if (_gameServiceObj == null) return;
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
             
                 _gameServiceObj.Call("RemoveLastSave", new IGameServiceCallback(saveGameData.Invoke, error.Invoke));
             
@@ -223,7 +278,12 @@ namespace FiroozehGameServiceAndroid
         
         public void GetUserData(DelegateCore.OnGetUserData saveGameData, DelegateCore.OnError error)
         {
-            if (_gameServiceObj == null) return;
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
             
                 _gameServiceObj.Call("GetUserData", new IGameServiceCallback(r =>
                 {
@@ -235,7 +295,12 @@ namespace FiroozehGameServiceAndroid
 
         public void ShowGamePageUi(DelegateCore.OnError error)
         {
-            if (_gameServiceObj == null) return;
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
             if (_type == GameServiceType.Native)
             {
 
@@ -253,7 +318,13 @@ namespace FiroozehGameServiceAndroid
 
         public void ShowSurveyUi(DelegateCore.OnError error)
         {
-            if (_gameServiceObj == null) return;
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
+            
             if (_type == GameServiceType.Native)
             {
 
@@ -274,7 +345,13 @@ namespace FiroozehGameServiceAndroid
             ,DelegateCore.OnCallback downloadCallback
             ,DelegateCore.OnError error)
         {
-            if (_gameServiceObj == null) return;
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
+            
             if (_type == GameServiceType.Native)
             {
 
