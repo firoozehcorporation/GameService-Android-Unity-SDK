@@ -15,9 +15,9 @@ namespace FiroozehGameServiceAndroid.Core.Native
             return new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Utils.DeviceInformationUtil");
         }
 
-        public static AndroidJavaClass GetNativeUtil()
+        public static AndroidJavaClass GetNativeHandlerClass()
         {
-           return new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Utils.NativeUtil");
+            return new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Native.Handlers.UnityGameServiceNative");
         }
     }
 }

@@ -13,6 +13,9 @@ namespace FiroozehGameServiceAndroid.Core
         public const string GameServiceNotInstalled = "GameServiceNotInstalled";
         public const string GameServiceInstallDialogDismiss = "GameServiceInstallDialogDismiss";
         public const string GameServiceUpdateDialogDismiss = "GameServiceUpdateDialogDismiss";
+        public const string LoginDismissed = "LoginDismissed";
+
+        
         
         
         

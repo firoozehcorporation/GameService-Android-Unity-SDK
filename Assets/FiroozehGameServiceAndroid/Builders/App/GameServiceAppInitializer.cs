@@ -8,7 +8,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
     {
         internal static void Init(
             GameServiceClientConfiguration configuration
-            ,Action<GameService> onSuccess
+            ,Action<GameServiceApp> onSuccess
             ,Action<string> onError)
         {
 
@@ -21,7 +21,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
                         {
                             AppPluginHandler.InitGameService(
                                 configuration.ClientId,configuration.ClientSecret,
-                                s => { onSuccess.Invoke(new GameService(s, configuration.HaveNotification)); }
+                                s => { onSuccess.Invoke(new GameServiceApp(s, configuration.HaveNotification)); }
                                 ,onError.Invoke);
                         }      
                         else
@@ -36,7 +36,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
                                             configuration.ClientId, configuration.ClientSecret,
                                             s =>
                                             {
-                                                onSuccess.Invoke(new GameService(s, configuration.HaveNotification));
+                                                onSuccess.Invoke(new GameServiceApp(s, configuration.HaveNotification));
                                             }
                                             , onError.Invoke);
                                     }

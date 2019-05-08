@@ -1,6 +1,7 @@
 ﻿using System;
 using FiroozehGameServiceAndroid.Builders.App;
 using FiroozehGameServiceAndroid.Core;
+using FiroozehGameServiceAndroid.Core.Native;
 using FiroozehGameServiceAndroid.Enums;
 using FiroozehGameServiceAndroid.Utils;
 
@@ -41,6 +42,7 @@ namespace FiroozehGameServiceAndroid.Builders
             {
                
                 case InstanceType.Native:
+                    //NativePluginHandler.Test();
                     // Initializer Native
                     break;
                 case InstanceType.Auto:
@@ -55,9 +57,9 @@ namespace FiroozehGameServiceAndroid.Builders
          
         }
 
-        private static void OnAppSuccessInit(GameService gameService)
+        private static void OnAppSuccessInit(GameServiceApp gameService)
         {
-            Instance = gameService;
+            //Instance = (GameService) gameService;
             IsReady = true;
             LogUtil.LogDebug(Tag,"GameService Is Ready To Use!");
         }
