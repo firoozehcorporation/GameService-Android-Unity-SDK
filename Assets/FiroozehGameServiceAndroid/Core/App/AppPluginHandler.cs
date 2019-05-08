@@ -1,15 +1,15 @@
 ﻿using FiroozehGameServiceAndroid.Interfaces;
 using UnityEngine;
 
-namespace FiroozehGameServiceAndroid.Core
+namespace FiroozehGameServiceAndroid.Core.App
 {
-    public static class GameServicePluginHandler {
+    public static class AppPluginHandler {
 
 #if UNITY_ANDROID
         private static AndroidJavaObject GetGameServiceInstance()
         {
-            var gameService = PluginProvider.GetGameService();
-            var unityActivity = PluginProvider.GetUnityActivity();
+            var gameService = AppPluginProvider.GetGameService();
+            var unityActivity = AppPluginProvider.GetUnityActivity();
 
             gameService.Call("SetUnityContext", unityActivity);
 
@@ -20,8 +20,8 @@ namespace FiroozehGameServiceAndroid.Core
 #if UNITY_ANDROID
         private static AndroidJavaObject GetGameLoginServiceInstance()
         {
-            var loginService = PluginProvider.GetLoginService();
-            var unityActivity = PluginProvider.GetUnityActivity();
+            var loginService = AppPluginProvider.GetLoginService();
+            var unityActivity = AppPluginProvider.GetUnityActivity();
 
             loginService.Call("SetUnityContext", unityActivity);
 

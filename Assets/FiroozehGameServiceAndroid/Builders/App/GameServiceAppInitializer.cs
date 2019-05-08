@@ -1,5 +1,6 @@
 using System;
 using FiroozehGameServiceAndroid.Core;
+using FiroozehGameServiceAndroid.Core.App;
 
 namespace FiroozehGameServiceAndroid.Builders.App
 {
@@ -11,29 +12,34 @@ namespace FiroozehGameServiceAndroid.Builders.App
             ,Action<string> onError)
         {
 
-                FiroozehGameServiceLoginCheck.CheckUserLoginStatus(
+                FiroozehGameServiceAppLoginCheck.CheckUserLoginStatus(
                     configuration.CheckAppStatus
                     , configuration.CheckOptionalUpdate
                     , isLogin =>
                     {
                         if (isLogin)
-                            GameServiceInitializer.Init(configuration.ClientId, configuration.ClientSecret, s =>
-                                {
-                                    onSuccess.Invoke(new GameService(s,configuration.HaveNotification));
-                                }
-                                , onError.Invoke);
+                        {
+                            AppPluginHandler.InitGameService(
+                                configuration.ClientId,configuration.ClientSecret,
+                                s => { onSuccess.Invoke(new GameService(s, configuration.HaveNotification)); }
+                                ,onError.Invoke);
+                        }      
                         else
-                            FiroozehGameServiceLoginCheck.ShowLoginUI(
+                            FiroozehGameServiceAppLoginCheck.ShowLoginUI(
                                 configuration.CheckAppStatus
                                 , configuration.CheckOptionalUpdate
                                 , r =>
                                 {
                                     if (r)
-                                        GameServiceInitializer.Init(configuration.ClientId, configuration.ClientSecret, s =>
+                                    {
+                                        AppPluginHandler.InitGameService(
+                                            configuration.ClientId, configuration.ClientSecret,
+                                            s =>
                                             {
-                                                onSuccess.Invoke(new GameService(s,configuration.HaveNotification));
+                                                onSuccess.Invoke(new GameService(s, configuration.HaveNotification));
                                             }
                                             , onError.Invoke);
+                                    }
                                 }, onError.Invoke);
                     }, onError.Invoke);
             

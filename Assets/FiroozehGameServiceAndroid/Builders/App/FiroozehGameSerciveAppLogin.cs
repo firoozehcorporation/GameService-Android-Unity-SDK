@@ -1,9 +1,10 @@
 ﻿using FiroozehGameServiceAndroid.Core;
+using FiroozehGameServiceAndroid.Core.App;
 using FiroozehGameServiceAndroid.Interfaces;
 
-namespace FiroozehGameServiceAndroid.Builders
+namespace FiroozehGameServiceAndroid.Builders.App
 {
-    public static class FiroozehGameServiceLoginCheck
+    public static class FiroozehGameServiceAppLoginCheck
     {
 #if UNITY_ANDROID
         public static void CheckUserLoginStatus(
@@ -14,7 +15,7 @@ namespace FiroozehGameServiceAndroid.Builders
         {
 
      
-            GameServicePluginHandler.InitGameLoginService(
+            AppPluginHandler.InitGameLoginService(
                  checkAppStatus
                 ,checkOptionalUpdate
                 ,s=>
@@ -35,7 +36,7 @@ namespace FiroozehGameServiceAndroid.Builders
             ,DelegateCore.OnError error)
         {
 
-            GameServicePluginHandler.InitGameLoginService(checkAppStatus,checkOptionalUpdate
+           AppPluginHandler.InitGameLoginService(checkAppStatus,checkOptionalUpdate
                 ,s =>
                 {
                     s.Call("ShowLoginUI",

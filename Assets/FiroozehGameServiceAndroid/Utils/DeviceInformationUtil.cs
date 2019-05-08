@@ -1,4 +1,6 @@
 using FiroozehGameServiceAndroid.Core;
+using FiroozehGameServiceAndroid.Core.App;
+using FiroozehGameServiceAndroid.Core.Native;
 using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Utils
@@ -7,8 +9,8 @@ namespace FiroozehGameServiceAndroid.Utils
     {
         public static bool IsGameServiceAppInstalled()
         {
-            var unityActivity = PluginProvider.GetUnityActivity();
-            var deviceInformationUtil = PluginProvider.GetDeviceInformationUtilClass();
+            var unityActivity = NativePluginProvider.GetUnityActivity();
+            var deviceInformationUtil = NativePluginProvider.GetDeviceInformationUtilClass();
             
             return deviceInformationUtil.CallStatic<bool>("isGameServiceInstalled",unityActivity);
             
