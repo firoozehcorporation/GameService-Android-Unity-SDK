@@ -9,8 +9,8 @@ public class Test : MonoBehaviour
     {
         
         var config = new GameServiceClientConfiguration.Builder(InstanceType.Auto)
-            .SetClientId("Flappy_Bird")
-            .SetClientSecret("z040ye7nv9grgtn292p29")
+            .SetClientId("mygame")
+            .SetClientSecret("h31r1kjwy8lap7lnrwd3x7")
             .IsLogEnable(true)
             .IsNotificationEnable(true)
             .CheckGameServiceInstallStatus(true)
