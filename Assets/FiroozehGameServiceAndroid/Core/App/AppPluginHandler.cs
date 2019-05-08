@@ -1,4 +1,5 @@
 ﻿using FiroozehGameServiceAndroid.Interfaces;
+using FiroozehGameServiceAndroid.Interfaces.App;
 using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Core.App

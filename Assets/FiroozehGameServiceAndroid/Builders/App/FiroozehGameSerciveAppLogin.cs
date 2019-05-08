@@ -1,6 +1,7 @@
 ﻿using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Core.App;
 using FiroozehGameServiceAndroid.Interfaces;
+using FiroozehGameServiceAndroid.Interfaces.App;
 
 namespace FiroozehGameServiceAndroid.Builders.App
 {

@@ -1,6 +1,7 @@
 using System;
 using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Core.App;
+using FiroozehGameServiceAndroid.Enums;
 
 namespace FiroozehGameServiceAndroid.Builders.App
 {
@@ -8,7 +9,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
     {
         internal static void Init(
             GameServiceClientConfiguration configuration
-            ,Action<GameServiceApp> onSuccess
+            ,Action<GameService> onSuccess
             ,Action<string> onError)
         {
 
@@ -21,7 +22,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
                         {
                             AppPluginHandler.InitGameService(
                                 configuration.ClientId,configuration.ClientSecret,
-                                s => { onSuccess.Invoke(new GameServiceApp(s, configuration.HaveNotification)); }
+                                s => { onSuccess.Invoke(new GameService(s,GameServiceType.App, configuration.HaveNotification)); }
                                 ,onError.Invoke);
                         }      
                         else
@@ -36,7 +37,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
                                             configuration.ClientId, configuration.ClientSecret,
                                             s =>
                                             {
-                                                onSuccess.Invoke(new GameServiceApp(s, configuration.HaveNotification));
+                                                onSuccess.Invoke(new GameService(s,GameServiceType.App, configuration.HaveNotification));
                                             }
                                             , onError.Invoke);
                                     }

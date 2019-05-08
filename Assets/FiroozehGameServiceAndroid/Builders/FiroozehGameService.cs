@@ -1,5 +1,6 @@
 ﻿using System;
 using FiroozehGameServiceAndroid.Builders.App;
+using FiroozehGameServiceAndroid.Builders.Native;
 using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Core.Native;
 using FiroozehGameServiceAndroid.Enums;
@@ -17,18 +18,18 @@ namespace FiroozehGameServiceAndroid.Builders
 
 
         private  static Action<string> _errorAction;
-        private  static GameServiceClientConfiguration _configuration;
+        public   static GameServiceClientConfiguration Configuration;
         private  const string Tag = "FiroozehGameService";
 
 
         public static void ConfigurationInstance(GameServiceClientConfiguration configuration)
         {  
-            _configuration = configuration;     
+            Configuration = configuration;     
         }
 
         public static void Run(Action<string> onError)
         {
-            LogUtil.InitialLogger(_configuration);
+            LogUtil.InitialLogger(Configuration);
             _errorAction = onError;
 
             
@@ -38,33 +39,32 @@ namespace FiroozehGameServiceAndroid.Builders
                 return;
             }
 
-            switch (_configuration.InstanceType)
+            switch (Configuration.InstanceType)
             {
-               
+             
                 case InstanceType.Native:
-                    //NativePluginHandler.Test();
-                    // Initializer Native
+                    GameServiceNativeInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);
                     break;
                 case InstanceType.Auto:
-                    GameServiceAppInitializer.Init(_configuration,OnAppSuccessInit,OnAppErrorInit);       
+                    GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);       
                     break;
                 default:
                     LogUtil.LogError(Tag,"Invalid Instance Type , Auto Type Selected...");
-                    GameServiceAppInitializer.Init(_configuration,OnAppSuccessInit,OnAppErrorInit);       
+                    GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);       
                     break;
             }
              
          
         }
 
-        private static void OnAppSuccessInit(GameServiceApp gameService)
+        private static void OnSuccessInit(GameService gameService)
         {
             //Instance = (GameService) gameService;
             IsReady = true;
             LogUtil.LogDebug(Tag,"GameService Is Ready To Use!");
         }
         
-        private static void OnAppErrorInit(string error)
+        private static void OnErrorInit(string error)
         {
             // Switch To Native Mode
             if (error.Equals(ErrorList.GameServiceInstallDialogDismiss)
@@ -72,9 +72,12 @@ namespace FiroozehGameServiceAndroid.Builders
                 || error.Equals(ErrorList.GameServiceNotInstalled))
             {
                 // Native Mode Call
+                GameServiceNativeInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);
             }
             else
             _errorAction.Invoke(error);
         }
+
+      
     }
 }

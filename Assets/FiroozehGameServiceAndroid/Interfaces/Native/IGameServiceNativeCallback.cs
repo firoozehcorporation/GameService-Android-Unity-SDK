@@ -1,16 +1,15 @@
-﻿using FiroozehGameServiceAndroid.Core;
+using FiroozehGameServiceAndroid.Core;
 using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Interfaces
 {
-    public class IGameServiceCallback : AndroidJavaProxy
+    public class IGameServiceNativeCallback : AndroidJavaProxy
     {
-
         private readonly DelegateCore.OnCallback _oncallback;
         private readonly DelegateCore.OnError _onError;
 
-        public IGameServiceCallback(DelegateCore.OnCallback callback, DelegateCore.OnError onError)
-            : base("ir.FiroozehCorp.UnityPlugin.Interfaces.IGameServiceCallback")
+        public IGameServiceNativeCallback(DelegateCore.OnCallback callback, DelegateCore.OnError onError)
+            : base("ir.FiroozehCorp.UnityPlugin.Native.Interfaces.IGameServiceCallback")
         {
             _oncallback = callback;
             _onError = onError;
@@ -26,8 +25,6 @@ namespace FiroozehGameServiceAndroid.Interfaces
         {
             _onError.Invoke(Error);
         }
-
-
 
     }
 }
