@@ -34,12 +34,9 @@ namespace FiroozehGameServiceAndroid.Builders
     public sealed class FiroozehGameService
     {
 
-        public static GameService Instance;
-        public static bool IsReady;
-
-
+        private static GameService _instance;
+        private static bool _isReady;
         private  static Action<string> _errorAction;
-        public   static GameServiceClientConfiguration Configuration;
         private  const string Tag = "FiroozehGameService";
 
 
@@ -50,12 +47,12 @@ namespace FiroozehGameServiceAndroid.Builders
 
         public static void Run(Action<string> onError)
         {
-            LogUtil.InitialLogger(Configuration);
             _errorAction = onError;
 
             
-            if (Instance != null)
+            if (_instance != null)
             {
+                if(Configuration.EnableLog)
                 LogUtil.LogWarning(Tag,"GameService Initialized Before , Do Nothing..");
                 return;
             }
@@ -70,7 +67,9 @@ namespace FiroozehGameServiceAndroid.Builders
                     GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);       
                     break;
                 default:
+                    if(Configuration.EnableLog)
                     LogUtil.LogError(Tag,"Invalid Instance Type , Auto Type Selected...");
+                   
                     GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);       
                     break;
             }
@@ -80,14 +79,19 @@ namespace FiroozehGameServiceAndroid.Builders
 
         private static void OnSuccessInit(GameService gameService)
         {
-            Instance = gameService;
-            IsReady = true;
+            _instance = gameService;
+            _isReady = true;
+            
+            if(Configuration.EnableLog)
             LogUtil.LogDebug(Tag,"GameService Is Ready To Use!");
         }
         
         private static void OnErrorInit(string error)
         {
+            if(Configuration.EnableLog)
             LogUtil.LogError(Tag,error);
+            
+            
             // Switch To Native Mode
             if (error.Equals(ErrorList.GameServiceInstallDialogDismiss)
                 || error.Equals(ErrorList.GameServiceUpdateDialogDismiss)
@@ -99,8 +103,29 @@ namespace FiroozehGameServiceAndroid.Builders
             else
             _errorAction.Invoke(error);
         }
+        
 
-      
+        public static GameService Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    if(Configuration.EnableLog)
+                        LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                
+                return _instance;
+            }
+        }
+
+        public static bool IsReady
+        {
+            get { return _isReady; }
+        }
+
+        public static GameServiceClientConfiguration Configuration { get; private set; }
     }
+    
+    
+    
     #endif
 }

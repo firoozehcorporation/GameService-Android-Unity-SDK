@@ -24,6 +24,9 @@ public class Test : MonoBehaviour
 
     private void Update()
     {
-        FiroozehGameService.Instance.GetSDKVersion(v=>{},e=>{});
+        FiroozehGameService.Instance.GetSDKVersion(v =>
+        {
+            Debug.LogError(v.ToString());
+        },e=>{});
     }
 }
