@@ -319,7 +319,7 @@ namespace FiroozehGameServiceAndroid
         }
 
 
-        public void ShowSurveyUi(DelegateCore.OnError error)
+        public void ShowSurveyUI(DelegateCore.OnError error)
         {
             if (_gameServiceObj == null)
             {

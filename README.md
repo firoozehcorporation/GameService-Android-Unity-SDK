@@ -1,16 +1,29 @@
 <p align="center">
   <img width="250" height="250" src="http://uupload.ir/files/9e17_logo.png">
-</p>
+
+<h1>
+    <p align="center">
+    <b>گیم سرویس</b>
+    </p>
+</h1>
+<h3>
+    <p align="center">
+    <b>نسخه مخصوص آندروید</b>
+    </p>
+</h3>
 
 
 
-### گیم سرویس
 
-##### توجه: این سرویس فعلا بر روی سیستم عامل اندروید کار می کند
+
 
 #### راه اندازی
 
-  قبل از راه اندازی گیم سرویس و همچنین برای استفاده از آن از اتصال کاربر به اینترنت اطمینان حاصل کنید. سپس پلاگین گیم سرویس را از [اینجا دریافت](https://github.com/firoozehcorporation/GameService-Android-Unity-SDK/tree/master/Assets/package) و آن را به صورت پکیج یونیتی به پروژه بازی خود اضافه کنید
+  قبل از راه اندازی گیم سرویس و همچنین برای استفاده از آن از اتصال کاربر به اینترنت اطمینان حاصل کنید.
+
+ سپس پلاگین گیم سرویس را از [اینجا دریافت](https://github.com/firoozehcorporation/GameService-Android-Unity-SDK/tree/master/Assets/package) و آن را به صورت پکیج یونیتی به پروژه بازی خود اضافه کنید
+
+
 
 ![اضافه کردن پکیج](http://uupload.ir/files/uavu_screen_shot_1397-12-02_at_11.46.34_am.png)
 
@@ -24,22 +37,39 @@
 
 ![اضافه کردن پکیج](http://uupload.ir/files/hf4a_screen_shot_1397-12-25_at_9.38.23_am.png)
 
- پس از اضافه کردن پکیج با دستور زیر می توانید به گیم سرویس دسترسی داشته باشید
+
+
+ :پس از اضافه کردن پکیج با دستور زیر می توانید به دو روش گیم سرویس دسترسی داشته باشید
+
+1-InstanceType.Auto :
+
+.می رود InstanceType.Native درصورتی که برنامه موبایلی گیم سرویس در دسترس نباشد به صورت اتوماتیک به حالت 
+
+توضیح: ابتدا وضعیت برنامه موبایلی گیم سرویس بررسی شده درصورتی که نصب نباشد از کاربر درخواست نصب داده میشود 
+
+ می رود InstanceType.Native اگر کاربر برنامه را نصب نکرد به حالت
+
+
+
+2-InstanceType.Native:
+
+در این حالت نیاز به نصب برنامه موبایلی گیم سرویس نیست اما برخی از دستورات گیم سرویس در این حالت موجود نمی باشد
+
+
 
 ```c#
-            FiroozehGameServiceInitializer
-            .With("Your clientId","Your clientSecret")
+         var config = new GameServiceClientConfiguration
+        .Builder(InstanceType.Auto)
+            .SetClientId("mygame")
+            .SetClientSecret("h31r1kjwy8lap7lnrwd3x7")
+            .IsLogEnable(true)
             .IsNotificationEnable(true)
             .CheckGameServiceInstallStatus(true)
-            .CheckGameServiceOptionalUpdate(true)
-            .Init(g =>
-        {
-            // Use (g = GameService Obj) 
-        }, 
-        e =>
-        {
-            Debug.Log("FiroozehGameServiceInitializerError: "+e);
-        });
+            .CheckGameServiceOptionalUpdate(false)
+            .Build();
+        
+        FiroozehGameService.ConfigurationInstance(config);
+        FiroozehGameService.Run(OnFirstInit,Debug.LogError);
 ```
 
 
@@ -50,10 +80,10 @@
 
 ##### متد های دستور بالا
 
-__1- With__
 
 ```c#
-public static FiroozehGameServiceInitializer With(string clientId, string clientSecret){}
+ public Builder SetClientId(string clientId){}
+ public Builder SetClientSecret(string clientSecret){}
 ```
 
  باید در پنل توسعه دهندگان [گیم سرویس](https://gameservice.liara.run) بازی خود را ثبت کنید clientSecret  و clientId برای دریافت .
@@ -75,95 +105,125 @@ public static FiroozehGameServiceInitializer With(string clientId, string client
 
 ------
 
-
-
-__2- IsNotificationEnable__
+__2- IsLogEnable__
 
 ```c#
-public FiroozehGameServiceInitializer IsNotificationEnable(bool enable)}{}
+public Builder IsLogEnable(bool isEnable){}
+```
+با فعال کردن این قسمت  می توانید لاگ ها را مشاهده کنید 
+برای دیباگ کردن برنامه مناسب است
+
+------
+
+__3- IsNotificationEnable__
+
+```c#
+public Builder IsNotificationEnable(bool enable)}{}
 ```
 
-با قرار دادن مقدار true در این قسمت گیم سرویس به صورت خودکار اعلاناتی را در میان بازی نمایش خواهد داد
+با فعال کردن این قسمت گیم سرویس به صورت خودکار اعلاناتی را در میان بازی نمایش خواهد داد
 
 ------
 
 
 
-__3- CheckGameServiceInstallStatus__
+__4- CheckGameServiceInstallStatus__
 
 ```c#
-public FiroozehGameServiceInitializer CheckGameServiceInstallStatus(bool check){}
+public Builder CheckGameServiceInstallStatus(bool check){}
 ```
 
-با قرار دادن مقدار true در این قسمت وضعیت نصب گیم سرویس در گوشی کاربر بررسی خواهد شد
+با فعال کردن این قسمت  وضعیت نصب برنامه موبایلی گیم سرویس در گوشی کاربر بررسی خواهد شد
 
 ------
 
-__4- CheckGameServiceOptionalUpdate__
+__5- CheckGameServiceOptionalUpdate__
 
 ```c#
-public FiroozehGameServiceInitializer CheckGameServiceOptionalUpdate(bool check){}
+public Builder CheckGameServiceOptionalUpdate(bool check){}
 ```
 
-در صورت قرار دادن مقدار true در این قسمت بروز بودن برنامه گیم سرویس بررسی خواهد شد
+با فعال کردن این قسمت بروز بودن برنامه موبایلی گیم سرویس بررسی خواهد شد
 
 ------
 
-__5- Init__
+__5- Build__
 
 ```c#
-public void Init(DelegateCore.OnSuccessInitService onSuccess,DelegateCore.OnError onError){}
+public GameServiceClientConfiguration Build(){}
 ```
 
-پس از صدا زدن این دستور گیم سرویس در onSuccess و در صورت وجود خطا در onError ان را دریافت خواهید کرد
+تنظیمات قرار گرفته در بالا را برای گیم سرویس آماده میکند
 
- **onError خطاهای بخش**
+------
+
+
+#### اجرای گیم سرویس
+
+```c#
+ FiroozehGameService.ConfigurationInstance(config);
+ FiroozehGameService.Run(OnFirstInit,onError=>{});
+```
+
+تنظیمات انجام شده در بالا را به گیم سرویس داده سپس آن را اجرا میکنیم
+
+
+
+**onError خطاهای بخش**
 
 - InvalidInputs =  باشد  NULL خالی یا clientSecret  و clientId  درصورتی که 
-- GameServiceNotInstalled = درصورتی که برنامه گیم سرویس بر روی دستگاه کاربر نصب نباشد
 - GameServiceException = خطایی در بخش گیم سرویس به دلایل گوناگون رخ داده است
 - NetworkUnreachable = درصورتی که دستگاه کاربر به اینترنت دسترسی نداشته باشد
 - LoginFailed = درصورتی که خطایی در لاگین رخ بدهد
 - LoginDismissed = درصورتی که لاگین کردن در گیم سرویس توسط کاربر کنسل شود
 
-------
-
+  
 
 
 #### متد های گیم سرویس
 
-```
 پس از انجام فرایند بالا شما گیم سرویس را در اختیار دارید با استفاده از دستورات زیر می توانید از گیم سرویس استفاده کنید
-```
+
+ .توجه: توابعی که درکنار آنها ( ***)  قرار گرفته است ٬ تنها با برنامه موبایلی گیم سرویس صدا می خورند
+
+
+
 
 ```c#
-FiroozehGameServiceInitializer
-            .With("Your clientId","Your clientSecret")
-            .IsNotificationEnable(true)
-            .CheckGameServiceInstallStatus(true)
-            .CheckGameServiceOptionalUpdate(true)
-            .Init(g =>
-                {
-                    
-                    g.GetLeaderBoards(r=>{},e=>{});
-                    g.GetAchievements(r=>{},e=>{});
-                    g.SaveGame("SaveName","Save Des",null,"20",r=>{},e=>{});
-                    g.SubmitScore("LeaderBoardID",20,r=>{},e=>{});
-                    g.UnlockAchievement("Achievement ID",r=>{},e=>{});
-                    g.GetSaveGame<object>(r=>{},e=>{});
-                    g.GetLeaderBoardDetails("LeaderBoardID",r=>{},e=>{});
-                    g.ShowAchievementsUI(e=>{});
-                    g.GetSDKVersion(v=>{},e=>{});
-                    g.ShowLeaderBoardsUI(e=>{});
-                    g.GetUserData(r=>{},e=>{});
-                    g.RemoveLastSave(r=>{},e=>{});
-                    g.ShowSurveyUi(e=>{});
-                    g.ShowGamePageUi(e=>{});
-                    
-                    
-                    g.DownloadObbData("main.VersionCode.<PackageName>.obb", r =>
+
+FiroozehGameService.Instance.GetLeaderBoards(r=>{},e=>{});
+
+FiroozehGameService.Instance.GetAchievements(r=>{},e=>{});
+
+FiroozehGameService.Instance.SaveGame("SaveName","Save Des",null,"20",r=>{},e=>{});
+
+FiroozehGameService.Instance.SubmitScore("LeaderBoardID",20,r=>{},e=>{});
+
+FiroozehGameService.Instance.UnlockAchievement("Achievement ID",r=>{},e=>{});
+
+FiroozehGameService.Instance.GetSaveGame<object>(r=>{},e=>{});
+
+FiroozehGameService.Instance.GetLeaderBoardDetails("LeaderBoardID",r=>{},e=>{});
+
+FiroozehGameService.Instance.ShowAchievementsUI(e=>{}); ***
+
+FiroozehGameService.Instance.GetAppVersion=>{},e=>{}); ***
+
+FiroozehGameService.Instance.ShowLeaderBoardsUI(e=>{}); ***
+
+FiroozehGameService.Instance.GetUserData(r=>{},e=>{});
+
+FiroozehGameService.Instance.RemoveLastSave(r=>{},e=>{});
+
+FiroozehGameService.Instance.ShowSurveyUi(e=>{}); ***
+
+FiroozehGameService.Instance.ShowGamePageUi(e=>{}); ***
+
+
+FiroozehGameService.Instance.DownloadObbData("main.VersionCode.<PackageName>.obb", r =>
                         {
-                            if (r.Equals("Data_Download_Finished") || r.Equals("Data_Downloaded"))
+                            if (r.Equals("Data_Download_Finished")
+                            || r.Equals("Data_Downloaded"))
                             {
                                 // Now Obb Data Exist !!! Load Base Scene
                             } 
@@ -179,10 +239,8 @@ FiroozehGameServiceInitializer
                 e =>
                 {
                     Debug.Log("FiroozehGameServiceInitializerError: "+e);
-                });
+                });   ***
 ```
-
- نکته : بهتر است  شی گیم سرویس در یک متغیر استاتیک ذخیره شود تا دسترسی به متد های آن در تمام بازی آسان باشد
 
 ------
 
@@ -245,7 +303,7 @@ public void SaveGame(string saveGameName
             ,string saveGameDescription
             ,string saveGameCover
             ,object saveGameData
-            , DelegateCore.OnCallback callback
+            , DelegateCore.OnSaveGame<SaveDetails> callback
             , DelegateCore.OnError error)
 ```
 
@@ -259,7 +317,7 @@ public void SaveGame(string saveGameName
 - saveGameDescription = توضیح سیو
 - saveGameCover = (باشد Base 64  کاور سیو (کاور باید حتما به فرم 
 - saveGameData = سیو مورد نظر شما 
-- callback = نتیجه سیو
+- callback = اطلاعات سیو
 - error = درصورت خطا به شما بازمیگردد
 
 
@@ -467,10 +525,10 @@ __10- GetSDKVersion__
 
 
 ```c#
-public void GetSDKVersion(DelegateCore.OnCallback version, DelegateCore.OnError error)
+public void GetAppVersion(DelegateCore.OnCallback version, DelegateCore.OnError error)
 ```
 
-   با این دستور می توانید نسخه فعلی گیم سرویس را دریافت کنید
+   با این دستور می توانید نسخه فعلی برنامه  گیم سرویس را دریافت کنید
 
 **ورودی ها**
 
@@ -615,5 +673,3 @@ __بازی های تستی__
 - [ZigZag Game](https://github.com/firoozehcorporation/ZigZag-GameService-Template)
 - [2048_Game](https://github.com/firoozehcorporation/2048-GameService-Template)
 - [Flappy Bird Game](https://github.com/firoozehcorporation/FlappyBird-GameService-Template)
-
-##### https://github.com/firoozehcorporation/FlappyBird-GameService-Template)

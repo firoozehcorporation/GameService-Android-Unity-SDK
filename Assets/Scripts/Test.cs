@@ -20,6 +20,7 @@ public class Test : MonoBehaviour
         
         FiroozehGameService.ConfigurationInstance(config);
         FiroozehGameService.Run(OnFirstInit,Debug.LogError);
+        
 
     }
 
