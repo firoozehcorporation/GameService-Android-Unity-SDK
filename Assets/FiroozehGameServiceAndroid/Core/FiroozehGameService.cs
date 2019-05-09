@@ -15,19 +15,18 @@
 // </copyright>
 
 
-
 using System;
+using FiroozehGameServiceAndroid.Builders;
 using FiroozehGameServiceAndroid.Builders.App;
 using FiroozehGameServiceAndroid.Builders.Native;
-using FiroozehGameServiceAndroid.Core;
-using FiroozehGameServiceAndroid.Core.Native;
 using FiroozehGameServiceAndroid.Enums;
 using FiroozehGameServiceAndroid.Utils;
+
 /**
 * @author Alireza Ghodrati
 */
 
-namespace FiroozehGameServiceAndroid.Builders
+namespace FiroozehGameServiceAndroid.Core
 {
     
     #if UNITY_ANDROID

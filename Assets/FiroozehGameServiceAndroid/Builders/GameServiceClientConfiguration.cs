@@ -15,7 +15,6 @@
 // </copyright>
 
 
-
 using FiroozehGameServiceAndroid.Enums;
 
 /**
@@ -23,14 +22,11 @@ using FiroozehGameServiceAndroid.Enums;
 */
 
 
-namespace FiroozehGameServiceAndroid.Core
+namespace FiroozehGameServiceAndroid.Builders
 {
     #if UNITY_ANDROID
     public class GameServiceClientConfiguration
     {
-        
-        public static GameServiceClientConfiguration DefaultConfiguration 
-        = new Builder(InstanceType.Auto).Build();
         
         private readonly bool _haveNotification;
         private readonly bool _checkAppStatus;
