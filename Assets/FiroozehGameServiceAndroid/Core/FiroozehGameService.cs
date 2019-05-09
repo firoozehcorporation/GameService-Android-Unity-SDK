@@ -34,8 +34,7 @@ namespace FiroozehGameServiceAndroid.Core
     {
 
         private static GameService _instance;
-        private static bool _isReady;
-        private static Action<string> _errorAction;
+        private static Pair<Action,Action<string>> _actions;
         private const string Tag = "FiroozehGameService";
 
 
@@ -44,10 +43,9 @@ namespace FiroozehGameServiceAndroid.Core
             Configuration = configuration;     
         }
 
-        public static void Run(Action<string> onError)
+        public static void Run(Action connected,Action<string> onError)
         {
-            _errorAction = onError;
-
+            _actions = new Pair<Action, Action<string>>(connected,onError);
             
             if (_instance != null)
             {
@@ -79,7 +77,7 @@ namespace FiroozehGameServiceAndroid.Core
         private static void OnSuccessInit(GameService gameService)
         {
             _instance = gameService;
-            _isReady = true;
+            _actions.First.Invoke();
             
             if(Configuration.EnableLog)
             LogUtil.LogDebug(Tag,"GameService Is Ready To Use!");
@@ -100,7 +98,7 @@ namespace FiroozehGameServiceAndroid.Core
                 GameServiceNativeInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);
             }
             else
-            _errorAction.Invoke(error);
+            _actions.Second.Invoke(error);
         }
         
 
@@ -115,11 +113,7 @@ namespace FiroozehGameServiceAndroid.Core
                 return _instance;
             }
         }
-
-        public static bool IsReady
-        {
-            get { return _isReady; }
-        }
+   
 
         public static GameServiceClientConfiguration Configuration { get; private set; }
     }

@@ -19,8 +19,13 @@ public class Test : MonoBehaviour
             .Build();
         
         FiroozehGameService.ConfigurationInstance(config);
-        FiroozehGameService.Run(Debug.LogError);
+        FiroozehGameService.Run(OnFirstInit,Debug.LogError);
 
+    }
+
+    private static void OnFirstInit()
+    {
+        // Get Last Save , Get LeaderBoard List & ...
     }
 
 }
