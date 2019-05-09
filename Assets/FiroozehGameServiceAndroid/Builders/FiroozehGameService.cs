@@ -36,8 +36,8 @@ namespace FiroozehGameServiceAndroid.Builders
 
         private static GameService _instance;
         private static bool _isReady;
-        private  static Action<string> _errorAction;
-        private  const string Tag = "FiroozehGameService";
+        private static Action<string> _errorAction;
+        private const string Tag = "FiroozehGameService";
 
 
         public static void ConfigurationInstance(GameServiceClientConfiguration configuration)

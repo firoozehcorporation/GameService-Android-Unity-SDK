@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using FiroozehGameServiceAndroid.Builders;
 using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Enums;
+using FiroozehGameServiceAndroid.Interfaces;
 using FiroozehGameServiceAndroid.Interfaces.App;
 using FiroozehGameServiceAndroid.Models;
 using FiroozehGameServiceAndroid.Utils;
@@ -61,10 +62,10 @@ namespace FiroozehGameServiceAndroid
                     LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
                 return;
             }
-                _gameServiceObj.Call("GetAchievement"
-                    , new IGameServiceCallback(Oncallback =>
+                _gameServiceObj.Call("GetAchievements"
+                    , new IGameServiceCallback(onCallback =>
                     {
-                        callback.Invoke(JsonConvert.DeserializeObject<List<Achievement>>(Oncallback));
+                        callback.Invoke(JsonConvert.DeserializeObject<List<Achievement>>(onCallback));
                  
                     }
                     , error.Invoke));
@@ -85,8 +86,8 @@ namespace FiroozehGameServiceAndroid
                 _gameServiceObj.Call("UnlockAchievement"
                     , achievementId
                     ,_haveNotification
-                    , new IGameServiceCallback(Oncallback => {
-                        callback.Invoke(JsonConvert.DeserializeObject<Achievement>(Oncallback));
+                    , new IGameServiceCallback(onCallback => {
+                        callback.Invoke(JsonConvert.DeserializeObject<Achievement>(onCallback));
                     }
                     , error.Invoke));
             
@@ -110,7 +111,7 @@ namespace FiroozehGameServiceAndroid
             }
 
             _gameServiceObj.Call("ShowAchievementUI"
-                , new IGameServiceCallback(oncallback => { }
+                , new IGameServiceCallback(onCallback => { }
                     , error.Invoke));
 
         }
@@ -133,7 +134,7 @@ namespace FiroozehGameServiceAndroid
             }
             
                 _gameServiceObj.Call("ShowLeaderBoardUI"
-                    , new IGameServiceCallback(oncallback => { }
+                    , new IGameServiceCallback(onCallback => { }
 
                     , error.Invoke));
             
@@ -149,8 +150,8 @@ namespace FiroozehGameServiceAndroid
             }
             
                 _gameServiceObj.Call("GetLeaderBoards"
-                    , new IGameServiceCallback(oncallback => {
-                        callback.Invoke(JsonConvert.DeserializeObject<List<LeaderBoard>>(oncallback));
+                    , new IGameServiceCallback(onCallback => {
+                        callback.Invoke(JsonConvert.DeserializeObject<List<LeaderBoard>>(onCallback));
                     }
                     , error.Invoke));
             
@@ -169,19 +170,19 @@ namespace FiroozehGameServiceAndroid
                     LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
                 return;
             }            
-                _gameServiceObj.Call("GetLeaderBoardData"
+                _gameServiceObj.Call("GetLeaderBoardDetails"
                     , leaderBoardId
-                    , new IGameServiceCallback(oncallback => {
-                        callback.Invoke(JsonConvert.DeserializeObject<LeaderBoardDetails>(oncallback));
+                    , new IGameServiceCallback(onCallback => {
+                        callback.Invoke(JsonConvert.DeserializeObject<LeaderBoardDetails>(onCallback));
                     }, error.Invoke));
             
         }
 
-        
+        // Return LeaderBoard
         public void SubmitScore(
             string leaderBoardId,
             int scoreValue,
-            DelegateCore.OnCallback callback,
+            DelegateCore.OnGetLeaderBoard callback,
             DelegateCore.OnError error)
 
         {
@@ -195,17 +196,18 @@ namespace FiroozehGameServiceAndroid
                     , leaderBoardId
                     , scoreValue
                     ,_haveNotification
-                    ,new IGameServiceCallback(callback.Invoke, error.Invoke));
-            
+                    ,new IGameServiceCallback(onCallback => { callback.Invoke(JsonConvert.DeserializeObject<LeaderBoard>(onCallback)); }, error.Invoke));
+      
         }
        
 
-        public void SaveGame(
+        
+        public void SaveGame<T>(
              string saveGameName
             ,string saveGameDescription
             ,string saveGameCover
-            ,object saveGameData
-            , DelegateCore.OnCallback callback
+            ,T saveGameObj
+            , DelegateCore.OnSaveGame<T> callback
             , DelegateCore.OnError error)
         {
             if (_gameServiceObj == null)
@@ -215,12 +217,15 @@ namespace FiroozehGameServiceAndroid
                 return;
             }
             
-                _gameServiceObj.Call("SaveData"
+                _gameServiceObj.Call("SaveGame"
                     , saveGameName
                     , saveGameDescription
                     , saveGameCover
-                    , JsonConvert.SerializeObject(saveGameData)
-                    , new IGameServiceCallback(callback.Invoke, error.Invoke));
+                    , JsonConvert.SerializeObject(saveGameObj)
+                    , new IGameServiceCallback(onCallback =>
+                    {
+                        callback.Invoke(JsonConvert.DeserializeObject<T>(onCallback));
+                    }, error.Invoke));
             
         }
 
@@ -241,7 +246,7 @@ namespace FiroozehGameServiceAndroid
         }
 
 
-        public void GetSDKVersion(DelegateCore.OnCallback version, DelegateCore.OnError error)
+        public void GetAppVersion(DelegateCore.OnCallback version, DelegateCore.OnError error)
         {
             if (_gameServiceObj == null)
             {
@@ -293,7 +298,7 @@ namespace FiroozehGameServiceAndroid
         }
 
 
-        public void ShowGamePageUi(DelegateCore.OnError error)
+        public void ShowGamePageUI(DelegateCore.OnError error)
         {
             if (_gameServiceObj == null)
             {
@@ -305,11 +310,11 @@ namespace FiroozehGameServiceAndroid
             {
 
                 if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"ShowGamePageUi Only Available In AppMode");
+                    LogUtil.LogError(Tag,"ShowGamePageUI Only Available In AppMode");
                 return;
             }
             
-                _gameServiceObj.Call("ShowGamePageUI", new IGameServiceCallback(Oncallback => { }
+                _gameServiceObj.Call("ShowGamePageUI", new IGameServiceCallback(onCallback => { }
 
                     , error.Invoke));
             
@@ -333,7 +338,7 @@ namespace FiroozehGameServiceAndroid
                 return;
             }
             
-                _gameServiceObj.Call("ShowSurveyUI", new IGameServiceCallback(Oncallback => { }
+                _gameServiceObj.Call("ShowSurveyUI", new IGameServiceCallback(onCallback => { }
 
                     , error.Invoke));
             

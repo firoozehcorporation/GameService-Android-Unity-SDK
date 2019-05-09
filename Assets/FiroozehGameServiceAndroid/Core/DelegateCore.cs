@@ -46,6 +46,7 @@ namespace FiroozehGameServiceAndroid.Core
 
 
         public delegate void OnGetLeaderBoards(List<LeaderBoard> leaderBoards);
+        public delegate void OnGetLeaderBoard(LeaderBoard leaderBoard);
         public delegate void OnGetLeaderBoardDetails(LeaderBoardDetails leaderBoardDetails);
 
 

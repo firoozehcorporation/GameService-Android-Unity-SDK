@@ -16,7 +16,6 @@
 
 
 using FiroozehGameServiceAndroid.Interfaces;
-using FiroozehGameServiceAndroid.Interfaces.Native;
 using UnityEngine;
 
 /**
@@ -49,7 +48,7 @@ namespace FiroozehGameServiceAndroid.Core.Native
                 ,configuration.ClientId
                 ,configuration.ClientSecret
                 ,configuration.EnableLog
-                ,new IGameServiceNativeCallback(c =>
+                ,new IGameServiceCallback(c =>
                 {
                     if(c.Equals("Success"))
                         onSuccess.Invoke(gameService);

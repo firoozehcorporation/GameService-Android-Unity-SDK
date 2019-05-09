@@ -8,7 +8,7 @@ public class Test : MonoBehaviour
     private void Start()
     {
         
-        var config = new GameServiceClientConfiguration.Builder(InstanceType.Auto)
+        var config = new GameServiceClientConfiguration.Builder(InstanceType.Native)
             .SetClientId("mygame")
             .SetClientSecret("h31r1kjwy8lap7lnrwd3x7")
             .IsLogEnable(true)
@@ -24,9 +24,6 @@ public class Test : MonoBehaviour
 
     private void Update()
     {
-        FiroozehGameService.Instance.GetSDKVersion(v =>
-        {
-            Debug.LogError(v.ToString());
-        },e=>{});
+       
     }
 }

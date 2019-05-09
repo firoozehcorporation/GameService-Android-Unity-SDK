@@ -15,7 +15,6 @@
 // </copyright>
 
 
-
 using FiroozehGameServiceAndroid.Core;
 using UnityEngine;
 
@@ -25,7 +24,7 @@ using UnityEngine;
 
 
 
-namespace FiroozehGameServiceAndroid.Interfaces.App
+namespace FiroozehGameServiceAndroid.Interfaces
 {
     #if UNITY_ANDROID
     public class IGameServiceCallback : AndroidJavaProxy
@@ -35,7 +34,7 @@ namespace FiroozehGameServiceAndroid.Interfaces.App
         private readonly DelegateCore.OnError _onError;
 
         public IGameServiceCallback(DelegateCore.OnCallback callback, DelegateCore.OnError onError)
-            : base("ir.FiroozehCorp.UnityPlugin.App.Interfaces.IGameServiceCallback")
+            : base("ir.FiroozehCorp.UnityPlugin.Interfaces.IGameServiceCallback")
         {
             _oncallback = callback;
             _onError = onError;
