@@ -17,11 +17,9 @@
 
 
 using System.Collections.Generic;
-using FiroozehGameServiceAndroid.Builders;
 using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Enums;
 using FiroozehGameServiceAndroid.Interfaces;
-using FiroozehGameServiceAndroid.Interfaces.App;
 using FiroozehGameServiceAndroid.Models;
 using FiroozehGameServiceAndroid.Utils;
 using Newtonsoft.Json;
@@ -202,12 +200,12 @@ namespace FiroozehGameServiceAndroid
        
 
         
-        public void SaveGame<T>(
+        public void SaveGame(
              string saveGameName
             ,string saveGameDescription
             ,string saveGameCover
-            ,T saveGameObj
-            , DelegateCore.OnSaveGame<T> callback
+            ,object saveGameObj
+            , DelegateCore.OnSaveGame<SaveDetails> callback
             , DelegateCore.OnError error)
         {
             if (_gameServiceObj == null)
@@ -224,7 +222,7 @@ namespace FiroozehGameServiceAndroid
                     , JsonConvert.SerializeObject(saveGameObj)
                     , new IGameServiceCallback(onCallback =>
                     {
-                        callback.Invoke(JsonConvert.DeserializeObject<T>(onCallback));
+                        callback.Invoke(JsonConvert.DeserializeObject<SaveDetails>(onCallback));
                     }, error.Invoke));
             
         }
