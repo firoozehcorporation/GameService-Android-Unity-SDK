@@ -24,23 +24,23 @@ using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Utils
 {
-    public sealed class LogUtil
+    public static class LogUtil
     {
 
  
         public static void LogDebug(string where,string debug)
         {
-           Debug.Log("ErrorHappenedIn : "+where +" ,With Error :"+debug);
+           Debug.Log("LogHappenedIn : "+where +" ,With Text :"+debug);
         }
         
         public static void LogWarning(string where,string warning)
         {
-            Debug.LogWarning("ErrorHappenedIn : "+where +" ,With Error :"+warning);
+            Debug.LogWarning("WarningHappenedIn : "+where +" ,With Text :"+warning);
         }
 
         public static void LogError(string where,string error)
         {
-            Debug.LogError("ErrorHappenedIn : "+where +" ,With Error :"+error);
+            Debug.LogError("ErrorHappenedIn : "+where +" ,With Text :"+error);
         }
     }
 }
