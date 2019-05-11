@@ -86,11 +86,11 @@ namespace FiroozehGameServiceAndroid.Utils
 			ArabicFixerTool.useHinduNumbers =useHinduNumbers;
 			
 			if(str.Contains("\n"))
-				str = str.Replace("\n", Environment.NewLine);
+				str = str.Replace("\n", "\r\n");
 			
-			if(str.Contains(Environment.NewLine))
+			if(str.Contains("\r\n"))
 			{
-				string[] stringSeparators = new string[] {Environment.NewLine};
+				string[] stringSeparators = {"\r\n"};
 				string[] strSplit = str.Split(stringSeparators, StringSplitOptions.None);
 				
 				if(strSplit.Length == 0)
@@ -104,7 +104,7 @@ namespace FiroozehGameServiceAndroid.Utils
 					if (strSplit.Length <= 1) return outputString;
 					while(iteration < strSplit.Length)
 					{
-						outputString += Environment.NewLine + ArabicFixerTool.FixLine(strSplit[iteration]);
+						outputString += "\r\n" + ArabicFixerTool.FixLine(strSplit[iteration]);
 						iteration++;
 					}
 					return outputString;
