@@ -37,7 +37,7 @@ namespace FiroozehGameServiceAndroid.Builders.Native
             NativePluginHandler.InitGameService(
                 nativeService
                 ,configuration
-                ,gameService=>{ onSuccess.Invoke(new GameService(gameService,GameServiceType.Native,false));}
+                ,gameService=>{ onSuccess.Invoke(new GameService(gameService,GameServiceType.Native,configuration.HaveNotification));}
                 ,onError.Invoke);
         }
     }
