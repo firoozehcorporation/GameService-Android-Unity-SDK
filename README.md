@@ -239,7 +239,7 @@ FiroozehGameService.Instance.DownloadObbData("main.VersionCode.<PackageName>.obb
                 e =>
                 {
                     Debug.Log("FiroozehGameServiceInitializerError: "+e);
-                });   ***
+                });
 ```
 
 ------
@@ -652,7 +652,7 @@ public void DownloadObbData(string obbDataTag,DelegateCore.OnCallback downloadCa
 
 - UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
 
-- Data_Download_Dismissed = درصورتی که دانلود توسط کاربر لغو شود
+- Data_Download_Dismissed = (درصورتی که دانلود توسط کاربر لغو شود (فضای کافی برای دانلود نداشته باشد
 
 - Download_Error = درصورتی که خطایی در دانلود رخ دهد
 
