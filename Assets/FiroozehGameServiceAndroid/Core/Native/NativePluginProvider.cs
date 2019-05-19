@@ -32,6 +32,12 @@ namespace FiroozehGameServiceAndroid.Core.Native
             var unityInstanter = new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Native.Handlers.UnityGameServiceNative");
             return unityInstanter.CallStatic<AndroidJavaObject>("GetInstance");
         }
+
+        public static AndroidJavaObject GetDownloadHandler()
+        {
+            var handler = new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Native.DownloadHandler");
+            return handler.CallStatic<AndroidJavaObject>("GetInstance");
+        }
     
         public static AndroidJavaObject GetUnityActivity()
         {

@@ -342,25 +342,6 @@ namespace FiroozehGameServiceAndroid
             
         }
 
-
-        public void DownloadObbData(
-            string obbDataTag
-            ,DelegateCore.OnCallback downloadCallback
-            ,DelegateCore.OnError error)
-        {
-            if (_gameServiceObj == null)
-            {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
-                return;
-            }
-            
-              _gameServiceObj.Call("DownloadObbDataFile"
-                    ,obbDataTag
-                    , new IGameServiceCallback(downloadCallback.Invoke
-                    , error.Invoke));
-            
-        }
     }
     #endif
 }

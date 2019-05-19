@@ -54,26 +54,55 @@ namespace FiroozehGameServiceAndroid.Core
                 return;
             }
 
-            switch (Configuration.InstanceType)
-            {
+            if (Configuration.DownloadTag != null)
+                GameServiceDownloadInitializer.DownloadData(Configuration.DownloadTag,DownloadListener);
+            else
+            {   
+                switch (Configuration.InstanceType)
+                {
              
-                case InstanceType.Native:
-                    GameServiceNativeInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);
-                    break;
-                case InstanceType.Auto:
-                    GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);       
-                    break;
-                default:
-                    if(Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"Invalid Instance Type , Auto Type Selected...");
+                    case InstanceType.Native:
+                        GameServiceNativeInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);
+                        break;
+                    case InstanceType.Auto:
+                        GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);       
+                        break;
+                    default:
+                        if(Configuration.EnableLog)
+                            LogUtil.LogError(Tag,"Invalid Instance Type , Auto Type Selected...");
                    
-                    GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);       
-                    break;
-            }
-             
-         
+                        GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);       
+                        break;
+                }
+            }   
         }
 
+
+        private static void DownloadListener(string callback)
+        {
+            if(callback.Equals(CallbackList.DataDownloadDismissed))  _actions.Second.Invoke(callback);
+            else if (callback.Equals(CallbackList.DataDownloaded) || callback.Equals(CallbackList.DataDownloadFinished))
+            {
+                switch (Configuration.InstanceType)
+                {
+             
+                    case InstanceType.Native:
+                        GameServiceNativeInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);
+                        break;
+                    case InstanceType.Auto:
+                        GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);       
+                        break;
+                    default:
+                        if(Configuration.EnableLog)
+                            LogUtil.LogError(Tag,"Invalid Instance Type , Auto Type Selected...");
+                   
+                        GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);       
+                        break;
+                }
+            }
+        }
+
+  
         private static void OnSuccessInit(GameService gameService)
         {
             _instance = gameService;
@@ -90,9 +119,9 @@ namespace FiroozehGameServiceAndroid.Core
             
             
             // Switch To Native Mode
-            if (error.Equals(ErrorList.GameServiceInstallDialogDismiss)
-                || error.Equals(ErrorList.GameServiceUpdateDialogDismiss)
-                || error.Equals(ErrorList.GameServiceNotInstalled))
+            if (error.Equals(CallbackList.GameServiceInstallDialogDismiss)
+                || error.Equals(CallbackList.GameServiceUpdateDialogDismiss)
+                || error.Equals(CallbackList.GameServiceNotInstalled))
             {
                 // Native Mode Call
                 GameServiceNativeInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);

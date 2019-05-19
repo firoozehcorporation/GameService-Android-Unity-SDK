@@ -32,6 +32,7 @@ namespace FiroozehGameServiceAndroid.Builders
         private readonly bool _checkAppStatus;
         private readonly bool _checkOptionalUpdate;
         private readonly bool _enableLog;
+        private readonly string _downloadTag; 
         private readonly string _clientId, _clientSecret;
         private readonly InstanceType _type;
 
@@ -70,6 +71,11 @@ namespace FiroozehGameServiceAndroid.Builders
         {
             get { return _clientSecret; }
         }
+        
+        public string DownloadTag
+        {
+            get { return _downloadTag; }
+        }
 
 
         private GameServiceClientConfiguration(Builder builder)
@@ -81,6 +87,7 @@ namespace FiroozehGameServiceAndroid.Builders
             _clientSecret = builder.ClientSecret;
             _checkOptionalUpdate = builder.CheckOptionalUpdate;
             _enableLog = builder.EnableLog;
+            _downloadTag = builder.DownloadTag;
 
         }
         
@@ -88,10 +95,11 @@ namespace FiroozehGameServiceAndroid.Builders
         {
             private  bool _haveNotification= true;
             private  bool _checkAppStatus = true;
-            private  bool _checkOptionalUpdate = false;    
+            private  bool _checkOptionalUpdate;    
             private  bool _enableLog;
-            private  string _clientId, _clientSecret;
-            private  InstanceType _type;
+            private string _clientId, _clientSecret;
+            private string _downloadTag;
+            private readonly InstanceType _type;
 
 
             public Builder(InstanceType instanceType)
@@ -134,6 +142,12 @@ namespace FiroozehGameServiceAndroid.Builders
                 _enableLog = isEnable;
                 return this;
             }
+
+            public Builder DownloadObbData(string dataTag)
+            {
+                _downloadTag = dataTag;
+                return this;
+            }
             
 
             public GameServiceClientConfiguration Build()
@@ -144,6 +158,11 @@ namespace FiroozehGameServiceAndroid.Builders
             public InstanceType Type
             {
                 get { return _type; }
+            }
+
+            public string DownloadTag
+            {
+                get { return _downloadTag; }
             }
 
             public bool HaveNotification

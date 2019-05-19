@@ -21,7 +21,7 @@
 
 namespace FiroozehGameServiceAndroid.Core
 {
-    public static class ErrorList
+    public static class CallbackList
     {
         
         public const string InvalidInputs = "InvalidInputs";
@@ -36,8 +36,13 @@ namespace FiroozehGameServiceAndroid.Core
         public const string GameServiceUpdateDialogDismiss = "GameServiceUpdateDialogDismiss";
         public const string LoginDismissed = "LoginDismissed";
 
+
+        public const string DataDownloadFinished = "Data_Download_Finished";
+        public const string DataDownloaded = "Data_Downloaded";
+        public const string DataDownloadDismissed = "Data_Download_Dismissed";
+
         
-        
+
         
         
         public const string Success = "Success";

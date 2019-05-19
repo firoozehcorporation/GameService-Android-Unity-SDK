@@ -37,7 +37,19 @@ namespace FiroozehGameServiceAndroid.Core.Native
             gameService.Call("SetUnityContext", unityActivity);
 
             return gameService;
-        }        
+        }
+
+        private static AndroidJavaObject GetDownloadInstance()
+        {
+            var gameService = NativePluginProvider.GetDownloadHandler();
+            var unityActivity = NativePluginProvider.GetUnityActivity();
+
+            gameService.Call("SetUnityContext", unityActivity);
+
+            return gameService;
+        }
+
+      
         public static void InitGameService(
             AndroidJavaObject gameService
             ,GameServiceClientConfiguration configuration
