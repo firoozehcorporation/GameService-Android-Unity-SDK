@@ -62,6 +62,7 @@
         .Builder(InstanceType.Auto)
             .SetClientId("mygame")
             .SetClientSecret("h31r1kjwy8lap7lnrwd3x7")
+            .DownloadObbData("Your Data Tag")
             .IsLogEnable(true)
             .IsNotificationEnable(true)
             .CheckGameServiceInstallStatus(true)
@@ -102,6 +103,37 @@
 ![اضافه کردن بازی](http://uupload.ir/files/f38a_screen_shot_1397-12-02_at_12.20.14_pm.png)
 
 در این قسمت باید کلید های دسترسی که در مرحله قبل آن را از پنل توسعه دهندگان بدست اوردید را قرار دهید
+
+------
+
+__1- DownloadObbData__
+
+```c#
+public Builder DownloadObbData(string dataTag){}
+```
+با این دستور دیتای بازی که با تگ در پنل ثبت کرده اید دانلود می شود 
+
+**ورودی ها**
+
+- obbDataTag = تگ دیتای بازی که در پنل ثبت کرده اید
+
+- downloadCallback =  باز میگردد Data_Download_Finished درصورت دانلود کامل دیتا مقدار  
+
+  باز میگردد Data_Downloaded در صورتی که دیتا موجود باشد مقدار 
+
+- error = درصورت خطا به شما بازمیگردد
+
+**error خطاهای بخش** 
+
+- UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
+
+- Data_Download_Dismissed = (درصورتی که دانلود توسط کاربر لغو شود (فضای کافی برای دانلود نداشته باشد
+
+- Download_Error = درصورتی که خطایی در دانلود رخ دهد
+
+- datapack_notfound =قرار داده اید وجود نداشته باشد obbDataTag درصورتی که فایلی با نامی که در 
+
+------
 
 ------
 
@@ -147,7 +179,7 @@ public Builder CheckGameServiceOptionalUpdate(bool check){}
 
 ------
 
-__5- Build__
+__6- Build__
 
 ```c#
 public GameServiceClientConfiguration Build(){}
@@ -628,39 +660,6 @@ public void ShowGamePageUi(DelegateCore.OnError error)
 
 ------
 
-__15- DownloadObbData__
-
-
-
-```c# 
-public void DownloadObbData(string obbDataTag,DelegateCore.OnCallback downloadCallback,DelegateCore.OnError error)
-```
-
- با این دستور دیتای بازی که با تگ در پنل ثبت کرده اید دانلود می شود 
-
-**ورودی ها**
-
-- obbDataTag = تگ دیتای بازی که در پنل ثبت کرده اید
-
-- downloadCallback =  باز میگردد Data_Download_Finished درصورت دانلود کامل دیتا مقدار  
-
-  باز میگردد Data_Downloaded در صورتی که دیتا موجود باشد مقدار 
-
-- error = درصورت خطا به شما بازمیگردد
-
-**error خطاهای بخش** 
-
-- UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
-
-- Data_Download_Dismissed = (درصورتی که دانلود توسط کاربر لغو شود (فضای کافی برای دانلود نداشته باشد
-
-- Download_Error = درصورتی که خطایی در دانلود رخ دهد
-
-- datapack_notfound =قرار داده اید وجود نداشته باشد obbDataTag درصورتی که فایلی با نامی که در 
-
-    
-
-------
 
 __کتابخانه های استفاده شده__
 
