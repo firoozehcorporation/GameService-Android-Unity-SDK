@@ -10,10 +10,13 @@ namespace FiroozehGameServiceAndroid.Builders.Native
         private static AndroidJavaObject _objDownload;
 
 
-        public static void DownloadData(string obbDataTag , Action<string> callback)
+        public static void DownloadData(GameServiceClientConfiguration configuration , Action<string> callback)
         {
             _objDownload = NativePluginProvider.GetDownloadHandler();
-            _objDownload.Call(obbDataTag,new IGameServiceCallback(callback.Invoke,callback.Invoke));
+            _objDownload.Call("DownloadObbDataFile",
+                configuration.ClientId
+                ,configuration.DownloadTag
+                ,new IGameServiceCallback(callback.Invoke,callback.Invoke));
         }
 
         public static bool CancelDownload()

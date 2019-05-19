@@ -55,7 +55,7 @@ namespace FiroozehGameServiceAndroid.Core
             }
 
             if (Configuration.DownloadTag != null)
-                GameServiceDownloadInitializer.DownloadData(Configuration.DownloadTag,DownloadListener);
+                GameServiceDownloadInitializer.DownloadData(Configuration,DownloadListener);
             else
             {   
                 switch (Configuration.InstanceType)
@@ -85,7 +85,7 @@ namespace FiroozehGameServiceAndroid.Core
             {
                 switch (Configuration.InstanceType)
                 {
-             
+            
                     case InstanceType.Native:
                         GameServiceNativeInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);
                         break;

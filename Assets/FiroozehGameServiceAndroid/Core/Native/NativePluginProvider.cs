@@ -35,7 +35,7 @@ namespace FiroozehGameServiceAndroid.Core.Native
 
         public static AndroidJavaObject GetDownloadHandler()
         {
-            var handler = new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Native.DownloadHandler");
+            var handler = new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Native.Handlers.DownloadHandler");
             return handler.CallStatic<AndroidJavaObject>("GetInstance");
         }
     
