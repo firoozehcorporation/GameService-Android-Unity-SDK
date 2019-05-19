@@ -12,7 +12,7 @@ namespace FiroozehGameServiceAndroid.Builders.Native
 
         public static void DownloadData(GameServiceClientConfiguration configuration , Action<string> callback)
         {
-            _objDownload = NativePluginProvider.GetDownloadHandler();
+            _objDownload = NativePluginHandler.GetDownloadInstance();
             _objDownload.Call("DownloadObbDataFile",
                 configuration.ClientId
                 ,configuration.DownloadTag

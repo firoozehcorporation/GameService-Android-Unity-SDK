@@ -39,7 +39,7 @@ namespace FiroozehGameServiceAndroid.Core.Native
             return gameService;
         }
 
-        private static AndroidJavaObject GetDownloadInstance()
+        public static AndroidJavaObject GetDownloadInstance()
         {
             var gameService = NativePluginProvider.GetDownloadHandler();
             var unityActivity = NativePluginProvider.GetUnityActivity();
