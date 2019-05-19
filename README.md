@@ -251,27 +251,6 @@ FiroozehGameService.Instance.ShowSurveyUi(e=>{}); ***
 
 FiroozehGameService.Instance.ShowGamePageUi(e=>{}); ***
 
-
-FiroozehGameService.Instance.DownloadObbData("main.VersionCode.<PackageName>.obb", r =>
-                        {
-                            if (r.Equals("Data_Download_Finished")
-                            || r.Equals("Data_Downloaded"))
-                            {
-                                // Now Obb Data Exist !!! Load Base Scene
-                            } 
-                        },
-                        e =>
-                        {
-                            if(e.Equals("Data_Download_Dismissed"))
-                                Application.Quit();
-                           
-                        });
-     
-                }, 
-                e =>
-                {
-                    Debug.Log("FiroozehGameServiceInitializerError: "+e);
-                });
 ```
 
 ------
