@@ -25,6 +25,7 @@ namespace FiroozehGameServiceAndroid.Core
     {
         
         public const string InvalidInputs = "InvalidInputs";
+        public const string UserBanned = "user_banned";
 
         public const string NetworkUnreachable = "NetworkUnreachable";
         public const string UnreachableService = "UnreachableService";

@@ -143,7 +143,7 @@ namespace FiroozehGameServiceAndroid.Builders
                 return this;
             }
 
-            public Builder DownloadObbData(string dataTag)
+            public Builder SetObbDataTag(string dataTag)
             {
                 _downloadTag = dataTag;
                 return this;

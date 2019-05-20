@@ -106,32 +106,17 @@
 
 ------
 
-__1- DownloadObbData__
+__1- SetObbDataTag__
 
 ```c#
-public Builder DownloadObbData(string dataTag){}
+public Builder SetObbDataTag(string dataTag){}
 ```
 با این دستور دیتای بازی که با تگ در پنل ثبت کرده اید دانلود می شود 
 
 **ورودی ها**
 
-- obbDataTag = تگ دیتای بازی که در پنل ثبت کرده اید
+- dataTag = تگ دیتای بازی که در پنل ثبت کرده اید
 
-- downloadCallback =  باز میگردد Data_Download_Finished درصورت دانلود کامل دیتا مقدار  
-
-  باز میگردد Data_Downloaded در صورتی که دیتا موجود باشد مقدار 
-
-- error = درصورت خطا به شما بازمیگردد
-
-**error خطاهای بخش** 
-
-- UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
-
-- Data_Download_Dismissed = (درصورتی که دانلود توسط کاربر لغو شود (فضای کافی برای دانلود نداشته باشد
-
-- Download_Error = درصورتی که خطایی در دانلود رخ دهد
-
-- datapack_notfound =قرار داده اید وجود نداشته باشد obbDataTag درصورتی که فایلی با نامی که در 
 
 ------
 
@@ -204,10 +189,24 @@ public GameServiceClientConfiguration Build(){}
 **onError خطاهای بخش**
 
 - InvalidInputs =  باشد  NULL خالی یا clientSecret  و clientId  درصورتی که 
+
 - GameServiceException = خطایی در بخش گیم سرویس به دلایل گوناگون رخ داده است
+
 - NetworkUnreachable = درصورتی که دستگاه کاربر به اینترنت دسترسی نداشته باشد
+
 - LoginFailed = درصورتی که خطایی در لاگین رخ بدهد
+
 - LoginDismissed = درصورتی که لاگین کردن در گیم سرویس توسط کاربر کنسل شود
+
+- UnreachableService = (درصورتی که گیم سرویس در دسترس نباشد (برای حل این مشکل دوباره گیم سرویس را راه اندازی کنید
+
+- Data_Download_Dismissed = (درصورتی که دانلود توسط کاربر لغو شود (فضای کافی برای دانلود نداشته باشد
+
+- Download_Error = درصورتی که خطایی در دانلود رخ دهد
+
+- datapack_notfound =قرار داده اید وجود نداشته باشد obbDataTag درصورتی که فایلی با نامی که در 
+
+- User_banned = درصورتی که حساب کاربری شما محدود شده باشد
 
   
 

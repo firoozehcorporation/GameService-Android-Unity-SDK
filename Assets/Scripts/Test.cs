@@ -12,7 +12,7 @@ public class Test : MonoBehaviour
         .Builder(InstanceType.Auto)
             .SetClientId("mygame")
             .SetClientSecret("h31r1kjwy8lap7lnrwd3x7")
-            .DownloadObbData("Your Data Tag")
+            .SetObbDataTag("Your Data Tag")
             .IsLogEnable(true)
             .IsNotificationEnable(true)
             .CheckGameServiceInstallStatus(true)
