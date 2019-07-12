@@ -1,1 +1,1 @@
--keep class ir.FiroozehCorp.UnityPlugin.** { *; }
+-keep class ir.FiroozehCorp.GameService.UnityPackage.** { *; }

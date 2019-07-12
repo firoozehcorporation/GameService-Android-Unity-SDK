@@ -29,13 +29,13 @@ namespace FiroozehGameServiceAndroid.Core.Native
     {
         public static AndroidJavaObject GetGameService()
         {
-            var unityInstanter = new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Native.Handlers.UnityGameServiceNative");
+            var unityInstanter = new AndroidJavaClass("ir.FiroozehCorp.GameService.UnityPackage.Native.Handlers.UnityGameServiceNative");
             return unityInstanter.CallStatic<AndroidJavaObject>("GetInstance");
         }
 
         public static AndroidJavaObject GetDownloadHandler()
         {
-            var handler = new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Native.Handlers.DownloadHandler");
+            var handler = new AndroidJavaClass("ir.FiroozehCorp.GameService.UnityPackage.Native.Handlers.DownloadHandler");
             return handler.CallStatic<AndroidJavaObject>("GetInstance");
         }
     
@@ -47,11 +47,11 @@ namespace FiroozehGameServiceAndroid.Core.Native
        
         public static AndroidJavaClass GetDeviceInformationUtilClass()
         {
-            return new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Utils.DeviceInformationUtil");
+            return new AndroidJavaClass("ir.FiroozehCorp.GameService.UnityPackage.Utils.DeviceInformationUtil");
         }
         public static AndroidJavaClass GetNativeHandlerClass()
         {
-            return new AndroidJavaClass("ir.FiroozehCorp.UnityPlugin.Native.Handlers.UnityGameServiceNative");
+            return new AndroidJavaClass("ir.FiroozehCorp.GameService.UnityPackage.Native.Handlers.UnityGameServiceNative");
         }
     }
 #endif
