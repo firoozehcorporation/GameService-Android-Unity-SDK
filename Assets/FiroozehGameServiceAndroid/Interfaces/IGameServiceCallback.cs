@@ -34,7 +34,7 @@ namespace FiroozehGameServiceAndroid.Interfaces
         private readonly DelegateCore.OnError _onError;
 
         public IGameServiceCallback(DelegateCore.OnCallback callback, DelegateCore.OnError onError)
-            : base("ir.FiroozehCorp.UnityPlugin.Interfaces.IGameServiceCallback")
+            : base("ir.FiroozehCorp.GameService.UnityPackage.Interfaces.IGameServiceCallback")
         {
             _oncallback = callback;
             _onError = onError;
