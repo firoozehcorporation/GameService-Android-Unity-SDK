@@ -45,6 +45,12 @@ namespace FiroozehGameServiceAndroid.Core
 
         public static void Run(Action connected,Action<string> onError)
         {
+            if (Configuration == null)
+            {
+                LogUtil.LogError(Tag, "Configuration Not Set, Do Nothing..");
+                return;
+            }
+            
             _actions = new Pair<Action, Action<string>>(connected,onError);
             
             if (_instance != null)

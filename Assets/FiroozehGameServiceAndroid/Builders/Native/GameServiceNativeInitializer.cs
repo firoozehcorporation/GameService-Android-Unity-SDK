@@ -38,7 +38,7 @@ namespace FiroozehGameServiceAndroid.Builders.Native
                 nativeService
                 ,configuration
                 ,gameService=>{ onSuccess.Invoke(new GameService(gameService,GameServiceType.Native,configuration.HaveNotification));}
-                ,onError.Invoke);
+                ,onError.Invoke,configuration.NotificationListener);
         }
     }
     #endif

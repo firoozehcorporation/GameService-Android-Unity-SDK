@@ -46,7 +46,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
                             AppPluginHandler.InitGameService(
                                 configuration.ClientId,configuration.ClientSecret,configuration.EnableLog,
                                 s => { onSuccess.Invoke(new GameService(s,GameServiceType.App, configuration.HaveNotification)); }
-                                ,onError.Invoke);
+                                ,onError.Invoke,configuration.NotificationListener);
                         }      
                         else
                             FiroozehGameServiceAppLoginCheck.ShowLoginUI(
@@ -63,7 +63,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
                                             {
                                                 onSuccess.Invoke(new GameService(s,GameServiceType.App, configuration.HaveNotification));
                                             }
-                                            , onError.Invoke);
+                                            , onError.Invoke,configuration.NotificationListener);
                                     }
                                 }, onError.Invoke);
                     }, onError.Invoke);

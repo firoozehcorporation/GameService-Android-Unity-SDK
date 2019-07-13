@@ -53,8 +53,10 @@ namespace FiroozehGameServiceAndroid.Core.Native
         public static void InitGameService(
             AndroidJavaObject gameService
             ,GameServiceClientConfiguration configuration
-            ,DelegateCore.OnSuccessInit onSuccess,
-            DelegateCore.OnError onError)
+            ,DelegateCore.OnSuccessInit onSuccess
+            ,DelegateCore.OnError onError
+            ,DelegateCore.NotificationListener notificationListener
+           )
         {
 
             gameService.Call("InitGameService"
@@ -66,7 +68,12 @@ namespace FiroozehGameServiceAndroid.Core.Native
                     if(c.Equals("Success"))
                         onSuccess.Invoke(gameService);
                         
-                }, onError.Invoke));
+                }, onError.Invoke)
+                ,new IGSNotificationListener(l =>
+                {
+                    if(notificationListener != null)
+                        notificationListener.Invoke(l);
+                }));
 
         }        
     }

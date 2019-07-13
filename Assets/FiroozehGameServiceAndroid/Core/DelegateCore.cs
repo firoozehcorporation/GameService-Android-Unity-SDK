@@ -53,6 +53,10 @@ namespace FiroozehGameServiceAndroid.Core
 
         public delegate void OnGetUserData(User user);
 
+        public delegate void JsonData(string jsonData);
+        public delegate void NotificationListener(string jsonData);
+
+
     }
     #endif
 }

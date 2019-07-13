@@ -15,6 +15,7 @@
 // </copyright>
 
 
+using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Enums;
 
 /**
@@ -35,6 +36,7 @@ namespace FiroozehGameServiceAndroid.Builders
         private readonly string _downloadTag; 
         private readonly string _clientId, _clientSecret;
         private readonly InstanceType _type;
+        private DelegateCore.NotificationListener _notificationListener;
 
 
         public InstanceType InstanceType
@@ -76,6 +78,11 @@ namespace FiroozehGameServiceAndroid.Builders
         {
             get { return _downloadTag; }
         }
+        
+        public DelegateCore.NotificationListener NotificationListener
+        {
+            get { return _notificationListener; }
+        }
 
 
         private GameServiceClientConfiguration(Builder builder)
@@ -88,6 +95,7 @@ namespace FiroozehGameServiceAndroid.Builders
             _checkOptionalUpdate = builder.CheckOptionalUpdate;
             _enableLog = builder.EnableLog;
             _downloadTag = builder.DownloadTag;
+            _notificationListener = builder.NotificationListener;
 
         }
         
@@ -100,6 +108,7 @@ namespace FiroozehGameServiceAndroid.Builders
             private string _clientId, _clientSecret;
             private string _downloadTag;
             private readonly InstanceType _type;
+            private DelegateCore.NotificationListener _notificationListener;
 
 
             public Builder(InstanceType instanceType)
@@ -122,6 +131,12 @@ namespace FiroozehGameServiceAndroid.Builders
             public Builder IsNotificationEnable(bool isEnable)
             {
                 _haveNotification = isEnable;
+                return this;
+            }
+
+            public Builder SetNotificationListener(DelegateCore.NotificationListener notificationListener)
+            {
+                _notificationListener = notificationListener;
                 return this;
             }
 
@@ -193,6 +208,11 @@ namespace FiroozehGameServiceAndroid.Builders
             public bool EnableLog
             {
                 get { return _enableLog; }
+            }
+
+            public DelegateCore.NotificationListener NotificationListener
+            {
+                get { return _notificationListener; }
             }
         }
     }

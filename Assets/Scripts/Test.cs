@@ -15,6 +15,7 @@ public class Test : MonoBehaviour
             .SetObbDataTag("Your Data Tag")
             .IsLogEnable(true)
             .IsNotificationEnable(true)
+            .SetNotificationListener(onJsonData)
             .CheckGameServiceInstallStatus(true)
             .CheckGameServiceOptionalUpdate(false)
             .Build();
@@ -23,6 +24,10 @@ public class Test : MonoBehaviour
         FiroozehGameService.Run(OnFirstInit,Debug.LogError);
         
 
+    }
+    
+    private static void onJsonData(string jsonData){
+       
     }
 
     private static void OnFirstInit()
