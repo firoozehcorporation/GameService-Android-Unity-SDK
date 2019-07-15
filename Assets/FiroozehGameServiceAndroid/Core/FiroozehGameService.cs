@@ -138,10 +138,10 @@ namespace FiroozehGameServiceAndroid.Core
         {
             get
             {
-                if (_instance == null)
-                    if(Configuration.EnableLog)
-                        LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
-                
+                if (_instance != null) return _instance;
+                if(Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+
                 return _instance;
             }
         }

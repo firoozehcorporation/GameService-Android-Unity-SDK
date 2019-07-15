@@ -19,24 +19,29 @@
 * @author Alireza Ghodrati
 */
 
+using Newtonsoft.Json;
+
 namespace FiroozehGameServiceAndroid.Models
 {
     [System.Serializable]
     public class User
     {
 
-        public string name { set; get; }
+        [JsonProperty("name")]
+        public string Name { set; get; }
 
-        public string logo { set; get; }
+        [JsonProperty("logo")]
+        public string Logo { set; get; }
 
-        public int point { set; get; }
+        [JsonProperty("point")]
+        public int Point { set; get; }
 
         public override string ToString()
         {
             return "User{" +
-                   "name='" + name + '\'' +
-                   ", logo='" + logo + '\'' +
-                   ", point=" + point +
+                   "name='" + Name + '\'' +
+                   ", logo='" + Logo + '\'' +
+                   ", point=" + Point +
                    '}';
         }
 

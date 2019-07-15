@@ -15,6 +15,7 @@
 // </copyright>
 
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 /**
 * @author Alireza Ghodrati
@@ -27,15 +28,17 @@ namespace FiroozehGameServiceAndroid.Models
     public class LeaderBoardDetails
     {
 
-        public LeaderBoard leaderboard { set; get; }
+        [JsonProperty("leaderboard")]
+        public LeaderBoard Leaderboard { set; get; }
 
-        public List<Score> scores { set; get; }
+        [JsonProperty("scores")]
+        public List<Score> Scores { set; get; }
 
         public override string ToString()
         {
             return "LeaderBoardReceiver{" +
-                   "leaderboard=" + leaderboard +
-                   ", scores=" + scores +
+                   "leaderboard=" + Leaderboard +
+                   ", scores=" + Scores +
                    '}';
         }
      

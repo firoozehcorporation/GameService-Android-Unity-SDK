@@ -15,6 +15,8 @@
 // </copyright>
 
 using System;
+using Newtonsoft.Json;
+
 /**
 * @author Alireza Ghodrati
 */
@@ -24,25 +26,42 @@ namespace FiroozehGameServiceAndroid.Models
     public class Achievement
     {
 
-        public string name { set; get; }
-        public string key { set; get; }
-        public string desc { set; get; }
-        public int point { set; get; }
-        public string image { set; get; }
-        public bool status { set; get; }
-        public string game { set; get; }
-        public bool earned { set; get; }
+        [JsonProperty("name")]
+        public string Name { set; get; }
+        
+        [JsonProperty("key")]
+        public string Key { set; get; }
+        
+        [JsonProperty("desc")]
+        public string Desc { set; get; }
+        
+        [JsonProperty("point")]
+        public int Point { set; get; }
+        
+        [JsonProperty("image")]
+        public string Image { set; get; }
+        
+        [JsonProperty("status")]
+        public bool Status { set; get; }
+        
+        [JsonProperty("game")]
+        public string Game { set; get; }
+        
+        [JsonProperty("earned")]
+        public bool Earned { set; get; }
+        
+        
         public override string ToString()
         {
             return "Achievement{" +
-                   "name='" + name + '\'' +
-                   ", key='" + key + '\'' +
-                   ", desc='" + desc + '\'' +
-                   ", point=" + point +
-                   ", image='" + image + '\'' +
-                   ", status=" + status +
-                   ", game='" + game + '\'' +
-                   ", earned=" + earned +
+                   "name='" + Name + '\'' +
+                   ", key='" + Key + '\'' +
+                   ", desc='" + Desc + '\'' +
+                   ", point=" + Point +
+                   ", image='" + Image + '\'' +
+                   ", status=" + Status +
+                   ", game='" + Game + '\'' +
+                   ", earned=" + Earned +
                    '}';
         }
     }

@@ -19,41 +19,49 @@
 * @author Alireza Ghodrati
 */
 
+using Newtonsoft.Json;
+
 namespace FiroozehGameServiceAndroid.Models
 {
     [System.Serializable]
     public class LeaderBoard
     {
+        [JsonProperty("name")]
+        public string Name { set; get; }
 
+        [JsonProperty("key")]
+        public string Key { set; get; }
 
-        public string name { set; get; }
+        [JsonProperty("status")]
+        public bool Status { set; get; }
 
-        public string key { set; get; }
+        [JsonProperty("image")]
+        public string Image { set; get; }
 
-        public bool status { set; get; }
+        [JsonProperty("from")]
+        public int From { set; get; }
 
-        public string image { set; get; }
+        [JsonProperty("to")]
+        public int To { set; get; }
 
-        public int from { set; get; }
+        [JsonProperty("order")]
+        public int Order { set; get; }
 
-        public int to { set; get; }
-
-        public int order { set; get; }
-
-        public string game { set; get; }
+        [JsonProperty("game")]
+        public string Game { set; get; }
 
 
         public override string ToString()
         {
             return "LeaderBoard{" +
-                   "name='" + name + '\'' +
-                   ", key='" + key + '\'' +
-                   ", status=" + status +
-                   ", image='" + image + '\'' +
-                   ", from=" + from +
-                   ", to=" + to +
-                   ", order=" + order +
-                   ", game='" + game + '\'' +
+                   "name='" + Name + '\'' +
+                   ", key='" + Key + '\'' +
+                   ", status=" + Status +
+                   ", image='" + Image + '\'' +
+                   ", from=" + From +
+                   ", to=" + To +
+                   ", order=" + Order +
+                   ", game='" + Game + '\'' +
                    '}';
         }
     }

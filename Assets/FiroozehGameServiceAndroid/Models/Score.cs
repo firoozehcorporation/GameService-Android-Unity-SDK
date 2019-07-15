@@ -20,31 +20,39 @@
 */
 
 
+using Newtonsoft.Json;
+
 namespace FiroozehGameServiceAndroid.Models
 {
     [System.Serializable]
     public class Score
     {
 
-        public string game { set; get; }
+        [JsonProperty("game")]
+        public string Game { set; get; }
 
-        public User user { set; get; }
+        [JsonProperty("user")]
+        public User User { set; get; }
 
-        public int value { set; get; }
+        [JsonProperty("value")]
+        public int Value { set; get; }
     
-        public int rank { set; get; }
+        [JsonProperty("rank")]
+        public int Rank { set; get; }
     
-        public int tries { set; get; }
+        [JsonProperty("tries")]
+        public int Tries { set; get; }
     
-        public bool me { set; get; }
+        [JsonProperty("me")]
+        public bool Me { set; get; }
     
 
         public override string ToString()
         {
             return "Score{" +
-                   "game='" + game + '\'' +
-                   ", user='" + user + '\'' +
-                   ", Valvalueue=" + value +
+                   "game='" + Game + '\'' +
+                   ", user='" + User + '\'' +
+                   ", value=" + Value +
                    '}';
         }
     }
