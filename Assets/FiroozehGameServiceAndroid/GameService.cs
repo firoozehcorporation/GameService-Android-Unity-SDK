@@ -15,7 +15,7 @@
 // </copyright>
 
 
-
+using System;
 using System.Collections.Generic;
 using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Enums;
@@ -35,7 +35,6 @@ namespace FiroozehGameServiceAndroid
     #if UNITY_ANDROID
     public sealed class GameService
     {
-
         private const string Tag = "GameService";
         private readonly AndroidJavaObject _gameServiceObj;
         private readonly bool _haveNotification;
@@ -341,6 +340,109 @@ namespace FiroozehGameServiceAndroid
                     , error.Invoke));
             
         }
+        
+        
+        public void GetAllBucketData<TBucket>(string bucketId , DelegateCore.OnAllBucketData<TBucket> onAllBucketData, DelegateCore.OnError error)
+        {
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
+            
+            _gameServiceObj.Call("GetAllBucketData",bucketId, new IGameServiceCallback(r =>
+            {
+                onAllBucketData.Invoke(JsonConvert.DeserializeObject<List<TBucket>>(r));
+            }, error.Invoke));
+            
+        }
+              
+        public void GetOneBucketData<TBucket>(string bucketId ,string objId, DelegateCore.OnOneBucketData<TBucket> onOneBucketData, DelegateCore.OnError error)
+        {
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
+            
+            _gameServiceObj.Call("GetOneBucketData",bucketId,objId, new IGameServiceCallback(r =>
+            {
+                LogUtil.LogError(Tag,r);
+                onOneBucketData.Invoke(JsonConvert.DeserializeObject<Bucket<TBucket>>(r));
+            }, error.Invoke));
+            
+        }
+              
+        public void UpdateOneBucketData<TBucket>(string bucketId ,string objId, TBucket editedBucket, DelegateCore.OnUpdateBucketData<TBucket> onUpdateBucketData, DelegateCore.OnError error)
+        {
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
+            
+            _gameServiceObj.Call("UpdateOneBucketData",
+                bucketId, objId , JsonConvert.SerializeObject(editedBucket)
+                , new IGameServiceCallback(r =>
+            {
+                onUpdateBucketData.Invoke(JsonConvert.DeserializeObject<Bucket<TBucket>>(r));
+            }, error.Invoke));
+            
+        }
+
+        public void AddNewBucketData<TBucket>(string bucketId, TBucket newBucket, DelegateCore.OnAddBucketData<TBucket> onAddBucketData, DelegateCore.OnError error)
+        {
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
+            
+            _gameServiceObj.Call("AddNewBucketData",bucketId , JsonConvert.SerializeObject(newBucket)
+                , new IGameServiceCallback(r =>
+            {
+                onAddBucketData.Invoke(JsonConvert.DeserializeObject<Bucket<TBucket>>(r));
+            }, error.Invoke));
+            
+        }
+        
+        public void DeleteOneBucket(string bucketId ,string objId, DelegateCore.OnDeleteBucket onDeleteBucket, DelegateCore.OnError error)
+        {
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
+            
+            _gameServiceObj.Call("DeleteOneBucket",bucketId,objId, new IGameServiceCallback(r =>
+            {
+                onDeleteBucket.Invoke(bool.Parse(r));
+            }, error.Invoke));
+            
+        }
+
+        public void DeleteAllBucketData(string bucketId, DelegateCore.OnDeleteBucket onDeleteBucket, DelegateCore.OnError error)
+        {
+            if (_gameServiceObj == null)
+            {
+                if(FiroozehGameService.Configuration.EnableLog)
+                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                return;
+            }
+            
+            _gameServiceObj.Call("DeleteAllBucketData",bucketId, new IGameServiceCallback(r =>
+            {
+                onDeleteBucket.Invoke(bool.Parse(r));
+            }, error.Invoke));
+            
+        }
+
+
 
     }
     #endif

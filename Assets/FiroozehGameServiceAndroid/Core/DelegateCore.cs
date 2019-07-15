@@ -52,9 +52,19 @@ namespace FiroozehGameServiceAndroid.Core
 
 
         public delegate void OnGetUserData(User user);
+       
 
         public delegate void JsonData(string jsonData);
         public delegate void NotificationListener(string jsonData);
+
+
+        public delegate void OnAllBucketData<TBucket>(List<TBucket> buckets);
+        public delegate void OnOneBucketData<TBucket>(Bucket<TBucket> bucket);
+        public delegate void OnUpdateBucketData<TBucket>(Bucket<TBucket> bucket);
+        public delegate void OnAddBucketData<TBucket>(Bucket<TBucket> bucket);
+        public delegate void OnDeleteBucket(bool isDeleted);
+
+
 
 
     }
