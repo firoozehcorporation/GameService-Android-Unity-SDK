@@ -16,6 +16,7 @@
 
 
 using FiroozehGameServiceAndroid.Builders;
+using FiroozehGameServiceAndroid.Enums;
 using FiroozehGameServiceAndroid.Interfaces;
 using UnityEngine;
 
@@ -63,6 +64,7 @@ namespace FiroozehGameServiceAndroid.Core.Native
                 ,configuration.ClientId
                 ,configuration.ClientSecret
                 ,configuration.EnableLog
+                ,configuration.LoginType == LoginType.Guest
                 ,new IGameServiceCallback(c =>
                 {
                     if(c.Equals("Success"))

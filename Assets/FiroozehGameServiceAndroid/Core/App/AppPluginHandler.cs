@@ -14,6 +14,7 @@
 //    limitations under the License.
 // </copyright>
 
+using FiroozehGameServiceAndroid.Enums;
 using FiroozehGameServiceAndroid.Interfaces;
 using FiroozehGameServiceAndroid.Interfaces.App;
 using UnityEngine;
@@ -51,6 +52,7 @@ namespace FiroozehGameServiceAndroid.Core.App
              string clientId
             ,string clientSecret
             ,bool logEnable
+            ,bool isGuest
             ,DelegateCore.OnSuccessInit onSuccess
             ,DelegateCore.OnError onError
             ,DelegateCore.NotificationListener notificationListener
@@ -63,6 +65,7 @@ namespace FiroozehGameServiceAndroid.Core.App
                 clientId,
                 clientSecret,
                 logEnable,
+                isGuest,
                 new IGameServiceCallback(callBack => {
                         if(callBack.Equals("Success"))
                             onSuccess.Invoke(gameService);

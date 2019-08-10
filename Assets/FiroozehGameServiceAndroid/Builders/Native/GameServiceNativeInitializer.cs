@@ -33,7 +33,7 @@ namespace FiroozehGameServiceAndroid.Builders.Native
             ,Action<GameService> onSuccess
             ,Action<string> onError)
         {
-            var nativeService =  NativePluginHandler.GetGameServiceInstance();
+            var nativeService = NativePluginHandler.GetGameServiceInstance();
             NativePluginHandler.InitGameService(
                 nativeService
                 ,configuration

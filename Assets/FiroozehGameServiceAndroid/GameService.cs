@@ -15,7 +15,6 @@
 // </copyright>
 
 
-using System;
 using System.Collections.Generic;
 using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Enums;
@@ -33,10 +32,11 @@ using UnityEngine;
 namespace FiroozehGameServiceAndroid
 {
     #if UNITY_ANDROID
-    public sealed class GameService
+    public sealed class GameService 
     {
         private const string Tag = "GameService";
-        private readonly AndroidJavaObject _gameServiceObj;
+        private AndroidJavaObject _gameServiceObj;
+        private bool _isAvailable ;
         private readonly bool _haveNotification;
         private readonly GameServiceType _type;
 
@@ -47,6 +47,7 @@ namespace FiroozehGameServiceAndroid
                 _haveNotification = haveNotification;
                 _gameServiceObj = gameService;
                 _type = type;
+                _isAvailable = true;
             }
             else throw new GameServiceException("GameServiceObj Is NULL");
         }
@@ -55,11 +56,20 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
-                _gameServiceObj.Call("GetAchievements"
+               
+            _gameServiceObj.Call("GetAchievements"
                     , new IGameServiceCallback(onCallback =>
                     {
                         callback.Invoke(JsonConvert.DeserializeObject<List<Achievement>>(onCallback));
@@ -76,11 +86,20 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
-            }
-                _gameServiceObj.Call("UnlockAchievement"
+            }               
+       
+            _gameServiceObj.Call("UnlockAchievement"
                     , achievementId
                     ,_haveNotification
                     , new IGameServiceCallback(onCallback => {
@@ -90,12 +109,20 @@ namespace FiroozehGameServiceAndroid
             
         }
 
-        public void ShowAchievementsUI(DelegateCore.OnError error)
+        public void ShowAchievementsUi(DelegateCore.OnError error)
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
             
@@ -113,12 +140,20 @@ namespace FiroozehGameServiceAndroid
 
         }
 
-        public void ShowLeaderBoardsUI(DelegateCore.OnError error)
+        public void ShowLeaderBoardsUi(DelegateCore.OnError error)
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
             
@@ -134,6 +169,7 @@ namespace FiroozehGameServiceAndroid
                     , new IGameServiceCallback(onCallback => { }
 
                     , error.Invoke));
+                    
             
         }
 
@@ -141,10 +177,19 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
+            
             
                 _gameServiceObj.Call("GetLeaderBoards"
                     , new IGameServiceCallback(onCallback => {
@@ -163,10 +208,19 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
-            }            
+            }
+            
                 _gameServiceObj.Call("GetLeaderBoardDetails"
                     , leaderBoardId
                     , new IGameServiceCallback(onCallback => {
@@ -175,7 +229,7 @@ namespace FiroozehGameServiceAndroid
             
         }
 
-        // Return LeaderBoard
+
         public void SubmitScore(
             string leaderBoardId,
             int scoreValue,
@@ -185,10 +239,19 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
-            }            
+            }
+            
                 _gameServiceObj.Call("SubmitScore"
                     , leaderBoardId
                     , scoreValue
@@ -202,22 +265,29 @@ namespace FiroozehGameServiceAndroid
         public void SaveGame(
              string saveGameName
             ,string saveGameDescription
-            ,string saveGameCover
             ,object saveGameObj
             , DelegateCore.OnSaveGame<SaveDetails> callback
             , DelegateCore.OnError error)
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
+            
             
                 _gameServiceObj.Call("SaveGame"
                     , saveGameName
                     , saveGameDescription
-                    , saveGameCover
                     , JsonConvert.SerializeObject(saveGameObj)
                     , new IGameServiceCallback(onCallback =>
                     {
@@ -230,8 +300,16 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
             
@@ -247,10 +325,19 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
+            
             if (_type == GameServiceType.Native)
             {
 
@@ -268,8 +355,16 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
             
@@ -282,10 +377,19 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
+            
             
                 _gameServiceObj.Call("GetUserData", new IGameServiceCallback(r =>
                 {
@@ -295,14 +399,23 @@ namespace FiroozehGameServiceAndroid
         }
 
 
-        public void ShowGamePageUI(DelegateCore.OnError error)
+        public void ShowGamePageUi(DelegateCore.OnError error)
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
+            
             if (_type == GameServiceType.Native)
             {
 
@@ -322,10 +435,19 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
+            
             
             if (_type == GameServiceType.Native)
             {
@@ -346,10 +468,19 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
+            
             
             _gameServiceObj.Call("GetAllBucketData",bucketId, new IGameServiceCallback(r =>
             {
@@ -362,8 +493,16 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
             
@@ -378,8 +517,16 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
             
@@ -396,10 +543,19 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
+            
             
             _gameServiceObj.Call("AddNewBucketData",bucketId , JsonConvert.SerializeObject(newBucket)
                 , new IGameServiceCallback(r =>
@@ -413,8 +569,16 @@ namespace FiroozehGameServiceAndroid
         {
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
             
@@ -426,11 +590,20 @@ namespace FiroozehGameServiceAndroid
         }
 
         public void DeleteBucketItems(string bucketId, DelegateCore.OnDeleteBucket onDeleteBucket, DelegateCore.OnError error)
-        {
+        {  
+            
             if (_gameServiceObj == null)
             {
-                if(FiroozehGameService.Configuration.EnableLog)
-                    LogUtil.LogError(Tag,"GameService Is NotAvailable yet");
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
                 return;
             }
             
@@ -440,9 +613,36 @@ namespace FiroozehGameServiceAndroid
             }, error.Invoke));
             
         }
+        
+        public void LogOut(DelegateCore.IsUserLogout logout ,DelegateCore.OnError error)
+        {
+            if (_gameServiceObj == null)
+            {
+                if (_isAvailable)
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "GameService Is NotAvailable yet");
+                }
+                else
+                {
+                    if (FiroozehGameService.Configuration.EnableLog)
+                        LogUtil.LogError(Tag, "You Logout Before ,You Must Config it Again...");
+                }
+                return;
+            }
+       
+            _gameServiceObj.Call("Logout",new IGameServiceCallback(c =>
+            {
+                _gameServiceObj = null;
+                _isAvailable = false;
+                logout.Invoke(true);
+            },error.Invoke));
+        }
 
-
-
+        public bool IsAvailable()
+        {
+            return _isAvailable;
+        }
     }
     #endif
 }

@@ -36,6 +36,8 @@ namespace FiroozehGameServiceAndroid.Core
         public delegate void OnError(string error);
 
         public delegate void IsUserLogin(bool status);
+        public delegate void IsUserLogout(bool status);
+
         
         public delegate void OnSaveGame<in T>(T result);
 

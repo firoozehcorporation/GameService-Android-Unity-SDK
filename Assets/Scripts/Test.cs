@@ -9,7 +9,7 @@ public class Test : MonoBehaviour
     {
         
         var config = new GameServiceClientConfiguration
-        .Builder(InstanceType.Auto)
+        .Builder(LoginType.Normal)
             .SetClientId("mygame")
             .SetClientSecret("h31r1kjwy8lap7lnrwd3x7")
             .SetObbDataTag("Your Data Tag")
