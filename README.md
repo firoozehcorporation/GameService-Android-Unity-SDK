@@ -1,5 +1,5 @@
 - <p align="center">
-  <img width="300" height="300" src="http://uupload.ir/files/tfq_logo.png">
+  <img width="300" height="300" src="http://uupload.ir/files/3oi_logo_small.png">
 
 
   <h1>
@@ -20,7 +20,6 @@
    همچنین برای معرفی و دیده شدن آن کافیست بازی خود را ثبت کنید </b>
       </p>
   </h4>
-  
 ----
 
 
