@@ -28,13 +28,13 @@ namespace FiroozehGameServiceAndroid.Core.App
 
         public static AndroidJavaObject GetGameService()
         {
-            var unityInstanter = new AndroidJavaClass("ir.FiroozehCorp.GameService.UnityPackage.App.Handlers.UnityGameService");
+            var unityInstanter = new AndroidJavaClass("ir.firoozehcorp.gameservice.android.unity.App.Handlers.UnityGameService");
             return unityInstanter.CallStatic<AndroidJavaObject>("GetInstance");
         }
 
         public static AndroidJavaObject GetLoginService()
         {
-            var unityInstanter = new AndroidJavaClass("ir.FiroozehCorp.GameService.UnityPackage.App.Handlers.UnityLoginService");
+            var unityInstanter = new AndroidJavaClass("ir.firoozehcorp.gameservice.android.unity.App.Handlers.UnityLoginService");
             return unityInstanter.CallStatic<AndroidJavaObject>("GetInstance");
         }
 

@@ -31,7 +31,7 @@ namespace FiroozehGameServiceAndroid.Interfaces
         private readonly DelegateCore.JsonData _onData;
         
         public IGSNotificationListener(DelegateCore.JsonData onData) 
-            : base("ir.FiroozehCorp.GameService.UnityPackage.Native.Interfaces.NotificationListener")
+            : base("ir.firoozehcorp.gameservice.android.unity.Native.Interfaces.NotificationListener")
         {
             _onData = onData;
         }

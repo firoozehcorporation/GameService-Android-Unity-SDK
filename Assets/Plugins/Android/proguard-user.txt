@@ -1,1 +1,1 @@
--keep class ir.FiroozehCorp.GameService.UnityPackage.** { *; }
+-keep class ir.firoozehcorp.gameservice.android.unity.** { *; }

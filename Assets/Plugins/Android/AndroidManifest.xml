@@ -26,7 +26,7 @@
         </activity>
 
         <service
-                android:name="ir.FiroozehCorp.GameService.UnityPackage.Native.Services.GSNotificationService"
+                android:name="ir.firoozehcorp.gameservice.android.unity.Native.Services.GSNotificationService"
                 android:enabled="true"
                 android:exported="false">
         </service>
