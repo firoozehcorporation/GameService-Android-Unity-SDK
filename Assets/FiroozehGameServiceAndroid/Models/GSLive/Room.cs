@@ -1,4 +1,4 @@
-﻿// <copyright file="User.cs" company="Firoozeh Technology LTD">
+// <copyright file="Room.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,33 +15,51 @@
 // </copyright>
 
 
+using Newtonsoft.Json;
+
+
 /**
 * @author Alireza Ghodrati
 */
 
-using Newtonsoft.Json;
 
-namespace FiroozehGameServiceAndroid.Models
+namespace FiroozehGameServiceAndroid.Models.GSLive
 {
-    [System.Serializable]
-    public class User
+    public class Room
     {
-
+        
         [JsonProperty("_id")]
         public string Id { set; get; }
         
         [JsonProperty("name")]
         public string Name { set; get; }
-
+                
         [JsonProperty("logo")]
         public string Logo { set; get; }
+                
+        [JsonProperty("creator")]
+        public string Creator { set; get; }
         
-        [JsonProperty("point")]
-        public int Point { set; get; }
-
-        [JsonProperty("isMe")]
-        public bool IsMe;
-
+        [JsonProperty("members")]
+        public string[] MembersId { set; get; }
+        
+        [JsonProperty("min")]
+        public int Min { set; get; }
+        
+        [JsonProperty("max")]
+        public int Max { set; get; }        
+                
+        [JsonProperty("role")]
+        public string Role { set; get; }
+        
+        [JsonProperty("game")]
+        public string GameId { set; get; }
+        
+        [JsonProperty("private")]
+        public bool IsPrivate { set; get; }
+                
+        [JsonProperty("status")]
+        public int Status { set; get; }
+        
     }
 }
-

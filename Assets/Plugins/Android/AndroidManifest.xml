@@ -12,6 +12,7 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
+
     <application
             android:theme="@style/UnityThemeSelector"
             android:icon="@mipmap/app_icon"
@@ -26,11 +27,13 @@
         </activity>
 
         <service
-                android:name="ir.firoozehcorp.gameservice.android.unity.Native.Services.GSNotificationService"
+                android:name="ir.firoozehcorp.gameservice.android.unity.Native.Services.GSLiveService"
                 android:enabled="true"
                 android:exported="false">
         </service>
 
+        <uses-library android:name="org.apache.http.legacy"
+                      android:required="false"/>
 
     </application>
 </manifest>

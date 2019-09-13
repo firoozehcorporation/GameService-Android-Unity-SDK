@@ -15,7 +15,6 @@
 // </copyright>
 
 using System.Collections.Generic;
-using FiroozehGameServiceAndroid.Builders.App;
 using FiroozehGameServiceAndroid.Models;
 using UnityEngine;
 
@@ -65,6 +64,9 @@ namespace FiroozehGameServiceAndroid.Core
         public delegate void OnUpdateBucketItem<TBucket>(Bucket<TBucket> bucket);
         public delegate void OnAddBucketItem<TBucket>(Bucket<TBucket> bucket);
         public delegate void OnDeleteBucket(bool isDeleted);
+
+
+        public delegate void OnEvent(int type,string payLoad);
 
 
 

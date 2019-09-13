@@ -1,4 +1,4 @@
-// <copyright file="IGSNotificationListener.cs" company="Firoozeh Technology LTD">
+// <copyright file="Member.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,34 +14,33 @@
 //    limitations under the License.
 // </copyright>
 
-
-using FiroozehGameServiceAndroid.Core;
-using UnityEngine;
+using Newtonsoft.Json;
 
 /**
 * @author Alireza Ghodrati
 */
 
 
-namespace FiroozehGameServiceAndroid.Interfaces
+
+namespace FiroozehGameServiceAndroid.Models.GSLive
 {
-#if UNITY_ANDROID
-    public class IGSNotificationListener : AndroidJavaProxy
+    public class Member
     {
-        private readonly DelegateCore.JsonData _onData;
+        [JsonProperty("_id")]
+        public string MemberId { set; get; }
+           
+        [JsonProperty("user")]
+        public User User { set; get; }
         
-        public IGSNotificationListener(DelegateCore.JsonData onData) 
-            : base("ir.firoozehcorp.gameservice.android.unity.Native.Interfaces.NotificationListener")
-        {
-            _onData = onData;
-        }
-
-
-        void onData(string JsonData)
-        {
-            _onData.Invoke(JsonData);
-        }
-      
+        [JsonProperty("online")]
+        public bool IsOnline { set; get; }
+        
+        [JsonProperty("ban")]
+        public bool IsBanned { set; get; }
+        
+        [JsonProperty("autoMatch")]
+        public AutoMatch AutoMatch { set; get; }
+         
+        
     }
-#endif
 }

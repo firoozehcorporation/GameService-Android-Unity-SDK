@@ -16,7 +16,6 @@
 
 
 using System;
-using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Core.Native;
 using FiroozehGameServiceAndroid.Enums;
 
@@ -26,7 +25,7 @@ using FiroozehGameServiceAndroid.Enums;
 
 namespace FiroozehGameServiceAndroid.Builders.Native
 {
-    #if UNITY_ANDROID
+#if UNITY_ANDROID
     internal static class GameServiceNativeInitializer
     {
         internal static void Init(GameServiceClientConfiguration configuration
@@ -41,5 +40,5 @@ namespace FiroozehGameServiceAndroid.Builders.Native
                 ,onError.Invoke,configuration.NotificationListener);
         }
     }
-    #endif
+#endif
 }

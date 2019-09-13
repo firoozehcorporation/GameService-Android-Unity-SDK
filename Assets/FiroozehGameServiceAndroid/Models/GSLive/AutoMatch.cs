@@ -1,4 +1,4 @@
-// <copyright file="IGSNotificationListener.cs" company="Firoozeh Technology LTD">
+// <copyright file="AutoMatch.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,33 +15,29 @@
 // </copyright>
 
 
-using FiroozehGameServiceAndroid.Core;
-using UnityEngine;
+using Newtonsoft.Json;
+
 
 /**
 * @author Alireza Ghodrati
 */
 
 
-namespace FiroozehGameServiceAndroid.Interfaces
+namespace FiroozehGameServiceAndroid.Models.GSLive
 {
-#if UNITY_ANDROID
-    public class IGSNotificationListener : AndroidJavaProxy
+    public class AutoMatch
     {
-        private readonly DelegateCore.JsonData _onData;
+        [JsonProperty("min")]
+        public int Min { set; get; }
         
-        public IGSNotificationListener(DelegateCore.JsonData onData) 
-            : base("ir.firoozehcorp.gameservice.android.unity.Native.Interfaces.NotificationListener")
-        {
-            _onData = onData;
-        }
+        [JsonProperty("max")]
+        public int Max { set; get; }
+        
+        [JsonProperty("role")]
+        public string Role { set; get; }
+        
+        [JsonProperty("accept")]
+        public bool IsAccept { set; get; }
 
-
-        void onData(string JsonData)
-        {
-            _onData.Invoke(JsonData);
-        }
-      
     }
-#endif
 }

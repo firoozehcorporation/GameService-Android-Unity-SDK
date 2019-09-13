@@ -22,7 +22,7 @@ using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Core.App
 {
-    #if UNITY_ANDROID
+#if UNITY_ANDROID
     public static class AppPluginProvider
     {
 
@@ -44,5 +44,5 @@ namespace FiroozehGameServiceAndroid.Core.App
             return unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
         }
     }
-    #endif
+#endif
 }

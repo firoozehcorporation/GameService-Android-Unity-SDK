@@ -88,7 +88,7 @@ namespace FiroozehGameServiceAndroid.Core
             if (Configuration.EnableLog)
             {
                 if (error.Equals(CallbackList.GameServiceNotInstalled))
-                    LogUtil.LogError(Tag, error + ",So Switching to Native Mode");
+                    LogUtil.LogDebug(Tag, error + ",So Switching to Native Mode");
                 else       
                     LogUtil.LogError(Tag, error);     
             }

@@ -17,7 +17,6 @@
 
 using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Core.App;
-using FiroozehGameServiceAndroid.Enums;
 using FiroozehGameServiceAndroid.Interfaces.App;
 
 
@@ -60,8 +59,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
             ,DelegateCore.OnError error)
         {
 
-           AppPluginHandler.InitGameLoginService(
-               checkAppStatus,checkOptionalUpdate,isLogEnable
+           AppPluginHandler.InitGameLoginService(checkAppStatus,checkOptionalUpdate,isLogEnable
                 ,s =>
                 {
                     s.Call("ShowLoginUI",

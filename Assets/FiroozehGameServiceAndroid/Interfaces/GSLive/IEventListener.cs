@@ -1,4 +1,4 @@
-﻿// <copyright file="IGameServiceLoginCheck.cs" company="Firoozeh Technology LTD">
+// <copyright file="IEventListener.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,6 +14,7 @@
 //    limitations under the License.
 // </copyright>
 
+
 using FiroozehGameServiceAndroid.Core;
 using UnityEngine;
 
@@ -21,31 +22,32 @@ using UnityEngine;
 * @author Alireza Ghodrati
 */
 
-namespace FiroozehGameServiceAndroid.Interfaces.App
+namespace FiroozehGameServiceAndroid.Interfaces.GSLive
 {
 #if UNITY_ANDROID
-    public class IGameServiceLoginCheck : AndroidJavaProxy
+    
+    public class IEventListener : AndroidJavaProxy
     {
-
-        private readonly DelegateCore.IsUserLogin _UserLogin;
-        private readonly DelegateCore.OnError _OnError;
-
-        public IGameServiceLoginCheck(DelegateCore.IsUserLogin isUserLoggedIn, DelegateCore.OnError onError)
-            : base("ir.firoozehcorp.gameservice.android.unity.App.Interfaces.IGameServiceLoginCheck")
+        private readonly DelegateCore.OnEvent _event;
+        private readonly DelegateCore.OnError _error;
+        
+        public IEventListener(DelegateCore.OnEvent Event,DelegateCore.OnError error) 
+            : base("ir.firoozehcorp.gameservice.android.unity.GSLive.Interfaces.EventListener")
         {
-            _UserLogin = isUserLoggedIn;
-            _OnError = onError;
+            _event = Event;
+            _error = error;    
         }
 
-        public void isLoggedIn(bool Status)
+        void OnEvent(int type , string payload)
         {
-            _UserLogin.Invoke(Status);
+            _event.Invoke(type,payload);
         }
 
-        public void OnError(string Error)
+        void OnError(string error)
         {
-            _OnError.Invoke(Error);
+            _error.Invoke(error);
         }
+     
     }
 #endif
 }

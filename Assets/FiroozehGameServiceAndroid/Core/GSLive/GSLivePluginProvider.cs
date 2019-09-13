@@ -1,4 +1,4 @@
-// <copyright file="IGSNotificationListener.cs" company="Firoozeh Technology LTD">
+// <copyright file="GSLiveProvider.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,6 @@
 // </copyright>
 
 
-using FiroozehGameServiceAndroid.Core;
 using UnityEngine;
 
 /**
@@ -23,25 +22,16 @@ using UnityEngine;
 */
 
 
-namespace FiroozehGameServiceAndroid.Interfaces
+namespace FiroozehGameServiceAndroid.Core.GSLive
 {
 #if UNITY_ANDROID
-    public class IGSNotificationListener : AndroidJavaProxy
+    public static class GSLiveProvider
     {
-        private readonly DelegateCore.JsonData _onData;
-        
-        public IGSNotificationListener(DelegateCore.JsonData onData) 
-            : base("ir.firoozehcorp.gameservice.android.unity.Native.Interfaces.NotificationListener")
+        public static AndroidJavaObject GetGSLive()
         {
-            _onData = onData;
-        }
-
-
-        void onData(string JsonData)
-        {
-            _onData.Invoke(JsonData);
-        }
-      
+            var gsLive = new AndroidJavaClass("ir.firoozehcorp.gameservice.android.unity.GSLive.Handlers.GSLiveHandler");
+            return gsLive.CallStatic<AndroidJavaObject>("GetInstance");
+        }    
     }
 #endif
 }

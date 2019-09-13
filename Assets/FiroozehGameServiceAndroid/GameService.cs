@@ -17,6 +17,7 @@
 
 using System.Collections.Generic;
 using FiroozehGameServiceAndroid.Core;
+using FiroozehGameServiceAndroid.Core.GSLive;
 using FiroozehGameServiceAndroid.Enums;
 using FiroozehGameServiceAndroid.Interfaces;
 using FiroozehGameServiceAndroid.Models;
@@ -32,13 +33,16 @@ using UnityEngine;
 namespace FiroozehGameServiceAndroid
 {
     #if UNITY_ANDROID
-    public sealed class GameService 
+    public class GameService 
     {
         private const string Tag = "GameService";
         private AndroidJavaObject _gameServiceObj;
         private bool _isAvailable ;
         private readonly bool _haveNotification;
         private readonly GameServiceType _type;
+        
+        public GSLive GSLive { get; private set; }
+
 
         public GameService(AndroidJavaObject gameService, GameServiceType type ,bool haveNotification)
         {
@@ -48,6 +52,7 @@ namespace FiroozehGameServiceAndroid
                 _gameServiceObj = gameService;
                 _type = type;
                 _isAvailable = true;
+                GSLive = new GSLive();
             }
             else throw new GameServiceException("GameServiceObj Is NULL");
         }
@@ -644,5 +649,6 @@ namespace FiroozehGameServiceAndroid
             return _isAvailable;
         }
     }
+    
     #endif
 }

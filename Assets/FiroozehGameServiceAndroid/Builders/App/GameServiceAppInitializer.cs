@@ -15,7 +15,6 @@
 // </copyright>
 
 using System;
-using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Core.App;
 using FiroozehGameServiceAndroid.Enums;
 

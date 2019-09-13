@@ -1,4 +1,4 @@
-// <copyright file="IGSNotificationListener.cs" company="Firoozeh Technology LTD">
+// <copyright file="BroadCast.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,33 +15,28 @@
 // </copyright>
 
 
-using FiroozehGameServiceAndroid.Core;
-using UnityEngine;
+using Newtonsoft.Json;
 
 /**
 * @author Alireza Ghodrati
 */
 
 
-namespace FiroozehGameServiceAndroid.Interfaces
+namespace FiroozehGameServiceAndroid.Models.GSLive
 {
-#if UNITY_ANDROID
-    public class IGSNotificationListener : AndroidJavaProxy
+    public class BroadCast
     {
-        private readonly DelegateCore.JsonData _onData;
         
-        public IGSNotificationListener(DelegateCore.JsonData onData) 
-            : base("ir.firoozehcorp.gameservice.android.unity.Native.Interfaces.NotificationListener")
-        {
-            _onData = onData;
-        }
-
-
-        void onData(string JsonData)
-        {
-            _onData.Invoke(JsonData);
-        }
-      
+        [JsonProperty("1")]
+        public string RoomId { set; get; }
+         
+        [JsonProperty("2")]
+        public string SenderId { set; get; }
+        
+        [JsonProperty("3")]
+        public string ReceiverId { set; get; }
+        
+        [JsonProperty("4")]
+        public string Data { set; get; }
     }
-#endif
 }
