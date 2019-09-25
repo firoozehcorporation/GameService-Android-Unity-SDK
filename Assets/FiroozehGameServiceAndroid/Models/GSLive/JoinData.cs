@@ -21,8 +21,12 @@ namespace FiroozehGameServiceAndroid.Models.GSLive
     public class JoinData
     {
         [JsonProperty("1")]
-        public RoomData RoomData { get; set; }
+        public int JoinType { get; set; }
+        
         [JsonProperty("2")]
-        public User JoinedPlayer { get; set; }
+        public RoomData RoomData { get; set; }
+        
+        [JsonProperty("3")]
+        public User JoinedUser { get; set; }
     }
 }

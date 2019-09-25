@@ -23,7 +23,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
 {
     public class GSLiveOption
     {
-        public  class CreateRoomOption
+        public class CreateRoomOption
         {
             public string RoomName { set; get; }   
             public int MinPlayer { set; get; }
@@ -32,7 +32,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             public bool IsPrivate { set; get; }
         }
         
-        public  class AutoMatchOption
+        public class AutoMatchOption
         {
             public int MinPlayer { set; get; }
             public int MaxPlayer { set; get; }

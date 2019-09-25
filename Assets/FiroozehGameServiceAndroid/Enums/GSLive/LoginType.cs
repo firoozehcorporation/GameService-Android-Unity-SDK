@@ -18,7 +18,7 @@
 * @author Alireza Ghodrati
 */
 
-namespace FiroozehGameServiceAndroid.Enums
+namespace FiroozehGameServiceAndroid.Enums.GSLive
 {
     public enum LoginType
     {

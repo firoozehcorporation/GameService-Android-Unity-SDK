@@ -20,15 +20,15 @@
 */
 
 
-namespace FiroozehGameServiceAndroid.Enums
+namespace FiroozehGameServiceAndroid.Enums.GSLive
 {
     public enum EventType
     {
         CreateRoom,
         JoinRoom,
         LeaveRoom,
-        BroadCastToAll,
-        BroadCastToOne,
+        PublicMessageReceive,
+        PrivateMessageReceive,
         MembersDetail,
         AvailableRoom,
         MemberForAutoMatch,

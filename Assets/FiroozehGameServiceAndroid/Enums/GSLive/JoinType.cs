@@ -1,4 +1,4 @@
-// <copyright file="AutoMatch.cs" company="Firoozeh Technology LTD">
+// <copyright file="JoinType.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,30 +14,16 @@
 //    limitations under the License.
 // </copyright>
 
-
-using Newtonsoft.Json;
-
-
 /**
 * @author Alireza Ghodrati
 */
 
 
-namespace FiroozehGameServiceAndroid.Models.GSLive
-{
-    public class AutoMatch
-    {
-        [JsonProperty("min")]
-        public int Min { set; get; }
-        
-        [JsonProperty("max")]
-        public int Max { set; get; }
-        
-        [JsonProperty("role")]
-        public string Role { set; get; }
-        
-        [JsonProperty("accept")]
-        public bool IsAccept { set; get; }
 
+namespace FiroozehGameServiceAndroid.Enums.GSLive
+{
+    public enum JoinType
+    {
+        Normal , AutoMatch
     }
 }

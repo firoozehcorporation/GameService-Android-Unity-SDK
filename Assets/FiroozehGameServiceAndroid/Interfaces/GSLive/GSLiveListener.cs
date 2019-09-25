@@ -15,7 +15,7 @@
 // </copyright>
 
 using System.Collections.Generic;
-using FiroozehGameServiceAndroid.Enums;
+using FiroozehGameServiceAndroid.Enums.GSLive;
 using FiroozehGameServiceAndroid.Models;
 using FiroozehGameServiceAndroid.Models.GSLive;
 
@@ -27,14 +27,14 @@ using FiroozehGameServiceAndroid.Models.GSLive;
 
 namespace FiroozehGameServiceAndroid.Interfaces.GSLive
 {
-    public interface IGsLiveListener
+    public interface IGSLiveListener
     {
         // Major Listeners
         void OnCreate (RoomData room);
 
-        void OnJoin (JoinData joinData);
+        void OnJoin (JoinData joinData , JoinType type);
 
-        void OnBroadCastReceive (BroadCast broadCast , BroadCastType type);
+        void OnMessageReceive (Message message , MessageType type);
 
         void OnLeave (Leave leave);
 

@@ -17,6 +17,7 @@
 
 using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Enums;
+using FiroozehGameServiceAndroid.Enums.GSLive;
 
 /**
 * @author Alireza Ghodrati

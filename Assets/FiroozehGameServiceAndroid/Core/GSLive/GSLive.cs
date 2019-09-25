@@ -17,13 +17,14 @@
 
 using System.Collections.Generic;
 using FiroozehGameServiceAndroid.Enums;
+using FiroozehGameServiceAndroid.Enums.GSLive;
 using FiroozehGameServiceAndroid.Interfaces.GSLive;
 using FiroozehGameServiceAndroid.Models;
 using FiroozehGameServiceAndroid.Models.GSLive;
 using FiroozehGameServiceAndroid.Utils;
 using Newtonsoft.Json;
 using UnityEngine;
-using EventType = FiroozehGameServiceAndroid.Enums.EventType;
+using EventType = FiroozehGameServiceAndroid.Enums.GSLive.EventType;
 
 /**
 * @author Alireza Ghodrati
@@ -43,7 +44,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         }
         private const string Tag = "GSLive";
         private GSLiveType _type = GSLiveType.NotSet;
-        private IGsLiveListener _listener;
+        private IGSLiveListener _listener;
     
         private static void SetEventListener(IEventListener listener)
         {
@@ -52,7 +53,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         }
 
         
-        public void SetGSLiveOptions(GSLiveType gsLiveType,IGsLiveListener listener)
+        public void SetGSLiveOptions(GSLiveType gsLiveType,IGSLiveListener listener)
         {
             _type = gsLiveType;
             
@@ -67,17 +68,18 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                             _listener.OnCreate(JsonConvert.DeserializeObject<RoomData>(payload));
                             break;
                         case EventType.JoinRoom:
-                            _listener.OnJoin(JsonConvert.DeserializeObject<JoinData>(payload));
+                            var join = JsonConvert.DeserializeObject<JoinData>(payload);
+                            _listener.OnJoin(join,(JoinType)join.JoinType);
                             break;
                         case EventType.LeaveRoom:
-                            var leave = JsonConvert.DeserializeObject<BroadCast>(payload);
+                            var leave = JsonConvert.DeserializeObject<Message>(payload);
                             _listener.OnLeave(new Leave {RoomId = leave.RoomId, MemberLeaveId = leave.SenderId});
                             break;
-                        case EventType.BroadCastToAll:
-                            _listener.OnBroadCastReceive(JsonConvert.DeserializeObject<BroadCast>(payload),BroadCastType.ToAll);
+                        case EventType.PublicMessageReceive:
+                            _listener.OnMessageReceive(JsonConvert.DeserializeObject<Message>(payload),MessageType.Public);
                             break;
-                        case EventType.BroadCastToOne:
-                            _listener.OnBroadCastReceive(JsonConvert.DeserializeObject<BroadCast>(payload),BroadCastType.ToOne);
+                        case EventType.PrivateMessageReceive:
+                            _listener.OnMessageReceive(JsonConvert.DeserializeObject<Message>(payload),MessageType.Private);
                             break;
                         case EventType.AvailableRoom:
                             _listener.OnAvailableRooms(JsonConvert.DeserializeObject<List<Room>>(payload));
@@ -86,7 +88,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                             _listener.OnAvailablePlayerForAutoMatch(JsonConvert.DeserializeObject<List<User>>(payload));
                             break;
                         case EventType.MembersDetail:
-                            var details = JsonConvert.DeserializeObject<BroadCast>(payload);
+                            var details = JsonConvert.DeserializeObject<Message>(payload);
                             _listener.OnRoomPlayersDetail(JsonConvert.DeserializeObject<List<User>>(details.Data));
                             break;
                         case EventType.Success:
@@ -123,7 +125,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 LogUtil.LogError(Tag,"Min Player Must grater than 2 , Max Player Must less than 8");
                 return;
             }
-            
+                        
             var multi = GSLiveProvider.GetGSLive();   
             multi.Call("CreateRoom",
                 option.RoomName,
@@ -201,7 +203,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         }
         
         
-        public void BroadCastToAll(string data)
+        public void SendPublicMessage(string data)
         {
             if (_listener == null)
             {
@@ -210,10 +212,10 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             }
 
             var multi = GSLiveProvider.GetGSLive();      
-            multi.Call("BroadCastToAll",data);     
+            multi.Call("SendPublicMessage",data);     
         }    
         
-        public void BroadCastToOne(string receiverId,string data)
+        public void SendPrivateMessage(string receiverId,string data)
         {
             if (_listener == null)
             {
@@ -223,7 +225,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
 
             
             var multi = GSLiveProvider.GetGSLive();      
-            multi.Call("BroadCastToOne",receiverId,data);     
+            multi.Call("SendPrivateMessage",receiverId,data);     
         }    
         
         

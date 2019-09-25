@@ -41,7 +41,7 @@ namespace FiroozehGameServiceAndroid.Models.GSLive
         public string Creator { set; get; }
         
         [JsonProperty("members")]
-        public string[] MembersId { set; get; }
+        public string[] PlayersId { set; get; }
         
         [JsonProperty("min")]
         public int Min { set; get; }

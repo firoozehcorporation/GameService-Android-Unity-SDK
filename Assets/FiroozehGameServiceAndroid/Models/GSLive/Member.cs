@@ -36,11 +36,7 @@ namespace FiroozehGameServiceAndroid.Models.GSLive
         public bool IsOnline { set; get; }
         
         [JsonProperty("ban")]
-        public bool IsBanned { set; get; }
-        
-        [JsonProperty("autoMatch")]
-        public AutoMatch AutoMatch { set; get; }
-         
+        public bool IsBanned { set; get; }      
         
     }
 }

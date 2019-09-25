@@ -1,4 +1,4 @@
-// <copyright file="BroadCast.cs" company="Firoozeh Technology LTD">
+// <copyright file="GSLiveType.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,29 +14,14 @@
 //    limitations under the License.
 // </copyright>
 
-
-using Newtonsoft.Json;
-
 /**
 * @author Alireza Ghodrati
 */
 
-
-namespace FiroozehGameServiceAndroid.Models.GSLive
+namespace FiroozehGameServiceAndroid.Enums.GSLive
 {
-    public class BroadCast
+    public enum GSLiveType
     {
-        
-        [JsonProperty("1")]
-        public string RoomId { set; get; }
-         
-        [JsonProperty("2")]
-        public string SenderId { set; get; }
-        
-        [JsonProperty("3")]
-        public string ReceiverId { set; get; }
-        
-        [JsonProperty("4")]
-        public string Data { set; get; }
+       NotSet , TurnBased , RealTime
     }
 }
