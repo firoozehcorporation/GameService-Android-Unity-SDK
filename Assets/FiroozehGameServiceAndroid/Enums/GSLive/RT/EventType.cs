@@ -1,4 +1,4 @@
-// <copyright file="JoinType.cs" company="Firoozeh Technology LTD">
+// <copyright file="EventType.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,16 +14,24 @@
 //    limitations under the License.
 // </copyright>
 
+
 /**
 * @author Alireza Ghodrati
 */
 
 
-
-namespace FiroozehGameServiceAndroid.Enums.GSLive
+namespace FiroozehGameServiceAndroid.Enums.GSLive.RT
 {
-    public enum JoinType
+    public enum EventType
     {
-        Normal , AutoMatch
+        CreateRoom,
+        JoinRoom,
+        LeaveRoom,
+        PublicMessageReceive,
+        PrivateMessageReceive,
+        MembersDetail,
+        AvailableRoom,
+        MemberForAutoMatch,
+        Success
     }
 }

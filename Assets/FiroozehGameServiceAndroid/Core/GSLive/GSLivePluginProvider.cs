@@ -29,7 +29,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
     {
         public static AndroidJavaObject GetGSLive()
         {
-            var gsLive = new AndroidJavaClass("ir.firoozehcorp.gameservice.android.unity.GSLive.Handlers.GSLiveHandler");
+            var gsLive = new AndroidJavaClass("ir.firoozehcorp.gameservice.android.unity.GSLive.RT.Handlers.GSLiveRTHandler");
             return gsLive.CallStatic<AndroidJavaObject>("GetInstance");
         }    
     }

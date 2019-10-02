@@ -1,4 +1,4 @@
-// <copyright file="RoomData.cs" company="Firoozeh Technology LTD">
+// <copyright file="Room.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,46 +14,52 @@
 //    limitations under the License.
 // </copyright>
 
+
 using Newtonsoft.Json;
+
 
 /**
 * @author Alireza Ghodrati
 */
 
-namespace FiroozehGameServiceAndroid.Models.GSLive
+
+namespace FiroozehGameServiceAndroid.Models.GSLive.RT
 {
-    public class RoomData
+    public class Room
     {
-        [JsonProperty("1")]
+        
+        [JsonProperty("_id")]
         public string Id { set; get; }
         
-        [JsonProperty("2")]
+        [JsonProperty("name")]
         public string Name { set; get; }
                 
-        [JsonProperty("3")]
+        [JsonProperty("logo")]
         public string Logo { set; get; }
                 
-        [JsonProperty("4")]
+        [JsonProperty("creator")]
         public string Creator { set; get; }
         
-        [JsonProperty("5")]
+        [JsonProperty("members")]
+        public string[] PlayersId { set; get; }
+        
+        [JsonProperty("min")]
         public int Min { set; get; }
         
-        [JsonProperty("6")]
+        [JsonProperty("max")]
         public int Max { set; get; }        
                 
-        [JsonProperty("7")]
+        [JsonProperty("role")]
         public string Role { set; get; }
         
-        [JsonProperty("8")]
+        [JsonProperty("game")]
+        public string GameId { set; get; }
+        
+        [JsonProperty("private")]
         public bool IsPrivate { set; get; }
                 
-        [JsonProperty("9")]
+        [JsonProperty("status")]
         public int Status { set; get; }
         
-        [JsonProperty("10")]
-        public int JoinedMember { set; get; }
-
-       
     }
 }

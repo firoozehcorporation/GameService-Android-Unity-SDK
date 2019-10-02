@@ -3,15 +3,19 @@ using FiroozehGameServiceAndroid.Builders;
 using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Core.GSLive;
 using FiroozehGameServiceAndroid.Enums;
+using FiroozehGameServiceAndroid.Enums.GSLive;
+using FiroozehGameServiceAndroid.Enums.GSLive.RT;
 using FiroozehGameServiceAndroid.Interfaces.GSLive;
+using FiroozehGameServiceAndroid.Interfaces.GSLive.RT;
 using FiroozehGameServiceAndroid.Models;
 using FiroozehGameServiceAndroid.Models.GSLive;
+using FiroozehGameServiceAndroid.Models.GSLive.RT;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-public class GsLiveTest : MonoBehaviour, IGsLiveListener
+public class GsLiveTest : MonoBehaviour, IGSLiveListener
 {
     public Button CreateRoom;
     public Button JoinRoom;
@@ -59,12 +63,12 @@ public class GsLiveTest : MonoBehaviour, IGsLiveListener
 
     private void OnFirstInit()
     {
-        FiroozehGameService.Instance.GSLive.SetGSLiveOptions(GSLiveType.RealTime,this);
+        FiroozehGameService.Instance.GSLive.RealTime.SetGSLiveListener(this);
         
         
         CreateRoom.onClick.AddListener(() =>
         {
-            FiroozehGameService.Instance.GSLive.CreateRoom(new GSLiveOption.CreateRoomOption
+            FiroozehGameService.Instance.GSLive.RealTime.CreateRoom(new GSLiveOption.CreateRoomOption
             {
                 RoomName = Name.text , Role = Role.text , MinPlayer = int.Parse(Min.text) , MaxPlayer = int.Parse(Max.text) , IsPrivate = false
             });
@@ -72,22 +76,22 @@ public class GsLiveTest : MonoBehaviour, IGsLiveListener
         
         JoinRoom.onClick.AddListener(() =>
         {
-            FiroozehGameService.Instance.GSLive.JoinRoom("Room ID");
+            FiroozehGameService.Instance.GSLive.RealTime.JoinRoom("Room ID");
         });
         
         LeaveRoom.onClick.AddListener(() =>
         {
-            FiroozehGameService.Instance.GSLive.LeaveRoom();
+            FiroozehGameService.Instance.GSLive.RealTime.LeaveRoom();
         });
         
         AvailableRoom.onClick.AddListener(() =>
         {
-            FiroozehGameService.Instance.GSLive.GetAvailableRooms(Role.text);
+            FiroozehGameService.Instance.GSLive.RealTime.GetAvailableRooms(Role.text);
         });
         
         AutoMatch.onClick.AddListener(() =>
         {
-            FiroozehGameService.Instance.GSLive.AutoMatch(new GSLiveOption.AutoMatchOption
+            FiroozehGameService.Instance.GSLive.RealTime.AutoMatch(new GSLiveOption.AutoMatchOption
             {
                  MinPlayer = int.Parse(Min.text) , MaxPlayer = int.Parse(Max.text) , Role = Role.text         
             });
@@ -95,19 +99,19 @@ public class GsLiveTest : MonoBehaviour, IGsLiveListener
         
         PlayersInRoom.onClick.AddListener(() =>
         {
-            FiroozehGameService.Instance.GSLive.GetRoomPlayersDetail();
+            FiroozehGameService.Instance.GSLive.RealTime.GetRoomPlayersDetail();
         });
         
         
         BroadCastToAll.onClick.AddListener(() =>
         {
-            FiroozehGameService.Instance.GSLive.BroadCastToAll(Name.text);
+            FiroozehGameService.Instance.GSLive.RealTime.SendPublicMessage(Name.text);
         });
         
         
         BroadCastToOne.onClick.AddListener(() =>
         {
-            FiroozehGameService.Instance.GSLive.BroadCastToOne(Role.text,Name.text);
+            FiroozehGameService.Instance.GSLive.RealTime.SendPrivateMessage(Role.text,Name.text);
         });
             
     }
@@ -120,18 +124,19 @@ public class GsLiveTest : MonoBehaviour, IGsLiveListener
         Logs.text += "OnCreate : "+JsonConvert.SerializeObject(room) + "\n\n";
     }
 
-    public void OnJoin(JoinData joinData)
+    public void OnJoin(JoinData joinData, JoinType type)
     {
         Logs.text += "OnJoin : "+JsonConvert.SerializeObject(joinData) + "\n\n";
 
     }
 
-
-    public void OnBroadCastReceive(BroadCast broadCast, BroadCastType type)
+    public void OnMessageReceive(Message message, MessageType type)
     {
-        Logs.text += "BroadCastType : "+ type + "OnBroadCastReceive : "+JsonConvert.SerializeObject(broadCast) + "\n\n";
+        Logs.text += "MessageType : "+ type + "OnMessageReceive : "+JsonConvert.SerializeObject(message) + "\n\n";
 
     }
+
+   
 
 
     public void OnLeave(Leave leave)

@@ -22,7 +22,7 @@ using UnityEngine;
 * @author Alireza Ghodrati
 */
 
-namespace FiroozehGameServiceAndroid.Interfaces.GSLive
+namespace FiroozehGameServiceAndroid.Interfaces.GSLive.RT
 {
 #if UNITY_ANDROID
     
@@ -32,7 +32,7 @@ namespace FiroozehGameServiceAndroid.Interfaces.GSLive
         private readonly DelegateCore.OnError _error;
         
         public IEventListener(DelegateCore.OnEvent Event,DelegateCore.OnError error) 
-            : base("ir.firoozehcorp.gameservice.android.unity.GSLive.Interfaces.EventListener")
+            : base("ir.firoozehcorp.gameservice.android.unity.GSLive.RT.Interfaces.RTEventListener")
         {
             _event = Event;
             _error = error;    

@@ -1,4 +1,4 @@
-// <copyright file="EventType.cs" company="Firoozeh Technology LTD">
+// <copyright file="GSLiveErrors.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,24 +14,19 @@
 //    limitations under the License.
 // </copyright>
 
-
 /**
 * @author Alireza Ghodrati
 */
 
 
-namespace FiroozehGameServiceAndroid.Enums.GSLive
+using System;
+
+namespace FiroozehGameServiceAndroid.Core.GSLive
 {
-    public enum EventType
+    public class GSLiveErrors
     {
-        CreateRoom,
-        JoinRoom,
-        LeaveRoom,
-        PublicMessageReceive,
-        PrivateMessageReceive,
-        MembersDetail,
-        AvailableRoom,
-        MemberForAutoMatch,
-        Success
+        public const String NotAvailableYet = "GSLiveService Not Available yet";
+        public const String ServerError = "ServerError";
+
     }
 }

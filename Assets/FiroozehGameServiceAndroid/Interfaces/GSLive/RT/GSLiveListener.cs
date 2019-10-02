@@ -15,9 +15,10 @@
 // </copyright>
 
 using System.Collections.Generic;
-using FiroozehGameServiceAndroid.Enums.GSLive;
+using FiroozehGameServiceAndroid.Enums.GSLive.RT;
 using FiroozehGameServiceAndroid.Models;
 using FiroozehGameServiceAndroid.Models.GSLive;
+using FiroozehGameServiceAndroid.Models.GSLive.RT;
 
 /**
 * @author Alireza Ghodrati
@@ -25,7 +26,7 @@ using FiroozehGameServiceAndroid.Models.GSLive;
 
 
 
-namespace FiroozehGameServiceAndroid.Interfaces.GSLive
+namespace FiroozehGameServiceAndroid.Interfaces.GSLive.RT
 {
     public interface IGSLiveListener
     {

@@ -1,4 +1,4 @@
-// <copyright file="Member.cs" company="Firoozeh Technology LTD">
+// <copyright file="JoinData.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,27 +16,17 @@
 
 using Newtonsoft.Json;
 
-/**
-* @author Alireza Ghodrati
-*/
-
-
-
-namespace FiroozehGameServiceAndroid.Models.GSLive
+namespace FiroozehGameServiceAndroid.Models.GSLive.RT
 {
-    public class Member
+    public class JoinData
     {
-        [JsonProperty("_id")]
-        public string MemberId { set; get; }
-           
-        [JsonProperty("user")]
-        public User User { set; get; }
+        [JsonProperty("1")]
+        public int JoinType { get; set; }
         
-        [JsonProperty("online")]
-        public bool IsOnline { set; get; }
+        [JsonProperty("2")]
+        public RoomData RoomData { get; set; }
         
-        [JsonProperty("ban")]
-        public bool IsBanned { set; get; }      
-        
+        [JsonProperty("3")]
+        public User JoinedUser { get; set; }
     }
 }

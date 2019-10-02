@@ -1,4 +1,4 @@
-// <copyright file="Message.cs" company="Firoozeh Technology LTD">
+// <copyright file="Leave.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,6 @@
 //    limitations under the License.
 // </copyright>
 
-
 using Newtonsoft.Json;
 
 /**
@@ -22,21 +21,14 @@ using Newtonsoft.Json;
 */
 
 
-namespace FiroozehGameServiceAndroid.Models.GSLive
+namespace FiroozehGameServiceAndroid.Models.GSLive.RT
 {
-    public class Message
+    public class Leave
     {
-        
         [JsonProperty("1")]
-        public string RoomId { set; get; }
-         
+        public string MemberLeaveId { set; get; }
+        
         [JsonProperty("2")]
-        public string SenderId { set; get; }
-        
-        [JsonProperty("3")]
-        public string ReceiverId { set; get; }
-        
-        [JsonProperty("4")]
-        public string Data { set; get; }
+        public string RoomId { set; get; }
     }
 }

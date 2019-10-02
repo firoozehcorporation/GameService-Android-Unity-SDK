@@ -1,4 +1,4 @@
-// <copyright file="GSLive.cs" company="Firoozeh Technology LTD">
+// <copyright file="MessageType.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,29 +19,10 @@
 * @author Alireza Ghodrati
 */
 
-
-
-namespace FiroozehGameServiceAndroid.Core.GSLive
+namespace FiroozehGameServiceAndroid.Enums.GSLive.RT
 {
-#if UNITY_ANDROID
-    
-    public class GSLive
+    public enum MessageType
     {
-        
-        private const string Tag = "GSLive";
-        
-        public GSLiveRT RealTime { get; private set; }
-        
-        public GSLive()
-        {
-            RealTime = new GSLiveRT();
-        }
-
-        public bool IsRealTimeAvailable()
-        {
-            return RealTime.IsAvailable;
-        }
-      
+        Public , Private
     }
-#endif
 }
