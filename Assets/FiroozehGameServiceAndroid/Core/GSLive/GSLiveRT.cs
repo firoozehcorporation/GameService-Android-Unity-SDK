@@ -38,7 +38,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
     {
         private const string Tag = "GSLive-RealTime";
         private GSLiveType _type = GSLiveType.RealTime;
-        private IGSLiveListener _listener;
+        private GSLiveRealTimeListener _realTimeListener;
         public bool IsAvailable { get; private set; }
 
         public GSLiveRT()
@@ -48,53 +48,53 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         
         private static void SetEventListener(IEventListener listener)
         {
-           var multi = GSLiveProvider.GetGSLive();
-           multi.Call("SetListener", listener);
+           var rt = GSLiveProvider.GetGSLiveRT();
+            rt.Call("SetListener", listener);
         }
 
         
-        public void SetGSLiveListener(IGSLiveListener listener)
+        public void SetListener(GSLiveRealTimeListener realTimeListener)
         {            
-            if (listener != null)
+            if (realTimeListener != null)
             {
-                _listener = listener;
+                _realTimeListener = realTimeListener;
                 var eventListener = new IEventListener((type, payload) =>
                 {
                     switch ((EventType) type)
                     {
                         case EventType.CreateRoom:
-                            _listener.OnCreate(JsonConvert.DeserializeObject<RoomData>(payload));
+                            _realTimeListener.OnCreate(JsonConvert.DeserializeObject<RoomData>(payload));
                             break;
                         case EventType.JoinRoom:
                             var join = JsonConvert.DeserializeObject<JoinData>(payload);
-                            _listener.OnJoin(join,(JoinType)join.JoinType);
+                            _realTimeListener.OnJoin(join,(JoinType)join.JoinType);
                             break;
                         case EventType.LeaveRoom:
                             var leave = JsonConvert.DeserializeObject<Message>(payload);
-                            _listener.OnLeave(new Leave {RoomId = leave.RoomId, MemberLeaveId = leave.SenderId});
+                            _realTimeListener.OnLeave(new Leave {RoomId = leave.RoomId, MemberLeaveId = leave.SenderId});
                             break;
                         case EventType.PublicMessageReceive:
-                            _listener.OnMessageReceive(JsonConvert.DeserializeObject<Message>(payload),MessageType.Public);
+                            _realTimeListener.OnMessageReceive(JsonConvert.DeserializeObject<Message>(payload),MessageType.Public);
                             break;
                         case EventType.PrivateMessageReceive:
-                            _listener.OnMessageReceive(JsonConvert.DeserializeObject<Message>(payload),MessageType.Private);
+                            _realTimeListener.OnMessageReceive(JsonConvert.DeserializeObject<Message>(payload),MessageType.Private);
                             break;
                         case EventType.AvailableRoom:
-                            _listener.OnAvailableRooms(JsonConvert.DeserializeObject<List<Room>>(payload));
+                            _realTimeListener.OnAvailableRooms(JsonConvert.DeserializeObject<List<Room>>(payload));
                             break;
                         case EventType.MemberForAutoMatch:
-                            _listener.OnAvailablePlayerForAutoMatch(JsonConvert.DeserializeObject<List<User>>(payload));
+                            _realTimeListener.OnAvailablePlayerForAutoMatch(JsonConvert.DeserializeObject<List<User>>(payload));
                             break;
                         case EventType.MembersDetail:
                             var details = JsonConvert.DeserializeObject<Message>(payload);
-                            _listener.OnRoomPlayersDetail(JsonConvert.DeserializeObject<List<User>>(details.Data));
+                            _realTimeListener.OnRoomPlayersDetail(JsonConvert.DeserializeObject<List<User>>(details.Data));
                             break;
                         case EventType.Success:
-                            _listener.OnSuccess();
+                            _realTimeListener.OnSuccess();
                             break;
                     }
 
-                }, _listener.OnError);
+                }, _realTimeListener.OnRealTimeError);
 
                 IsAvailable = true;
                 SetEventListener(eventListener);
@@ -107,7 +107,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
 
         public void CreateRoom(GSLiveOption.CreateRoomOption option)
         {
-            if (_listener == null)
+            if (_realTimeListener == null)
             {
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
                 return;
@@ -119,8 +119,8 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 return;
             }
                         
-            var multi = GSLiveProvider.GetGSLive();   
-            multi.Call("CreateRoom",
+            var rt = GSLiveProvider.GetGSLiveRT();   
+            rt.Call("CreateRoom",
                 option.RoomName,
                 option.MaxPlayer,
                 option.MinPlayer,
@@ -131,7 +131,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         
         public void AutoMatch(GSLiveOption.AutoMatchOption option)
         {
-            if (_listener == null)
+            if (_realTimeListener == null)
             {
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
                 return;
@@ -144,8 +144,8 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 return;
             }
             
-            var multi = GSLiveProvider.GetGSLive();       
-            multi.Call("AutoMatch",
+            var rt = GSLiveProvider.GetGSLiveRT();       
+            rt.Call("AutoMatch",
                 option.MaxPlayer,
                 option.MinPlayer,
                 option.Role   
@@ -154,78 +154,78 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         
         public void JoinRoom(string roomId)
         {
-            if (_listener == null)
+            if (_realTimeListener == null)
             {
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
                 return;
             }
 
-            var multi = GSLiveProvider.GetGSLive();    
-            multi.Call("JoinRoom",roomId);     
+            var rt = GSLiveProvider.GetGSLiveRT();    
+            rt.Call("JoinRoom",roomId);     
         }
         
         public void LeaveRoom()
         {
-            if (_listener == null)
+            if (_realTimeListener == null)
             {
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
                 return;
             }
 
             IsAvailable = false;
-            var multi = GSLiveProvider.GetGSLive();     
-            multi.Call("LeaveRoom");  
+            var rt = GSLiveProvider.GetGSLiveRT();     
+            rt.Call("LeaveRoom");  
         }
 
         public void GetAvailableRooms(string role)
         {
-            if (_listener == null)
+            if (_realTimeListener == null)
             {
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
                 return;
             }
 
-            var multi = GSLiveProvider.GetGSLive();      
-            multi.Call("GetAvailableRooms",role);     
+            var rt = GSLiveProvider.GetGSLiveRT();      
+            rt.Call("GetAvailableRooms",role);     
         }
         
         
         public void SendPublicMessage(string data)
         {
-            if (_listener == null)
+            if (_realTimeListener == null)
             {
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
                 return;
             }
 
-            var multi = GSLiveProvider.GetGSLive();      
-            multi.Call("SendPublicMessage",data);     
+            var rt = GSLiveProvider.GetGSLiveRT();      
+            rt.Call("SendPublicMessage",data);     
         }    
         
         public void SendPrivateMessage(string receiverId,string data)
         {
-            if (_listener == null)
+            if (_realTimeListener == null)
             {
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
                 return;
             }
 
             
-            var multi = GSLiveProvider.GetGSLive();      
-            multi.Call("SendPrivateMessage",receiverId,data);     
+            var rt = GSLiveProvider.GetGSLiveRT();      
+            rt.Call("SendPrivateMessage",receiverId,data);     
         }    
         
         
         public void GetRoomPlayersDetail()
         {
-            if (_listener == null)
+            if (_realTimeListener == null)
             {
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
                 return;
             }
 
-            var multi = GSLiveProvider.GetGSLive();      
-            multi.Call("GetPlayersDetail");     
+            var rt = GSLiveProvider.GetGSLiveRT();      
+            rt.Call("GetPlayersDetail");     
         }      
     }
  #endif

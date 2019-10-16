@@ -1,4 +1,4 @@
-// <copyright file="IGSLiveListener.cs" company="Firoozeh Technology LTD">
+// <copyright file="GSLiveRealTimeListener.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,7 +28,7 @@ using FiroozehGameServiceAndroid.Models.GSLive.RT;
 
 namespace FiroozehGameServiceAndroid.Interfaces.GSLive.RT
 {
-    public interface IGSLiveListener
+    public interface GSLiveRealTimeListener
     {
         // Major Listeners
         void OnCreate (RoomData room);
@@ -48,6 +48,6 @@ namespace FiroozehGameServiceAndroid.Interfaces.GSLive.RT
         // Another Listeners
         void OnSuccess ();
 
-        void OnError (string error);
+        void OnRealTimeError (string error);
     }
 }

@@ -27,7 +27,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
 #if UNITY_ANDROID
     public static class GSLiveProvider
     {
-        public static AndroidJavaObject GetGSLive()
+        public static AndroidJavaObject GetGSLiveRT()
         {
             var gsLive = new AndroidJavaClass("ir.firoozehcorp.gameservice.android.unity.GSLive.RT.Handlers.GSLiveRTHandler");
             return gsLive.CallStatic<AndroidJavaObject>("GetInstance");

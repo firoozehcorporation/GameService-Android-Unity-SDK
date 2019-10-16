@@ -15,7 +15,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class GsLiveTest : MonoBehaviour, IGSLiveListener
+public class GsLiveRealTimeTest : MonoBehaviour, GSLiveRealTimeListener
 {
     public Button CreateRoom;
     public Button JoinRoom;
@@ -63,7 +63,7 @@ public class GsLiveTest : MonoBehaviour, IGSLiveListener
 
     private void OnFirstInit()
     {
-        FiroozehGameService.Instance.GSLive.RealTime.SetGSLiveListener(this);
+        FiroozehGameService.Instance.GSLive.RealTime.SetListener(this);
         
         
         CreateRoom.onClick.AddListener(() =>
@@ -170,7 +170,7 @@ public class GsLiveTest : MonoBehaviour, IGSLiveListener
         Logs.text += "OnSuccess";
     }
 
-    public void OnError(string error)
+    public void OnRealTimeError(string error)
     {
         Errors.text += error;
     }
