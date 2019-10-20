@@ -1,4 +1,4 @@
-// <copyright file="GSLiveProvider.cs" company="Firoozeh Technology LTD">
+// <copyright file="GSLiveTB.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,29 +15,21 @@
 // </copyright>
 
 
-using UnityEngine;
 
 /**
 * @author Alireza Ghodrati
 */
 
 
+using FiroozehGameServiceAndroid.Enums.GSLive;
+
 namespace FiroozehGameServiceAndroid.Core.GSLive
 {
 #if UNITY_ANDROID
-    public static class GSLiveProvider
+    public class GSLiveTB
     {
-        public static AndroidJavaObject GetGSLiveRT()
-        {
-            var gsLive = new AndroidJavaClass("ir.firoozehcorp.gameservice.android.unity.GSLive.RT.Handlers.GSLiveRTHandler");
-            return gsLive.CallStatic<AndroidJavaObject>("GetInstance");
-        }    
-        
-        public static AndroidJavaObject GetGSLiveChat()
-        {
-            var gsLive = new AndroidJavaClass("ir.firoozehcorp.gameservice.android.unity.Command.Handlers.ChatHandlers");
-            return gsLive.CallStatic<AndroidJavaObject>("GetInstance");
-        }    
+        private const string Tag = "GSLive-TurnBased";
+        private GSLiveType _type = GSLiveType.TurnBased;
     }
 #endif
 }

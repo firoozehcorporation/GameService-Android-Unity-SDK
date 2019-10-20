@@ -165,6 +165,19 @@ public class GsLiveRealTimeTest : MonoBehaviour, GSLiveRealTimeListener
 
     }
 
+    public void OnInviteList(List<Invite> invites)
+    {
+        
+    }
+
+    public void OnInviteSend()
+    {
+    }
+
+    public void OnFindUsers(List<User> users)
+    {
+    }
+
     public void OnSuccess()
     {
         Logs.text += "OnSuccess";

@@ -1,4 +1,4 @@
-// <copyright file="GSLive.cs" company="Firoozeh Technology LTD">
+// <copyright file="Message.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,34 +19,21 @@
 * @author Alireza Ghodrati
 */
 
+using Newtonsoft.Json;
 
-
-namespace FiroozehGameServiceAndroid.Core.GSLive
+namespace FiroozehGameServiceAndroid.Models.GSLive.Chat
 {
-#if UNITY_ANDROID
-    
-    public class GSLive
+    public class Chat
     {
-        
-        private const string Tag = "GSLive";
-        
-        public GSLiveRT RealTime { get; private set; }
-        public GSLiveTB TurnBased { get; private set; }
-        public GSLiveChat Chat { get; private set; }
-
-        
-        public GSLive()
-        {
-            RealTime = new GSLiveRT();
-            Chat = new GSLiveChat();
-            TurnBased = new GSLiveTB();
-        }
-
-        public bool IsRealTimeAvailable()
-        {
-            return RealTime.IsAvailable;
-        }
-      
+        [JsonProperty("0")]                  
+        public bool IsPrivate { set; get; }   
+        [JsonProperty("1")]
+        public string ReceiverId { set; get; }
+        [JsonProperty("2")]                      
+        public User Sender { set; get; }
+        [JsonProperty("3")]                      
+        public string Message { set; get; }
+        [JsonProperty("4")]                      
+        public long SendTime { set; get; }
     }
-#endif
 }

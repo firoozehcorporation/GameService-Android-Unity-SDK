@@ -45,9 +45,18 @@ namespace FiroozehGameServiceAndroid.Interfaces.GSLive.RT
 
         void OnRoomPlayersDetail(List<User> players);
 
+        void OnInviteList (List<Invite> invites);
+        
+        void OnInviteSend();
+        
+        void OnFindUsers(List<User> users);
+        
+        
+             
+
         // Another Listeners
         void OnSuccess ();
 
-        void OnRealTimeError (string error);
+        void OnRealTimeError(string error);
     }
 }

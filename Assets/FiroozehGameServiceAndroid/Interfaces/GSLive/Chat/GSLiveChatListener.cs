@@ -1,4 +1,4 @@
-// <copyright file="GSLive.cs" company="Firoozeh Technology LTD">
+// <copyright file="GSLiveChatListener.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,39 +14,18 @@
 //    limitations under the License.
 // </copyright>
 
-
 /**
 * @author Alireza Ghodrati
 */
 
 
-
-namespace FiroozehGameServiceAndroid.Core.GSLive
+namespace FiroozehGameServiceAndroid.Interfaces.GSLive.Chat
 {
-#if UNITY_ANDROID
-    
-    public class GSLive
+    public interface GSLiveChatListener
     {
-        
-        private const string Tag = "GSLive";
-        
-        public GSLiveRT RealTime { get; private set; }
-        public GSLiveTB TurnBased { get; private set; }
-        public GSLiveChat Chat { get; private set; }
-
-        
-        public GSLive()
-        {
-            RealTime = new GSLiveRT();
-            Chat = new GSLiveChat();
-            TurnBased = new GSLiveTB();
-        }
-
-        public bool IsRealTimeAvailable()
-        {
-            return RealTime.IsAvailable;
-        }
-      
+        void OnChatReceive(Models.GSLive.Chat.Chat chat);
+        void OnSubscribeChannel(string channelName);
+        void OnUnSubscribeChannel(string channelName);
+        void OnChatError(string error);
     }
-#endif
 }

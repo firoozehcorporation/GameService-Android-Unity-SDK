@@ -32,6 +32,10 @@ namespace FiroozehGameServiceAndroid.Enums.GSLive.RT
         MembersDetail,
         AvailableRoom,
         MemberForAutoMatch,
+        ActionGetInviteList,
+        ActionAcceptInvite,
+        ActionInviteUser,
+        ActionFindUser,
         Success
     }
 }

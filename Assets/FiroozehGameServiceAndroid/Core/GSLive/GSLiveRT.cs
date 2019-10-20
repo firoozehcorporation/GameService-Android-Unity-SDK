@@ -49,7 +49,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         private static void SetEventListener(IEventListener listener)
         {
            var rt = GSLiveProvider.GetGSLiveRT();
-            rt.Call("SetListener", listener);
+           rt.Call("SetListener", listener);
         }
 
         
@@ -88,7 +88,16 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                         case EventType.MembersDetail:
                             var details = JsonConvert.DeserializeObject<Message>(payload);
                             _realTimeListener.OnRoomPlayersDetail(JsonConvert.DeserializeObject<List<User>>(details.Data));
-                            break;
+                            break; 
+                        case EventType.ActionGetInviteList:
+                            _realTimeListener.OnInviteList(JsonConvert.DeserializeObject<List<Invite>>(payload));
+                            break; 
+                        case EventType.ActionInviteUser:
+                            _realTimeListener.OnInviteSend();
+                            break; 
+                        case EventType.ActionFindUser:
+                            _realTimeListener.OnFindUsers(JsonConvert.DeserializeObject<List<User>>(payload));
+                            break; 
                         case EventType.Success:
                             _realTimeListener.OnSuccess();
                             break;
@@ -189,6 +198,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             rt.Call("GetAvailableRooms",role);     
         }
         
+       
         
         public void SendPublicMessage(string data)
         {
@@ -214,7 +224,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             var rt = GSLiveProvider.GetGSLiveRT();      
             rt.Call("SendPrivateMessage",receiverId,data);     
         }    
-        
+       
         
         public void GetRoomPlayersDetail()
         {
@@ -226,7 +236,57 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
 
             var rt = GSLiveProvider.GetGSLiveRT();      
             rt.Call("GetPlayersDetail");     
-        }      
+        }
+        
+        public void GetInviteList()
+        {
+            if (_realTimeListener == null)
+            {
+                LogUtil.LogError(Tag, "Listener Must not be NULL");
+                return;
+            }
+
+            var rt = GSLiveProvider.GetGSLiveRT();      
+            rt.Call("GetInviteList");     
+        }
+        
+        public void InviteUser(string roomId,string userId)
+        {
+            if (_realTimeListener == null)
+            {
+                LogUtil.LogError(Tag, "Listener Must not be NULL");
+                return;
+            }
+
+            var rt = GSLiveProvider.GetGSLiveRT();      
+            rt.Call("InviteUser",roomId,userId);     
+        }
+        
+        public void AcceptInvite(string inviteId)
+        {
+            if (_realTimeListener == null)
+            {
+                LogUtil.LogError(Tag, "Listener Must not be NULL");
+                return;
+            }
+
+            var rt = GSLiveProvider.GetGSLiveRT();      
+            rt.Call("AcceptInvite",inviteId);     
+        }
+        
+        public void FindUser(string query,int limit)
+        {
+            if (_realTimeListener == null)
+            {
+                LogUtil.LogError(Tag, "Listener Must not be NULL");
+                return;
+            }
+
+            var rt = GSLiveProvider.GetGSLiveRT();      
+            rt.Call("FindUser",query,limit);     
+        }
+        
+
     }
  #endif
 }
