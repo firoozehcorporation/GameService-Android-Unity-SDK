@@ -1,4 +1,4 @@
-// <copyright file="GSLiveRealTimeListener.cs" company="Firoozeh Technology LTD">
+// <copyright file="GSLiveTurnBasedListener.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,39 +14,38 @@
 //    limitations under the License.
 // </copyright>
 
+
 using System.Collections.Generic;
-using FiroozehGameServiceAndroid.Enums.GSLive.RT;
 using FiroozehGameServiceAndroid.Models;
-using FiroozehGameServiceAndroid.Models.GSLive;
 using FiroozehGameServiceAndroid.Models.GSLive.RT;
+using FiroozehGameServiceAndroid.Models.GSLive.TB;
+using Leave = FiroozehGameServiceAndroid.Models.GSLive.TB.Leave;
+using Member = FiroozehGameServiceAndroid.Models.GSLive.TB.Member;
 
 /**
 * @author Alireza Ghodrati
 */
 
-
-
-namespace FiroozehGameServiceAndroid.Interfaces.GSLive.RT
+namespace FiroozehGameServiceAndroid.Interfaces.GSLive.TB
 {
-    public interface GSLiveRealTimeListener
+    public interface GSLiveTurnBasedListener
     {
-        // Major Listeners
-        void OnCreate (RoomData room);
-        void OnJoin (JoinData joinData , JoinType type);
-        void OnMessageReceive (Message message , MessageType type);
-        void OnLeave (Leave leave);
-        void OnAvailableRooms(List<Room> rooms);
-        void OnAvailablePlayerForAutoMatch(List<User> players);
-        void OnRoomPlayersDetail(List<User> players);
 
+        // Major Listeners
+        void OnTakeTurn(Turn turn);
+        void OnRoomMembersDetail(List<Member> members);
+        void OnLeave(Leave leave);
+        void OnFinish(Finish finish);
+        void OnComplete(Outcome outcome);
+        
         // Invite Listeners
         void OnInviteList (List<Invite> invites);
         void OnInviteSend();
         void OnFindUsers(List<User> users);
-               
-
+        
+        
         // Another Listeners
         void OnSuccess ();
-        void OnRealTimeError(string error);
+        void OnTurnBasedError(string error);
     }
 }

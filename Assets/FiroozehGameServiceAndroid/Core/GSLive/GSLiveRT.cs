@@ -15,6 +15,7 @@
 // </copyright>
 
 
+using System;
 using System.Collections.Generic;
 using FiroozehGameServiceAndroid.Enums.GSLive;
 using FiroozehGameServiceAndroid.Enums.GSLive.RT;
@@ -100,6 +101,8 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                             break; 
                         case EventType.Success:
                             _realTimeListener.OnSuccess();
+                            break;   
+                        default:
                             break;
                     }
 

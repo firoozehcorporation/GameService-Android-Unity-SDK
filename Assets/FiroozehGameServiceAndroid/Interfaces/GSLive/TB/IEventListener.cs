@@ -1,4 +1,4 @@
-// <copyright file="GSLive.cs" company="Firoozeh Technology LTD">
+// <copyright file="IEventListener.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,43 +15,39 @@
 // </copyright>
 
 
+using FiroozehGameServiceAndroid.Core;
+using UnityEngine;
+
 /**
 * @author Alireza Ghodrati
 */
 
-
-
-namespace FiroozehGameServiceAndroid.Core.GSLive
+namespace FiroozehGameServiceAndroid.Interfaces.GSLive.TB
 {
 #if UNITY_ANDROID
     
-    public class GSLive
+    public class IEventListener : AndroidJavaProxy
     {
+        private readonly DelegateCore.OnEvent _event;
+        private readonly DelegateCore.OnError _error;
         
-        private const string Tag = "GSLive";
-        
-        public GSLiveRT RealTime { get; private set; }
-        public GSLiveTB TurnBased { get; private set; }
-        public GSLiveChat Chat { get; private set; }
-
-        
-        public GSLive()
+        public IEventListener(DelegateCore.OnEvent Event,DelegateCore.OnError error) 
+            : base("ir.firoozehcorp.gameservice.android.unity.GSLive.TB.Interfaces.TBEventListener")
         {
-            RealTime = new GSLiveRT();
-            Chat = new GSLiveChat();
-            TurnBased = new GSLiveTB();
+            _event = Event;
+            _error = error;    
         }
 
-        public bool IsRealTimeAvailable()
+        void OnEvent(int type , string payload)
         {
-            return RealTime.IsAvailable;
+            _event.Invoke(type,payload);
         }
-        
-        public bool IsTurnBasedAvailable()
+
+        void OnError(string error)
         {
-            return TurnBased.IsAvailable;
+            _error.Invoke(error);
         }
-      
+     
     }
 #endif
 }
