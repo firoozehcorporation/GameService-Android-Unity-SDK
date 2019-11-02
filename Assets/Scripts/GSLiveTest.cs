@@ -119,10 +119,6 @@ public class GsLiveRealTimeTest : MonoBehaviour, GSLiveRealTimeListener
     
     
 
-    public void OnCreate(RoomData room)
-    {
-        Logs.text += "OnCreate : "+JsonConvert.SerializeObject(room) + "\n\n";
-    }
 
     public void OnJoin(JoinData joinData, JoinType type)
     {

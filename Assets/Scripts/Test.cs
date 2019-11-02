@@ -33,6 +33,10 @@ public class Test : MonoBehaviour
 
     private static void OnFirstInit()
     {
+        //FiroozehGameService.Instance.GSLive.RealTime.SetListener(this);
+        //FiroozehGameService.Instance.GSLive.TurnBased.SetListener(this);
+        //FiroozehGameService.Instance.GSLive.Chat.SetListener(this);
+
         // Get Last Save , Get LeaderBoard List & ...
     }
 

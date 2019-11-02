@@ -1,17 +1,8 @@
 - <p align="center">
-  <img width="300" height="300" src="http://uupload.ir/files/3oi_logo_small.png">
+  <img src="https://cdn.gamesservice.ir/public/github-unity-cover.jpg">
 
 
-  <h1>
-      <p align="center">
-      <b>گیم سرویس</b>
-      </p>
-  </h1>
-  <h3>
-      <p align="center">
-         <b> بهترین و آسانترین خدمات آنلاین بازی </b>
-      </p>
-  </h3>
+
   
 
   <h4>
@@ -24,6 +15,18 @@
 
 
 
+: با استفاده از قابلیت های گیم سرویس می توانید از موارد زیر در بازی خود استفاده کنید
+
+- ذخیره اطلاعات بازیکنان
+- لیست های مقایسه ای «لیدربورد»
+- دستاورد ها «اچیومنت»
+- میزبانی بسته های داده
+- ارسال نوتیفیکیشن
+- گروه ها و چالش ها
+- بازی های گروهی «مالتی پلیر»
+
+
+
 ### راه اندازی گیم سرویس :
 
- **.مراجعه کنید  [Wiki](https://github.com/firoozehcorporation/GameService-Android-Unity-SDK/wiki) برای استفاده از گیم سرویس به**
+ .مراجعه کنید  [Wiki](https://github.com/firoozehcorporation/GameService-Android-Unity-SDK/wiki) برای استفاده از گیم سرویس به
