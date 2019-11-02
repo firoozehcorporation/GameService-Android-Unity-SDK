@@ -33,7 +33,6 @@ namespace FiroozehGameServiceAndroid.Interfaces.GSLive.RT
     public interface GSLiveRealTimeListener : GSLiveCommandListeners
     {
         // Major Listeners
-        void OnCreate (RoomData room);
         void OnJoin (JoinData joinData , JoinType type);
         void OnMessageReceive (Message message , MessageType type);
         void OnLeave (Leave leave);
