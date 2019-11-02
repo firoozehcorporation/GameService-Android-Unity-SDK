@@ -24,7 +24,12 @@ namespace FiroozehGameServiceAndroid.Models.GSLive.TB
 {
     public class Turn
     {
+        
         [JsonProperty("0")]
-        public string WhoIsNext { get; set; }
+        public string Data { get; set; }
+        
+        [JsonProperty("1")]
+        public Member WhoChangeTurn { get; set; }
+        
     }
 }

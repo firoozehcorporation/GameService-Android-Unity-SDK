@@ -21,18 +21,18 @@
 */
 
 
-using System;
 using System.Collections.Generic;
 using FiroozehGameServiceAndroid.Enums.GSLive;
-using FiroozehGameServiceAndroid.Enums.GSLive.TB;
+using FiroozehGameServiceAndroid.Enums.GSLive.RT;
 using FiroozehGameServiceAndroid.Interfaces.GSLive.TB;
 using FiroozehGameServiceAndroid.Models;
+using FiroozehGameServiceAndroid.Models.GSLive;
 using FiroozehGameServiceAndroid.Models.GSLive.RT;
 using FiroozehGameServiceAndroid.Models.GSLive.TB;
 using FiroozehGameServiceAndroid.Utils;
 using Newtonsoft.Json;
-using Leave = FiroozehGameServiceAndroid.Models.GSLive.TB.Leave;
-using Member = FiroozehGameServiceAndroid.Models.GSLive.TB.Member;
+using EventType = FiroozehGameServiceAndroid.Enums.GSLive.TB.EventType;
+using Member = FiroozehGameServiceAndroid.Models.GSLive.Member;
 
 namespace FiroozehGameServiceAndroid.Core.GSLive
 {
@@ -40,7 +40,6 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
     public class GSLiveTB
     {
         private const string Tag = "GSLive-TurnBased";
-        private GSLiveType _type = GSLiveType.TurnBased;
         private GSLiveTurnBasedListener _turnBasedListener;
         public bool IsAvailable { get; private set; }
 
@@ -61,7 +60,11 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 {
                     switch ((EventType) type)
                     { 
-                        case EventType.Leave:
+                        case EventType.JoinRoom:
+                            var join = JsonConvert.DeserializeObject<JoinData>(payload);
+                            _turnBasedListener.OnJoin(join,(JoinType)join.JoinType);
+                            break;
+                        case EventType.LeaveRoom:
                             _turnBasedListener.OnLeave(JsonConvert.DeserializeObject<Leave>(payload));
                             break;    
                         case EventType.Success:
@@ -70,17 +73,20 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                         case EventType.TakeTurn:
                             _turnBasedListener.OnTakeTurn(JsonConvert.DeserializeObject<Turn>(payload));
                             break;
+                        case EventType.ChooseNext:
+                            _turnBasedListener.OnChooseNext(JsonConvert.DeserializeObject<Member>(payload));
+                            break;
                         case EventType.Finish:
                             _turnBasedListener.OnFinish(JsonConvert.DeserializeObject<Finish>(payload));
                             break;
                         case EventType.Complete:
-                            _turnBasedListener.OnComplete(JsonConvert.DeserializeObject<Outcome>(payload));
+                            _turnBasedListener.OnComplete(JsonConvert.DeserializeObject<Complete>(payload));
                             break;
                         case EventType.GetUsers:
                             _turnBasedListener.OnRoomMembersDetail(JsonConvert.DeserializeObject<List<Member>>(payload));
                             break;
                         case EventType.GetInviteList:
-                            _turnBasedListener.OnInviteList(JsonConvert.DeserializeObject<List<Invite>>(payload));
+                            _turnBasedListener.OnInviteInbox(JsonConvert.DeserializeObject<List<Invite>>(payload));
                             break;
                         case EventType.InviteUser:
                             _turnBasedListener.OnInviteSend();
@@ -88,9 +94,22 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                         case EventType.FindUser:
                             _turnBasedListener.OnFindUsers(JsonConvert.DeserializeObject<List<User>>(payload));
                             break;
-                        default:
+                        case EventType.ActionInviteReceive:
+                            _turnBasedListener.OnInviteReceive(JsonConvert.DeserializeObject<Invite>(payload));
                             break;
-                         
+                        case EventType.MatchWaiting:
+                            _turnBasedListener.OnAutoMatchUpdate(AutoMatchStatus.OnWaiting,JsonConvert.DeserializeObject<List<User>>(payload));
+                            break;
+                        case EventType.MemberForAutoMatch:
+                            _turnBasedListener.OnAutoMatchUpdate(AutoMatchStatus.OnUserJoined,JsonConvert.DeserializeObject<List<User>>(payload));
+                            break;
+                        case EventType.AvailableRoom:
+                            _turnBasedListener.OnAvailableRooms(JsonConvert.DeserializeObject<List<Room>>(payload));
+                            break;
+                        case EventType.AcceptInvite:
+                            break;
+                        case EventType.OnConnect:
+                            break;
                     }
 
                 }, _turnBasedListener.OnTurnBasedError);
@@ -104,7 +123,83 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             }
         }
         
+        
+        public void CreateRoom(GSLiveOption.CreateRoomOption option)
+        {
+            if (_turnBasedListener == null)
+            {
+                LogUtil.LogError(Tag, "Listener Must not be NULL");
+                return;
+            }
+                   
+            if (option.MinPlayer < 2 || option.MaxPlayer > 8)
+            {
+                LogUtil.LogError(Tag,"Min Player Must grater than 2 , Max Player Must less than 8");
+                return;
+            }
+                        
+            var tb = GSLiveProvider.GetGSLiveTB();    
+            tb.Call("CreateRoom",
+                option.RoomName,
+                option.MaxPlayer,
+                option.MinPlayer,
+                option.Role,
+                option.IsPrivate    
+            );                
+        }
+        
+        
+        public void AutoMatch(GSLiveOption.AutoMatchOption option)
+        {
+            if (_turnBasedListener == null)
+            {
+                LogUtil.LogError(Tag, "Listener Must not be NULL");
+                return;
+            }
+            
+
+            if (option.MinPlayer < 2 || option.MaxPlayer > 8)
+            {
+                LogUtil.LogError(Tag,"Min Player Must grater than 2 , Max Player Must less than 8");
+                return;
+            }
+            
+            var tb = GSLiveProvider.GetGSLiveTB();    
+            tb.Call("AutoMatch",
+                option.MaxPlayer,
+                option.MinPlayer,
+                option.Role   
+            );  
+        }
+        
+        
+        public void JoinRoom(string roomId)
+        {
+            if (_turnBasedListener == null)
+            {
+                LogUtil.LogError(Tag, "Listener Must not be NULL");
+                return;
+            }
+
+            var tb = GSLiveProvider.GetGSLiveTB();    
+            tb.Call("JoinRoom",roomId);     
+        }
+        
+        
+        public void GetAvailableRooms(string role)
+        {
+            if (_turnBasedListener == null)
+            {
+                LogUtil.LogError(Tag, "Listener Must not be NULL");
+                return;
+            }
+
+            var tb = GSLiveProvider.GetGSLiveTB();      
+            tb.Call("GetAvailableRooms",role);     
+        }
+
        
+    
         public void TakeTurn(string data , string whoIsNext)
         {
             if (_turnBasedListener == null)
@@ -160,7 +255,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         }
         
         
-        public void Complete(string userId)
+        public void Complete(string memberId)
         {
             if (_turnBasedListener == null)
             {
@@ -169,7 +264,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             }
    
             var tb = GSLiveProvider.GetGSLiveTB();     
-            tb.Call("Complete",userId);
+            tb.Call("Complete",memberId);
         }
         
         
@@ -186,7 +281,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         }
         
         
-        public void GetInviteList()
+        public void GetInviteInbox()
         {
             if (_turnBasedListener == null)
             {
@@ -195,7 +290,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             }
 
             var tb = GSLiveProvider.GetGSLiveTB();      
-            tb.Call("GetInviteList");     
+            tb.Call("GetInviteInbox");     
         }
         
         

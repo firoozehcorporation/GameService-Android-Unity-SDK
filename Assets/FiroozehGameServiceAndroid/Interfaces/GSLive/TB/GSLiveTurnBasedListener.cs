@@ -16,11 +16,14 @@
 
 
 using System.Collections.Generic;
+using FiroozehGameServiceAndroid.Enums.GSLive;
+using FiroozehGameServiceAndroid.Enums.GSLive.RT;
+using FiroozehGameServiceAndroid.Interfaces.GSLive.Command;
 using FiroozehGameServiceAndroid.Models;
+using FiroozehGameServiceAndroid.Models.GSLive;
 using FiroozehGameServiceAndroid.Models.GSLive.RT;
 using FiroozehGameServiceAndroid.Models.GSLive.TB;
-using Leave = FiroozehGameServiceAndroid.Models.GSLive.TB.Leave;
-using Member = FiroozehGameServiceAndroid.Models.GSLive.TB.Member;
+using Member = FiroozehGameServiceAndroid.Models.GSLive.Member;
 
 /**
 * @author Alireza Ghodrati
@@ -28,22 +31,17 @@ using Member = FiroozehGameServiceAndroid.Models.GSLive.TB.Member;
 
 namespace FiroozehGameServiceAndroid.Interfaces.GSLive.TB
 {
-    public interface GSLiveTurnBasedListener
+    public interface GSLiveTurnBasedListener : GSLiveCommandListeners
     {
-
         // Major Listeners
-        void OnTakeTurn(Turn turn);
-        void OnRoomMembersDetail(List<Member> members);
+        void OnJoin (JoinData joinData , JoinType type);
         void OnLeave(Leave leave);
+        void OnTakeTurn(Turn turn);
+        void OnChooseNext(Member whoIsNext);
+        void OnRoomMembersDetail(List<Member> members);
         void OnFinish(Finish finish);
-        void OnComplete(Outcome outcome);
-        
-        // Invite Listeners
-        void OnInviteList (List<Invite> invites);
-        void OnInviteSend();
-        void OnFindUsers(List<User> users);
-        
-        
+        void OnComplete(Complete complete);
+
         // Another Listeners
         void OnSuccess ();
         void OnTurnBasedError(string error);

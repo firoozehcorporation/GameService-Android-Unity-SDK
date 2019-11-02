@@ -145,17 +145,38 @@ public class GsLiveRealTimeTest : MonoBehaviour, GSLiveRealTimeListener
 
     }
 
+    public void OnRoomMembersDetail(List<Member> members)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void OnAvailableRooms(List<Room> rooms)
     {
         Logs.text += "OnAvailableRooms : "+JsonConvert.SerializeObject(rooms) + "\n\n";
 
     }
 
-   
+    public void OnAutoMatchUpdate(AutoMatchStatus status, List<User> players)
+    {
+        
+    }
+
+    public void OnInviteInbox(List<Invite> invites)
+    {
+    }
+
+    public void OnInviteSend()
+    {
+        
+    }
+
+    public void OnFindUsers(List<User> users)
+    {
+    }
+
 
     public void OnAvailablePlayerForAutoMatch(List<User> members)
     {
-        Logs.text += "OnAvailablePlayerForAutoMatch : "+JsonConvert.SerializeObject(members) + "\n\n";
 
     }
 
@@ -165,16 +186,8 @@ public class GsLiveRealTimeTest : MonoBehaviour, GSLiveRealTimeListener
 
     }
 
-    public void OnInviteList(List<Invite> invites)
-    {
-        
-    }
 
-    public void OnInviteSend()
-    {
-    }
-
-    public void OnFindUsers(List<User> users)
+    public void OnInviteReceive(Invite invite)
     {
     }
 

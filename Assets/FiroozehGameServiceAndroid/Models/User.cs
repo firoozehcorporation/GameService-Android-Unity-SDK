@@ -41,7 +41,7 @@ namespace FiroozehGameServiceAndroid.Models
 
         [JsonProperty("isMe")]
         public bool IsMe;
-
+   
     }
 }
 

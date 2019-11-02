@@ -1,4 +1,4 @@
-// <copyright file="Invite.cs" company="Firoozeh Technology LTD">
+// <copyright file="AutoMatchStatus.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,30 +14,15 @@
 //    limitations under the License.
 // </copyright>
 
-using Newtonsoft.Json;
 
 /**
 * @author Alireza Ghodrati
 */
 
-
-namespace FiroozehGameServiceAndroid.Models.GSLive.RT
+namespace FiroozehGameServiceAndroid.Enums.GSLive
 {
-    public class Invite
+    public enum AutoMatchStatus
     {
-        [JsonProperty("inviter")]
-        public User Inviter { get; set; }
-        
-        [JsonProperty("invited")]
-        public string Invited { get; set; }
-
-        [JsonProperty("room")]
-        public Room Room;
-            
-        [JsonProperty("game")]
-        public Game Game;
-        
- 
-        
+        OnWaiting , OnUserJoined
     }
 }

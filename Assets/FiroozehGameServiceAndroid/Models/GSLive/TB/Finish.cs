@@ -14,6 +14,7 @@
 //    limitations under the License.
 // </copyright>
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 /**
@@ -26,6 +27,10 @@ namespace FiroozehGameServiceAndroid.Models.GSLive.TB
     public class Finish
     {
         [JsonProperty("0")]
-        public string MemberLeaveId { set; get; }
+        public Member MemberFinish { set; get; }
+        
+        [JsonProperty("1")]
+        public Dictionary<string,Outcome> Outcomes { set; get; }
+        
     }
 }

@@ -24,18 +24,19 @@ namespace FiroozehGameServiceAndroid.Enums.GSLive.RT
 {
     public enum EventType
     {
-        CreateRoom,
         JoinRoom,
         LeaveRoom,
         PublicMessageReceive,
         PrivateMessageReceive,
         MembersDetail,
         AvailableRoom,
+        AutoMatchWaiting,
         MemberForAutoMatch,
         ActionGetInviteList,
         ActionAcceptInvite,
         ActionInviteUser,
         ActionFindUser,
+        ActionInviteReceive,
         Success
     }
 }

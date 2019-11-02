@@ -15,11 +15,9 @@
 // </copyright>
 
 
-using System;
 using System.Collections.Generic;
 using FiroozehGameServiceAndroid.Enums.GSLive;
 using FiroozehGameServiceAndroid.Enums.GSLive.RT;
-using FiroozehGameServiceAndroid.Interfaces.GSLive;
 using FiroozehGameServiceAndroid.Interfaces.GSLive.RT;
 using FiroozehGameServiceAndroid.Models;
 using FiroozehGameServiceAndroid.Models.GSLive;
@@ -38,7 +36,6 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
     public class GSLiveRT
     {
         private const string Tag = "GSLive-RealTime";
-        private GSLiveType _type = GSLiveType.RealTime;
         private GSLiveRealTimeListener _realTimeListener;
         public bool IsAvailable { get; private set; }
 
@@ -63,16 +60,13 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 {
                     switch ((EventType) type)
                     {
-                        case EventType.CreateRoom:
-                            _realTimeListener.OnCreate(JsonConvert.DeserializeObject<RoomData>(payload));
-                            break;
                         case EventType.JoinRoom:
                             var join = JsonConvert.DeserializeObject<JoinData>(payload);
                             _realTimeListener.OnJoin(join,(JoinType)join.JoinType);
                             break;
                         case EventType.LeaveRoom:
                             var leave = JsonConvert.DeserializeObject<Message>(payload);
-                            _realTimeListener.OnLeave(new Leave {RoomId = leave.RoomId, MemberLeaveId = leave.SenderId});
+                            _realTimeListener.OnLeave(new Leave {RoomId = leave.RoomId, MemberLeave = JsonConvert.DeserializeObject<Member>(leave.Data)});
                             break;
                         case EventType.PublicMessageReceive:
                             _realTimeListener.OnMessageReceive(JsonConvert.DeserializeObject<Message>(payload),MessageType.Public);
@@ -84,20 +78,26 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                             _realTimeListener.OnAvailableRooms(JsonConvert.DeserializeObject<List<Room>>(payload));
                             break;
                         case EventType.MemberForAutoMatch:
-                            _realTimeListener.OnAvailablePlayerForAutoMatch(JsonConvert.DeserializeObject<List<User>>(payload));
+                            _realTimeListener.OnAutoMatchUpdate(AutoMatchStatus.OnUserJoined,JsonConvert.DeserializeObject<List<User>>(payload));
+                            break;
+                        case EventType.AutoMatchWaiting:
+                            _realTimeListener.OnAutoMatchUpdate(AutoMatchStatus.OnWaiting,JsonConvert.DeserializeObject<List<User>>(payload));
                             break;
                         case EventType.MembersDetail:
                             var details = JsonConvert.DeserializeObject<Message>(payload);
-                            _realTimeListener.OnRoomPlayersDetail(JsonConvert.DeserializeObject<List<User>>(details.Data));
+                            _realTimeListener.OnRoomMembersDetail(JsonConvert.DeserializeObject<List<Member>>(details.Data));
                             break; 
                         case EventType.ActionGetInviteList:
-                            _realTimeListener.OnInviteList(JsonConvert.DeserializeObject<List<Invite>>(payload));
+                            _realTimeListener.OnInviteInbox(JsonConvert.DeserializeObject<List<Invite>>(payload));
                             break; 
                         case EventType.ActionInviteUser:
                             _realTimeListener.OnInviteSend();
                             break; 
                         case EventType.ActionFindUser:
                             _realTimeListener.OnFindUsers(JsonConvert.DeserializeObject<List<User>>(payload));
+                            break; 
+                        case EventType.ActionInviteReceive:
+                            _realTimeListener.OnInviteReceive(JsonConvert.DeserializeObject<Invite>(payload));
                             break; 
                         case EventType.Success:
                             _realTimeListener.OnSuccess();
@@ -241,7 +241,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             rt.Call("GetPlayersDetail");     
         }
         
-        public void GetInviteList()
+        public void GetInviteInbox()
         {
             if (_realTimeListener == null)
             {
@@ -250,7 +250,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             }
 
             var rt = GSLiveProvider.GetGSLiveRT();      
-            rt.Call("GetInviteList");     
+            rt.Call("GetInviteInbox");     
         }
         
         public void InviteUser(string roomId,string userId)

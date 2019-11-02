@@ -1,4 +1,4 @@
-// <copyright file="JoinData.cs" company="Firoozeh Technology LTD">
+// <copyright file="Complete.cs" company="Firoozeh Technology LTD">
 // Copyright (C) 2019 Firoozeh Technology LTD. All Rights Reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,19 +14,21 @@
 //    limitations under the License.
 // </copyright>
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace FiroozehGameServiceAndroid.Models.GSLive.RT
+/**
+* @author Alireza Ghodrati
+*/
+
+namespace FiroozehGameServiceAndroid.Models.GSLive.TB
 {
-    public class JoinData
+    public class Complete
     {
-        [JsonProperty("1")]
-        public int JoinType { get; set; }
-        
-        [JsonProperty("2")]
-        public RoomData RoomData { get; set; }
-        
-        [JsonProperty("3")]
-        public User JoinedUser { get; set; }
+        [JsonProperty("Accept")]
+        public int AcceptCounts { set; get; }
+
+        [JsonProperty("Outcomes")]
+        public Dictionary<string,Outcome> Result { set; get; }
     }
 }

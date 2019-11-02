@@ -25,16 +25,22 @@ namespace FiroozehGameServiceAndroid.Enums.GSLive.TB
 {
     public enum EventType
     {
+        JoinRoom,
+        LeaveRoom,
         TakeTurn,
-        Leave,
         Finish,
         Complete,
         GetUsers,
+        ChooseNext,
+        MatchWaiting,
+        MemberForAutoMatch,
+        AvailableRoom,
         GetInviteList,
         AcceptInvite,
         InviteUser,
         FindUser,
+        ActionInviteReceive,
         Success,
-        OnConnect
+        OnConnect   
     }
 }

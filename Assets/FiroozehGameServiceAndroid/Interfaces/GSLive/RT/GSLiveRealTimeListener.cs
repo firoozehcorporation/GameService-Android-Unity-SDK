@@ -15,7 +15,9 @@
 // </copyright>
 
 using System.Collections.Generic;
+using FiroozehGameServiceAndroid.Enums.GSLive;
 using FiroozehGameServiceAndroid.Enums.GSLive.RT;
+using FiroozehGameServiceAndroid.Interfaces.GSLive.Command;
 using FiroozehGameServiceAndroid.Models;
 using FiroozehGameServiceAndroid.Models.GSLive;
 using FiroozehGameServiceAndroid.Models.GSLive.RT;
@@ -28,24 +30,16 @@ using FiroozehGameServiceAndroid.Models.GSLive.RT;
 
 namespace FiroozehGameServiceAndroid.Interfaces.GSLive.RT
 {
-    public interface GSLiveRealTimeListener
+    public interface GSLiveRealTimeListener : GSLiveCommandListeners
     {
         // Major Listeners
         void OnCreate (RoomData room);
         void OnJoin (JoinData joinData , JoinType type);
         void OnMessageReceive (Message message , MessageType type);
         void OnLeave (Leave leave);
-        void OnAvailableRooms(List<Room> rooms);
-        void OnAvailablePlayerForAutoMatch(List<User> players);
-        void OnRoomPlayersDetail(List<User> players);
+        void OnRoomMembersDetail(List<Member> members);
 
-        // Invite Listeners
-        void OnInviteList (List<Invite> invites);
-        void OnInviteSend();
-        void OnFindUsers(List<User> users);
-               
-
-        // Another Listeners
+       // Another Listeners
         void OnSuccess ();
         void OnRealTimeError(string error);
     }

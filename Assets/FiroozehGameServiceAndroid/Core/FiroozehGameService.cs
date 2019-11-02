@@ -64,15 +64,19 @@ namespace FiroozehGameServiceAndroid.Core
             }
 
             if (Configuration.DownloadTag != null)
-                GameServiceDownloadInitializer.DownloadData(Configuration,DownloadListener);
+                GameServiceDownloadInitializer.DownloadData(Configuration,DownloadListener,DownloadErrorListener);
             else      
                GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);               
         }
 
         private static void DownloadListener(string callback)
         {
-            if(callback.Equals(CallbackList.DataDownloadDismissed))  _actions.Second.Invoke(callback);
-            GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);               
+          GameServiceAppInitializer.Init(Configuration, OnSuccessInit, OnErrorInit);
+        }
+        
+        private static void DownloadErrorListener(string error)
+        {
+          _actions.Second.Invoke(error);
         }
   
         private static void OnSuccessInit(GameService gameService)
