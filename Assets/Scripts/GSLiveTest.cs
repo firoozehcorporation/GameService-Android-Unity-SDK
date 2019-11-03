@@ -99,7 +99,7 @@ public class GsLiveRealTimeTest : MonoBehaviour, GSLiveRealTimeListener
         
         PlayersInRoom.onClick.AddListener(() =>
         {
-            FiroozehGameService.Instance.GSLive.RealTime.GetRoomPlayersDetail();
+            FiroozehGameService.Instance.GSLive.RealTime.GetRoomMembersDetail();
         });
         
         
