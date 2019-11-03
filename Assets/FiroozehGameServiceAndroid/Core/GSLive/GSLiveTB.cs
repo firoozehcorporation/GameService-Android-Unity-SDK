@@ -352,7 +352,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         /// <summary>
         /// Get Room Members Details 
         /// </summary>
-        public void GetRoomPlayersDetail()
+        public void GetRoomMembersDetail()
         {
             if (_turnBasedListener == null)
             {
