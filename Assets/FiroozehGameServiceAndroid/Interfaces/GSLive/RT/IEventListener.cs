@@ -25,7 +25,9 @@ using UnityEngine;
 namespace FiroozehGameServiceAndroid.Interfaces.GSLive.RT
 {
 #if UNITY_ANDROID
-    
+    /// <summary>
+    /// Represents GameService RealTime Internal interface
+    /// </summary>
     public class IEventListener : AndroidJavaProxy
     {
         private readonly DelegateCore.OnEvent _event;

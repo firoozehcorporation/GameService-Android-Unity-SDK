@@ -21,11 +21,37 @@
 
 namespace FiroozehGameServiceAndroid.Interfaces.GSLive.Chat
 {
+    /// <summary>
+    /// Represents GSLive Chat Event Listener
+    /// </summary>
     public interface GSLiveChatListener
     {
+        
+        /// <summary>
+        /// If one of the players is chatting with you, the result is returned 
+        /// </summary>
+        /// <param name="chat">Chat information</param>
         void OnChatReceive(Models.GSLive.Chat.Chat chat);
+        
+        
+        /// <summary>
+        /// If a channel is created or subscribed by you, the result will return to this function
+        /// </summary>
+        /// <param name="channelName">Channel name</param>
         void OnSubscribeChannel(string channelName);
+        
+        
+        /// <summary>
+        /// If you leave a particular channel, the name returns the result in this function
+        /// </summary>
+        /// <param name="channelName">Channel name</param>
         void OnUnSubscribeChannel(string channelName);
+        
+        
+        /// <summary>
+        /// If an error occurs, the result is returned in this function
+        /// </summary>
+        /// <param name="error">Error received</param>
         void OnChatError(string error);
     }
 }

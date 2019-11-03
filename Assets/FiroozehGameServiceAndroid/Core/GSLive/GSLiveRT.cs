@@ -33,6 +33,9 @@ using Newtonsoft.Json;
 namespace FiroozehGameServiceAndroid.Core.GSLive
 {
 #if UNITY_ANDROID
+    /// <summary>
+    /// Represents Game Service Realtime MultiPlayer System
+    /// </summary>
     public class GSLiveRT
     {
         private const string Tag = "GSLive-RealTime";
@@ -50,7 +53,10 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
            rt.Call("SetListener", listener);
         }
 
-        
+        /// <summary>
+        /// Set Listener For Receive GSLive RealTime System Events.
+        /// </summary>
+        /// <param name="realTimeListener">(NOTNULL)Listener For Receive GSLive RealTime System Events</param>
         public void SetListener(GSLiveRealTimeListener realTimeListener)
         {            
             if (realTimeListener != null)
@@ -117,11 +123,22 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             }
         }
 
+        
+        /// <summary>
+        /// Create Room With Option Like : Name , Min , Max , Role , IsPrivate
+        /// </summary>
+        /// <param name="option">(NOTNULL)Create Room Option</param>
         public void CreateRoom(GSLiveOption.CreateRoomOption option)
         {
             if (_realTimeListener == null)
             {
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
+                return;
+            }
+            
+            if (option == null)
+            {
+                LogUtil.LogError(Tag, "Option Must not be NULL");
                 return;
             }
                    
@@ -141,6 +158,11 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 );                
         }
         
+        
+        /// <summary>
+        /// Create AutoMatch With Option Like :  Min , Max , Role 
+        /// </summary>
+        /// <param name="option">(NOTNULL)AutoMatch Option</param>
         public void AutoMatch(GSLiveOption.AutoMatchOption option)
         {
             if (_realTimeListener == null)
@@ -149,6 +171,11 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 return;
             }
             
+            if (option == null)
+            {
+                LogUtil.LogError(Tag, "Option Must not be NULL");
+                return;
+            }
 
             if (option.MinPlayer < 2 || option.MaxPlayer > 8)
             {
@@ -164,6 +191,11 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             );  
         }
         
+        
+        /// <summary>
+        /// Join In Room With RoomID
+        /// </summary>
+        /// <param name="roomId">(NOTNULL)Room's id You Want To Join</param>
         public void JoinRoom(string roomId)
         {
             if (_realTimeListener == null)
@@ -171,11 +203,20 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
                 return;
             }
+            
+            if (roomId == null)
+            {
+                LogUtil.LogError(Tag, "RoomId Must not be NULL");
+                return;
+            }
 
             var rt = GSLiveProvider.GetGSLiveRT();    
             rt.Call("JoinRoom",roomId);     
         }
         
+        /// <summary>
+        /// Leave The Current Room
+        /// </summary>
         public void LeaveRoom()
         {
             if (_realTimeListener == null)
@@ -189,11 +230,22 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             rt.Call("LeaveRoom");  
         }
 
+        
+        /// <summary>
+        /// Get Available Rooms According To Room's Role  
+        /// </summary>
+        /// <param name="role">(NOTNULL)Room's Role </param>
         public void GetAvailableRooms(string role)
         {
             if (_realTimeListener == null)
             {
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
+                return;
+            }
+            
+            if (role == null)
+            {
+                LogUtil.LogError(Tag, "Role Must not be NULL");
                 return;
             }
 
@@ -202,7 +254,10 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         }
         
        
-        
+        /// <summary>
+        /// Send A Data To All Players in Room. 
+        /// </summary>
+        /// <param name="data">(NOTNULL) Data To BroadCast </param>
         public void SendPublicMessage(string data)
         {
             if (_realTimeListener == null)
@@ -211,15 +266,34 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 return;
             }
 
+            if (data == null)
+            {
+                LogUtil.LogError(Tag, "Data Must not be NULL");
+                return;
+            }
+
+            
             var rt = GSLiveProvider.GetGSLiveRT();      
             rt.Call("SendPublicMessage",data);     
         }    
         
+        
+        /// <summary>
+        /// Send A Data To Specific Player in Room. 
+        /// </summary>
+        /// <param name="receiverId">(NOTNULL) (Type : MemberID)Player's ID</param>
+        /// <param name="data">(NOTNULL) Data for Send</param>
         public void SendPrivateMessage(string receiverId,string data)
         {
             if (_realTimeListener == null)
             {
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
+                return;
+            }
+
+            if (receiverId == null || data == null)
+            {
+                LogUtil.LogError(Tag, "Inputs Must not be NULL");
                 return;
             }
 
@@ -229,7 +303,10 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         }    
        
         
-        public void GetRoomPlayersDetail()
+        /// <summary>
+        /// Get Room Members Details 
+        /// </summary>
+        public void GetRoomMembersDetail()
         {
             if (_realTimeListener == null)
             {
@@ -241,6 +318,10 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             rt.Call("GetPlayersDetail");     
         }
         
+        
+        /// <summary>
+        /// Get Your Invite Inbox
+        /// </summary>
         public void GetInviteInbox()
         {
             if (_realTimeListener == null)
@@ -253,6 +334,12 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             rt.Call("GetInviteInbox");     
         }
         
+        
+        /// <summary>
+        /// Invite a Specific Player To Specific Room
+        /// </summary>
+        /// <param name="roomId">(NOTNULL) (Type : RoomID)Room's ID</param>
+        /// <param name="userId">(NOTNULL) (Type : UserID)User's ID</param>
         public void InviteUser(string roomId,string userId)
         {
             if (_realTimeListener == null)
@@ -261,10 +348,22 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 return;
             }
 
+            if (roomId == null || userId == null)
+            {
+                LogUtil.LogError(Tag, "Inputs Must not be NULL");
+                return;
+            }
+            
             var rt = GSLiveProvider.GetGSLiveRT();      
             rt.Call("InviteUser",roomId,userId);     
         }
         
+        
+        /// <summary>
+        /// Accept a Specific Invite With Invite ID
+        /// Note: After accepting the invitation, you will be automatically entered into the game room
+        /// </summary>
+        /// <param name="inviteId">(NOTNULL) (Type : InviteID) Invite's ID</param>
         public void AcceptInvite(string inviteId)
         {
             if (_realTimeListener == null)
@@ -272,11 +371,22 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
                 return;
             }
+            
+            if (inviteId == null)
+            {
+                LogUtil.LogError(Tag, "InviteID Must not be NULL");
+                return;
+            }
 
             var rt = GSLiveProvider.GetGSLiveRT();      
             rt.Call("AcceptInvite",inviteId);     
         }
         
+        /// <summary>
+        /// Find All Users With Specific NickName
+        /// </summary>
+        /// <param name="query">(NOTNULL) Player's NickName</param>
+        /// <param name="limit">(Max = 15) The Result Limits</param>
         public void FindUser(string query,int limit)
         {
             if (_realTimeListener == null)
@@ -284,12 +394,23 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
                 return;
             }
+            
+            if(query == null)
+            {
+                LogUtil.LogError(Tag, "Query Must not be NULL");
+                return;
+            }
+            
+            if(limit < 0)
+            {
+                LogUtil.LogError(Tag, "Limit Must be Positive");
+                return;
+            }
 
             var rt = GSLiveProvider.GetGSLiveRT();      
             rt.Call("FindUser",query,limit);     
         }
         
-
     }
  #endif
 }

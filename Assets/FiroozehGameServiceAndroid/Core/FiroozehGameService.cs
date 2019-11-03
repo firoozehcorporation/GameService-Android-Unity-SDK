@@ -32,6 +32,9 @@ namespace FiroozehGameServiceAndroid.Core
 {
     
     #if UNITY_ANDROID
+    /// <summary>
+    /// Represents Game Service Main Initializer
+    /// </summary>
     public sealed class FiroozehGameService
     {
         private static Pair<Action,Action<string>> _actions;
@@ -41,11 +44,21 @@ namespace FiroozehGameServiceAndroid.Core
         public static GameServiceClientConfiguration Configuration { get; private set; }
 
         
+        /// <summary>
+        /// Set configuration For Initialize Game Service.
+        /// </summary>
+        /// <param name="configuration">(Not NULL)configuration For Initialize Game Service</param>
         public static void ConfigurationInstance(GameServiceClientConfiguration configuration)
         {  
             Configuration = configuration;     
         }
 
+        
+        /// <summary>
+        /// Run Game Service.
+        /// </summary>
+        /// <param name="connected">(Not NULL)this Listener Called When Game Service Connected Successfully</param>
+        /// <param name="onError">(Not NULL)this Listener Called When Game Service Initialize With Problem</param>
         public static void Run(Action connected,Action<string> onError)
         {
             if (Configuration == null)
@@ -69,6 +82,8 @@ namespace FiroozehGameServiceAndroid.Core
                GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);               
         }
 
+        
+        
         private static void DownloadListener(string callback)
         {
           GameServiceAppInitializer.Init(Configuration, OnSuccessInit, OnErrorInit);
@@ -111,6 +126,11 @@ namespace FiroozehGameServiceAndroid.Core
             _actions.Second.Invoke(error);
         }
 
+        
+        /// <summary>
+        /// Login To Game Service With LoginType
+        /// </summary>
+        /// <param name="loginType">(Not NULL)Specifies the type of login.<see cref="Enums.LoginType"/></param>
         public static void Login(LoginType loginType)
         {
             if (Instance == null)
@@ -129,6 +149,12 @@ namespace FiroozehGameServiceAndroid.Core
             GameServiceAppInitializer.Init(Configuration,OnSuccessInit,OnErrorInit);
         }
        
+        
+        /// <summary>
+        /// Logout To Game Service
+        /// </summary>
+        /// <param name="logout">(Not NULL)Returns the correct value if successful.</param>
+        /// <param name="error">(Not NULL)In case of error, error will be returned</param>
         public static void Logout(DelegateCore.IsUserLogout logout,DelegateCore.OnError error)
         {
             Instance.LogOut(logout.Invoke,error.Invoke);  

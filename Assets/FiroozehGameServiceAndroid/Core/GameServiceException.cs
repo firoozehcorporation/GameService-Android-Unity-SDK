@@ -23,6 +23,9 @@ using System;
 
 namespace FiroozehGameServiceAndroid.Core
 {
+    /// <summary>
+    /// Represents Game Service Exception
+    /// </summary>
     public class GameServiceException : Exception {
 
 

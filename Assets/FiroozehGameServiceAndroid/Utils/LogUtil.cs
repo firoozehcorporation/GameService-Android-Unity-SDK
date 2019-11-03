@@ -24,6 +24,9 @@ using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Utils
 {
+    /// <summary>
+    /// Represents LogUtil In GameService System
+    /// </summary>
     public static class LogUtil
     {
 

@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Interfaces.GSLive.Chat
 {
+    /// <summary>
+    /// Represents GameService Chat Internal interface
+    /// </summary>
     public class IChatListener : AndroidJavaProxy
     {
         private readonly DelegateCore.OnEvent _event;

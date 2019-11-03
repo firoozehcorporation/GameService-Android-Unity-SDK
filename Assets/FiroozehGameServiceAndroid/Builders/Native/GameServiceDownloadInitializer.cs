@@ -29,6 +29,10 @@ using UnityEngine;
 
 namespace FiroozehGameServiceAndroid.Builders.Native
 {
+    /// <summary>
+    /// Represents Game Data Download System
+    /// </summary>
+   
     public static class GameServiceDownloadInitializer
     {
         private const string Tag = "GameServiceDownloadInitializer";
@@ -45,6 +49,7 @@ namespace FiroozehGameServiceAndroid.Builders.Native
                 ,new IGameServiceCallback(callback.Invoke,error.Invoke));
         }
 
+        
         public static bool CancelDownload()
         {
             return _objDownload != null  && _objDownload.Call<bool>("CancelDownload");

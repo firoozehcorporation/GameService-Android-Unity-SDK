@@ -22,6 +22,9 @@
 
 namespace FiroozehGameServiceAndroid.Enums.GSLive.RT
 {
+    /// <summary>
+    /// Represents EventType Of RealTime System
+    /// </summary>
     public enum EventType
     {
         JoinRoom,

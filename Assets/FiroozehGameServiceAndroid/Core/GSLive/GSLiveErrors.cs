@@ -23,6 +23,9 @@ using System;
 
 namespace FiroozehGameServiceAndroid.Core.GSLive
 {
+    /// <summary>
+    /// Represents GSLive Errors
+    /// </summary>
     public class GSLiveErrors
     {
         public const String NotAvailableYet = "GSLiveService Not Available yet";

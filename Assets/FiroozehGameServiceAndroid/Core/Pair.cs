@@ -22,6 +22,9 @@
 
 namespace FiroozehGameServiceAndroid.Core
 {
+    /// <summary>
+    /// Represents Pair Of Types
+    /// </summary>
     public class Pair<T,TU> 
     {
         

@@ -21,8 +21,14 @@
 
 namespace FiroozehGameServiceAndroid.Core.GSLive
 {
+    /// <summary>
+    /// Represents GSLive GSLiveOption
+    /// </summary>
     public class GSLiveOption
     {
+        /// <summary>
+        /// Represents GSLive CreateRoomOption
+        /// </summary>
         public class CreateRoomOption
         {
             public string RoomName { set; get; }   
@@ -32,6 +38,9 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             public bool IsPrivate { set; get; }
         }
         
+        /// <summary>
+        /// Represents GSLive AutoMatchOption
+        /// </summary>
         public class AutoMatchOption
         {
             public int MinPlayer { set; get; }

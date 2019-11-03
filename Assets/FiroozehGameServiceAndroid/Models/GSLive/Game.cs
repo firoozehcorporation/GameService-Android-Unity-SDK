@@ -15,6 +15,7 @@
 // </copyright>
 
 
+using System;
 using Newtonsoft.Json;
 
 /**
@@ -23,14 +24,32 @@ using Newtonsoft.Json;
 
 namespace FiroozehGameServiceAndroid.Models.GSLive
 {
+    /// <summary>
+    /// Represents Game Data Model In GameService MultiPlayer System (GSLive)
+    /// </summary>
+    [Serializable]
     public class Game
     {
+        /// <summary>
+        /// Gets the Game id.
+        /// </summary>
+        /// <value>the Game id</value>
         [JsonProperty("_id")] 
         public string Id { get; set; }
 
+        
+        /// <summary>
+        /// Gets the Game Logo URL.
+        /// </summary>
+        /// <value>the Game Logo</value>
         [JsonProperty("logo")]
         public string Logo{ get; set; }
         
+        
+        /// <summary>
+        /// Gets the Game Name.
+        /// </summary>
+        /// <value>the Game Name</value>
         [JsonProperty("name")]
         public string Name{ get; set; }
     }

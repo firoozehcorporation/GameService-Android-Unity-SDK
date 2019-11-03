@@ -22,10 +22,14 @@
 using FiroozehGameServiceAndroid.Interfaces.GSLive.Chat;
 using FiroozehGameServiceAndroid.Models.GSLive.Chat;
 using FiroozehGameServiceAndroid.Utils;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 namespace FiroozehGameServiceAndroid.Core.GSLive
 {
+    /// <summary>
+    /// Represents Game Service Chat System
+    /// </summary>
     public class GSLiveChat
     {
         private const string Tag = "GSLiveChat";
@@ -36,6 +40,10 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         private const int ActionChat = 13;
         private const int ActionUnSubscribe = 14;
 
+        /// <summary>
+        /// Set Listener For Receive Chat System Events.
+        /// </summary>
+        /// <param name="listener">(Not NULL)Listener For Receive Chat System Events</param>
         public void SetListener(GSLiveChatListener listener)
         {
             if (listener == null)
@@ -73,6 +81,10 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
         }
         
         
+        /// <summary>
+        /// Subscribe In Channel With channelName.
+        /// </summary>
+        /// <param name="channelName">(NOTNULL)Name of Channel You want To Subscribe</param>
         public void SubscribeChannel(string channelName)
         {
             if (_chatListener == null)
@@ -80,11 +92,21 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
                 return;
             }
+            
+            if (channelName == null)
+            {
+                LogUtil.LogError(Tag, "channelName Must not be NULL");
+                return;
+            }
 
             var chat = GSLiveProvider.GetGSLiveChat();    
             chat.Call("SubscribeChannel",channelName);     
         }
         
+        /// <summary>
+        /// UnSubscribeChannel With channelName.
+        /// </summary>
+        /// <param name="channelName">(NOTNULL)Name of Channel You want To UnSubscribe</param>
         public void UnSubscribeChannel(string channelName)
         {
             if (_chatListener == null)
@@ -92,17 +114,34 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
                 return;
             }
+            
+            if (channelName == null)
+            {
+                LogUtil.LogError(Tag, "channelName Must not be NULL");
+                return;
+            }
 
             var chat = GSLiveProvider.GetGSLiveChat();    
             chat.Call("UnSubscribeChannel",channelName);     
         }
         
-        
+        /// <summary>
+        /// Send Message In SubscribedChannel.
+        /// </summary>
+        /// <param name="channelName">(NOTNULL)Name of Channel You want To Send Message</param>
+        /// <param name="message">(NOTNULL)Message Data</param>
+
         public void SendChannelMessage(string channelName,string message)
         {
             if (_chatListener == null)
             {
                 LogUtil.LogError(Tag, "Listener Must not be NULL");
+                return;
+            }
+            
+            if (channelName == null || message == null)
+            {
+                LogUtil.LogError(Tag, "Inputs Must not be NULL");
                 return;
             }
 

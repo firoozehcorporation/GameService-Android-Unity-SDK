@@ -25,6 +25,10 @@ using UnityEngine;
 namespace FiroozehGameServiceAndroid.Core.Native
 {
 #if UNITY_ANDROID
+    /// <summary>
+    /// Represents Game Service Plugin Provider In Native Mode
+    /// ATTENTION : DO NOT CHANGE THIS CODE ANY WAY
+    /// </summary>
     public static class NativePluginProvider
     {
         public static AndroidJavaObject GetGameService()

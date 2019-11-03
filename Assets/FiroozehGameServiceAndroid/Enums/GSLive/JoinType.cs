@@ -22,6 +22,9 @@
 
 namespace FiroozehGameServiceAndroid.Enums.GSLive
 {
+    /// <summary>
+    /// Represents JoinType Of GSLive System
+    /// </summary>
     public enum JoinType
     {
         Normal , AutoMatch

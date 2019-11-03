@@ -23,6 +23,9 @@
 
 namespace FiroozehGameServiceAndroid.Enums.GSLive.TB
 {
+    /// <summary>
+    /// Represents EventType Of TurnBased System
+    /// </summary>
     public enum EventType
     {
         JoinRoom,

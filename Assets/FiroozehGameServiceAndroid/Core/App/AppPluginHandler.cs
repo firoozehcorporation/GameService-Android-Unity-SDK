@@ -26,6 +26,9 @@ using UnityEngine;
 namespace FiroozehGameServiceAndroid.Core.App
 {
     #if UNITY_ANDROID
+    /// <summary>
+    /// Represents Game Service Plugin Handler In App Mode
+    /// </summary>
     public static class AppPluginHandler {
 
         private static AndroidJavaObject GetGameServiceInstance()

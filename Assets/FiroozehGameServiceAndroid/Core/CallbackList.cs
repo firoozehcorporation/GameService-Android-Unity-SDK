@@ -21,6 +21,9 @@
 
 namespace FiroozehGameServiceAndroid.Core
 {
+    /// <summary>
+    /// Represents Game Service CallbackList
+    /// </summary>
     public static class CallbackList
     {
         

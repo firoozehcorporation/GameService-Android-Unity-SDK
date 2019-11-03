@@ -20,31 +20,62 @@
 */
 
 
+using System;
 using Newtonsoft.Json;
 
 namespace FiroozehGameServiceAndroid.Models
 {
-    [System.Serializable]
+    /// <summary>
+    /// Represents Score Data Model In Game Service Basic API
+    /// </summary>
+    [Serializable]
     public class Score
     {
 
+        /// <summary>
+        /// Gets the Game id.
+        /// </summary>
+        /// <value>the Game id</value>
         [JsonProperty("game")]
         public string Game { set; get; }
 
+        
+        /// <summary>
+        /// Gets the User Submit this Score.
+        /// </summary>
+        /// <value>the User Submit this Score</value>
         [JsonProperty("user")]
         public User User { set; get; }
 
+        /// <summary>
+        /// Gets the Value of This Score.
+        /// </summary>
+        /// <value>the Value of This Score</value>
         [JsonProperty("value")]
         public int Value { set; get; }
     
+        
+        /// <summary>
+        /// Gets the Rank of This Score.
+        /// </summary>
+        /// <value>the Rank of This Score</value>
         [JsonProperty("rank")]
         public int Rank { set; get; }
     
+        /// <summary>
+        /// Gets the Tries Count of This Score.
+        /// </summary>
+        /// <value>the Tries Count of This Score</value>
         [JsonProperty("tries")]
         public int Tries { set; get; }
     
+        
+        /// <summary>
+        /// if this is Score Submit By You or Not
+        /// </summary>
+        /// <value>this Score Submit By You or Not</value>
         [JsonProperty("me")]
-        public bool Me { set; get; }
+        public bool IsMe { set; get; }
     
 
         public override string ToString()

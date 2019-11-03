@@ -25,6 +25,9 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
 {
 #if UNITY_ANDROID
     
+    /// <summary>
+    /// Represents Game Service MultiPlayer System (GSLive)
+    /// </summary>
     public class GSLive
     {
         

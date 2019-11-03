@@ -23,11 +23,24 @@ using Newtonsoft.Json;
 
 namespace FiroozehGameServiceAndroid.Models.GSLive.TB
 {
+    /// <summary>
+    /// Represents Outcome Data Model In GameService TurnBased MultiPlayer System
+    /// </summary>
     public class Outcome
     {
+        
+        /// <summary>
+        /// Gets the Placement of Outcome.
+        /// </summary>
+        /// <value>the Placement of Outcome</value>
         [JsonProperty("0")]
         public int Placement { get; set; }
         
+        
+        /// <summary>
+        /// Gets the Result of Outcome.
+        /// </summary>
+        /// <value>the Result of Outcome</value>
         [JsonProperty("1")]
         public string Result { get; set; }
         

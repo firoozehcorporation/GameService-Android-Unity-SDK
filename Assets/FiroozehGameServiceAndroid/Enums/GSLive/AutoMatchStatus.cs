@@ -21,6 +21,9 @@
 
 namespace FiroozehGameServiceAndroid.Enums.GSLive
 {
+    /// <summary>
+    /// Represents AutoMatchStatus Of GSLive System
+    /// </summary>
     public enum AutoMatchStatus
     {
         OnWaiting , OnUserJoined

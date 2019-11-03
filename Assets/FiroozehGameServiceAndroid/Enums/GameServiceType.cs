@@ -21,6 +21,9 @@
 
 namespace FiroozehGameServiceAndroid.Enums
 {
+    /// <summary>
+    /// Represents GameServiceType Of Game Service 
+    /// </summary>
     public enum GameServiceType
     {
         App , Native

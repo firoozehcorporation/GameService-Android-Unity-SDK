@@ -27,8 +27,14 @@ using FiroozehGameServiceAndroid.Interfaces.App;
 namespace FiroozehGameServiceAndroid.Builders.App
 {
 #if UNITY_ANDROID
+    
+    /// <summary>
+    /// Represents Login System To GameService In App Mode.
+    /// </summary>
+    
     public static class FiroozehGameServiceAppLoginCheck
     {
+        
         public static void CheckUserLoginStatus(
              bool checkAppStatus
             ,bool checkOptionalUpdate
@@ -51,6 +57,8 @@ namespace FiroozehGameServiceAndroid.Builders.App
                 } , error.Invoke);
         
         }
+      
+        
         public static void ShowLoginUI(
             bool checkAppStatus
             ,bool checkOptionalUpdate  
@@ -70,6 +78,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
 
      
         }
+        
     }
 #endif
 

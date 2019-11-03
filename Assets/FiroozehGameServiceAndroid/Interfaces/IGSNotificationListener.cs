@@ -26,6 +26,9 @@ using UnityEngine;
 namespace FiroozehGameServiceAndroid.Interfaces
 {
 #if UNITY_ANDROID
+    /// <summary>
+    /// Represents GameService Notification Internal interface
+    /// </summary>
     public class IGSNotificationListener : AndroidJavaProxy
     {
         private readonly DelegateCore.JsonData _onData;

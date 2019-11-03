@@ -14,6 +14,7 @@
 //    limitations under the License.
 // </copyright>
 
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -23,11 +24,25 @@ using Newtonsoft.Json;
 
 namespace FiroozehGameServiceAndroid.Models.GSLive.TB
 {
+    /// <summary>
+    /// Represents Complete Data Model In GameService TurnBased MultiPlayer System
+    /// </summary>
+    [Serializable]
     public class Complete
     {
+        /// <summary>
+        /// Gets the Accept Counts from Other Players.
+        /// </summary>
+        /// <value>the Accept Counts from Other Players</value>
         [JsonProperty("Accept")]
         public int AcceptCounts { set; get; }
 
+        
+        /// <summary>
+        /// Gets the Game Result(Outcomes).
+        /// (Type : Dictionary(MemberID,Outcome))
+        /// </summary>
+        /// <value>the Game Result(Outcomes)</value>
         [JsonProperty("Outcomes")]
         public Dictionary<string,Outcome> Result { set; get; }
     }

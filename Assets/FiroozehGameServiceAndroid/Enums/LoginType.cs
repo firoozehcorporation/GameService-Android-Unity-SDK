@@ -20,6 +20,9 @@
 
 namespace FiroozehGameServiceAndroid.Enums
 {
+    /// <summary>
+    /// Represents LoginType Of Game Service In First Initialize
+    /// </summary>
     public enum LoginType
     {
         Normal , Guest

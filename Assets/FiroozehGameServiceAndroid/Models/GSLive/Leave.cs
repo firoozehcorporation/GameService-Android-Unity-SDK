@@ -14,6 +14,7 @@
 //    limitations under the License.
 // </copyright>
 
+using System;
 using Newtonsoft.Json;
 
 /**
@@ -23,11 +24,24 @@ using Newtonsoft.Json;
 
 namespace FiroozehGameServiceAndroid.Models.GSLive
 {
+    /// <summary>
+    /// Represents Leave Data Model In GameService MultiPlayer System (GSLive)
+    /// </summary>
+    [Serializable]
     public class Leave
     {
+        /// <summary>
+        /// Gets the Room id
+        /// </summary>
+        /// <value>the Room id</value>
         [JsonProperty("1")]
         public string RoomId { set; get; }
         
+        
+        /// <summary>
+        /// Gets the Player Member Data Who Left the Room
+        /// </summary>
+        /// <value>the Player Member Data Who Left the Room</value>
         [JsonProperty("2")]
         public Member MemberLeave { set; get; }
        

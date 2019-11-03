@@ -27,6 +27,11 @@ using FiroozehGameServiceAndroid.Enums.GSLive;
 namespace FiroozehGameServiceAndroid.Builders.App
 {
     #if UNITY_ANDROID
+    
+    /// <summary>
+    /// Represents Initialize GameService In App Mode.
+    /// </summary>
+ 
     internal static class GameServiceAppInitializer
     {
         internal static void Init(

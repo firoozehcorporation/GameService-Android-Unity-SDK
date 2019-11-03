@@ -14,6 +14,7 @@
 //    limitations under the License.
 // </copyright>
 
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -24,13 +25,25 @@ using Newtonsoft.Json;
 
 namespace FiroozehGameServiceAndroid.Models
 {
-    [System.Serializable]
+    /// <summary>
+    /// Represents LeaderBoardDetails Data Model In Game Service Basic API
+    /// </summary>
+    [Serializable]
     public class LeaderBoardDetails
     {
 
+        /// <summary>
+        /// Gets the LeaderBoard.
+        /// </summary>
+        /// <value>the LeaderBoard</value>
         [JsonProperty("leaderboard")]
         public LeaderBoard Leaderboard { set; get; }
 
+        
+        /// <summary>
+        /// Gets the List Of Scores.
+        /// </summary>
+        /// <value>the List Of Scores</value>
         [JsonProperty("scores")]
         public List<Score> Scores { set; get; }
 

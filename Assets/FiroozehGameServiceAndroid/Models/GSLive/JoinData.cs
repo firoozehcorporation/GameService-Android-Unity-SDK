@@ -14,18 +14,38 @@
 //    limitations under the License.
 // </copyright>
 
+using System;
 using Newtonsoft.Json;
 
 namespace FiroozehGameServiceAndroid.Models.GSLive
 {
+    /// <summary>
+    /// Represents JoinData Data Model In GameService MultiPlayer System (GSLive)
+    /// </summary>
+    [Serializable]
     public class JoinData
     {
+        /// <summary>
+        /// Gets the Room Join Type.
+        /// </summary>
+        /// <value>the Room Join Type</value>
+        /// <see cref="FiroozehGameServiceAndroid.Enums.GSLive.JoinType"/>
         [JsonProperty("1")]
         public int JoinType { get; set; }
         
+        
+        /// <summary>
+        /// Gets the Room Join Data.
+        /// </summary>
+        /// <value>the Room Join Data</value>
         [JsonProperty("2")]
         public RoomData RoomData { get; set; }
         
+        
+        /// <summary>
+        /// Gets the Player Member Who Joined To Room.
+        /// </summary>
+        /// <value>the Player Member Who Joined To Room</value>
         [JsonProperty("3")]
         public Member JoinedMember { get; set; }
     }

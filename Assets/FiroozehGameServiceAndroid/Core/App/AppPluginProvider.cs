@@ -23,6 +23,9 @@ using UnityEngine;
 namespace FiroozehGameServiceAndroid.Core.App
 {
 #if UNITY_ANDROID
+    /// <summary>
+    /// Represents Game Service Plugin Provider In App Mode
+    /// </summary>
     public static class AppPluginProvider
     {
 

@@ -14,6 +14,7 @@
 //    limitations under the License.
 // </copyright>
 
+using System;
 using Newtonsoft.Json;
 
 /**
@@ -22,18 +23,34 @@ using Newtonsoft.Json;
 
 namespace FiroozehGameServiceAndroid.Models
 {
-    [System.Serializable]
+    /// <summary>
+    /// Represents Bucket Data Model In Game Service Basic API
+    /// </summary>
+    [Serializable]
     public class Bucket<TBucket>
     {
+        /// <summary>
+        /// Gets the Bucket ID.
+        /// </summary>
+        /// <value>the Bucket ID</value>
         [JsonProperty("bucket")]
         public string BucketId { set; get; }
         
+        /// <summary>
+        /// Gets the Bucket Object ID.
+        /// </summary>
+        /// <value>the Bucket Object ID</value>
         [JsonProperty("_id")]
         public string Id { set; get; }
 
         [JsonProperty("data")]
         private string _rawBucket;
 
+        
+        /// <summary>
+        /// Gets the Bucket Object.
+        /// </summary>
+        /// <value>the Bucket Object</value>
         public TBucket BucketData
         {
             get { return JsonConvert.DeserializeObject<TBucket>(_rawBucket); }

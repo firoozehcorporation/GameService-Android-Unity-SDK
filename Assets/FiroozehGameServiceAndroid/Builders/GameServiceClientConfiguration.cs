@@ -27,6 +27,9 @@ using FiroozehGameServiceAndroid.Enums.GSLive;
 namespace FiroozehGameServiceAndroid.Builders
 {
     #if UNITY_ANDROID
+    /// <summary>
+    /// Represents ClientConfiguration For Game Service 
+    /// </summary>
     public class GameServiceClientConfiguration
     {
         

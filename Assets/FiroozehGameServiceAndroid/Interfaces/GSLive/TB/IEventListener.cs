@@ -26,6 +26,9 @@ namespace FiroozehGameServiceAndroid.Interfaces.GSLive.TB
 {
 #if UNITY_ANDROID
     
+    /// <summary>
+    /// Represents GameService TurnBased Internal interface
+    /// </summary>
     public class IEventListener : AndroidJavaProxy
     {
         private readonly DelegateCore.OnEvent _event;

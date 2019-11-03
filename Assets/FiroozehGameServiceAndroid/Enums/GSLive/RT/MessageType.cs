@@ -21,6 +21,9 @@
 
 namespace FiroozehGameServiceAndroid.Enums.GSLive.RT
 {
+    /// <summary>
+    /// Represents MessageType Of RealTime System
+    /// </summary>
     public enum MessageType
     {
         Public , Private

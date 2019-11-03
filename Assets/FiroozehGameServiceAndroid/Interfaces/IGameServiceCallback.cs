@@ -27,6 +27,9 @@ using UnityEngine;
 namespace FiroozehGameServiceAndroid.Interfaces
 {
 #if UNITY_ANDROID
+    /// <summary>
+    /// Represents GameService  Internal interface
+    /// </summary>
     public class IGameServiceCallback : AndroidJavaProxy
     {
 

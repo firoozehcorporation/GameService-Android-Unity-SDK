@@ -15,6 +15,7 @@
 // </copyright>
 
 
+using System;
 using Newtonsoft.Json;
 /**
 * @author Alireza Ghodrati
@@ -22,14 +23,26 @@ using Newtonsoft.Json;
 
 namespace FiroozehGameServiceAndroid.Models.GSLive.TB
 {
+    /// <summary>
+    /// Represents Turn Data Model In GameService TurnBased MultiPlayer System
+    /// </summary>
+    [Serializable]
     public class Turn
     {
         
+        /// <summary>
+        /// Gets the Data Send In Turn By Other Player.
+        /// </summary>
+        /// <value>the Data Send In Turn By Other Player</value>
         [JsonProperty("0")]
         public string Data { get; set; }
         
+        /// <summary>
+        /// Gets The Player Member who has TakeTurn.
+        /// </summary>
+        /// <value>The Player Member who has TakeTurn</value>
         [JsonProperty("1")]
-        public Member WhoChangeTurn { get; set; }
+        public Member WhoTakeTurn { get; set; }
         
     }
 }

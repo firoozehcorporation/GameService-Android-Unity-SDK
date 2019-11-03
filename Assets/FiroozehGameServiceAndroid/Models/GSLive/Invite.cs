@@ -14,6 +14,7 @@
 //    limitations under the License.
 // </copyright>
 
+using System;
 using Newtonsoft.Json;
 
 /**
@@ -23,20 +24,50 @@ using Newtonsoft.Json;
 
 namespace FiroozehGameServiceAndroid.Models.GSLive
 {
+    /// <summary>
+    /// Represents Invite Data Model In GameService MultiPlayer System (GSLive)
+    /// </summary>
+    [Serializable]
     public class Invite
     {
+        
+        /// <summary>
+        /// Gets the Invite id.
+        /// You Can Use It in Accept Invite
+        /// </summary>
+        /// <value>the Invite id</value>
         [JsonProperty("_id")]
         public string Id { get; set; }
         
+        
+        /// <summary>
+        /// Gets the Inviter User.
+        /// </summary>
+        /// <value>the Inviter User</value>
         [JsonProperty("inviter")]
         public User Inviter { get; set; }
         
+        
+        /// <summary>
+        /// Gets the Invited User Id.
+        /// </summary>
+        /// <value>the Invited User Id</value>
         [JsonProperty("invited")]
         public string Invited { get; set; }
 
+        
+        /// <summary>
+        /// Gets The Room Where You Are Invited.
+        /// </summary>
+        /// <value>The Room Where You Are Invited</value>
         [JsonProperty("room")]
         public Room Room;
             
+        
+        /// <summary>
+        /// Gets The Game Where You Are Invited.
+        /// </summary>
+        /// <value>The Game Where You Are Invited</value>
         [JsonProperty("game")]
         public Game Game;
                 

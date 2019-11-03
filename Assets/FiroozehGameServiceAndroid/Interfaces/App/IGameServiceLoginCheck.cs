@@ -24,6 +24,9 @@ using UnityEngine;
 namespace FiroozehGameServiceAndroid.Interfaces.App
 {
 #if UNITY_ANDROID
+    /// <summary>
+    /// Represents GameService Internal interface
+    /// </summary>
     public class IGameServiceLoginCheck : AndroidJavaProxy
     {
 
