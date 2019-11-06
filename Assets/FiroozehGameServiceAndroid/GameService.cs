@@ -184,12 +184,12 @@ namespace FiroozehGameServiceAndroid
         /// </summary>
         /// <param name="leaderBoardId">leaderBoardId</param>
         /// <param name="scoreValue">scoreValue(The value must not exceed the maximum value Registered in the Developer Panel)</param>
-        /// <param name="callback">Get LeaderBoard <see cref="DelegateCore.OnGetLeaderBoard"/>></param>
+        /// <param name="callback">Get Submit Score Response <see cref="DelegateCore.OnSubmitScoreResponse"/>></param>
         /// <param name="error">Error</param>
         public void SubmitScore(
             string leaderBoardId,
             int scoreValue,
-            DelegateCore.OnGetLeaderBoard callback,
+            DelegateCore.OnSubmitScoreResponse callback,
             DelegateCore.OnError error)
 
         {
@@ -212,7 +212,10 @@ namespace FiroozehGameServiceAndroid
                 , leaderBoardId
                 , scoreValue
                 ,_haveNotification
-                ,new IGameServiceCallback(onCallback => { callback.Invoke(JsonConvert.DeserializeObject<LeaderBoard>(onCallback)); }, error.Invoke));
+                ,new IGameServiceCallback(onCallback =>
+                {
+                    callback.Invoke(JsonConvert.DeserializeObject<SubmitScoreResponse>(onCallback));
+                }, error.Invoke));
       
         }
         

@@ -1,1 +1,0 @@
--keep class ir.firoozehcorp.gameservice.android.unity.** { *; }
