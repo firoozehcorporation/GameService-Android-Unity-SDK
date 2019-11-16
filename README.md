@@ -29,4 +29,4 @@
 
 ### راه اندازی گیم سرویس :
 
- .مراجعه کنید  [Wiki](https://github.com/firoozehcorporation/GameService-Android-Unity-SDK/wiki) برای استفاده از گیم سرویس به
+برای استفاده از گیم سرویس به [مستندات](https://gamesservice.ir/docs) مراجعه کنید
