@@ -48,9 +48,19 @@ namespace FiroozehGameServiceAndroid.Builders.Native
                 ,configuration.DownloadTag
                 ,new IGameServiceCallback(callback.Invoke,error.Invoke));
         }
+        
+        public static void DownloadAsset(string tag,GameServiceClientConfiguration configuration , Action<string> callback,Action<string> error)
+        {
+            LogUtil.LogDebug(Tag,"DownloadAssetStarted");
+            _objDownload = NativePluginHandler.GetDownloadInstance();
+            _objDownload.Call("DownloadAssetFile",
+                configuration.ClientId
+                ,tag
+                ,new IGameServiceCallback(callback.Invoke,error.Invoke));
+        }
 
         
-        public static bool CancelDownload()
+        public static bool CancelDownloadData()
         {
             return _objDownload != null  && _objDownload.Call<bool>("CancelDownload");
         }

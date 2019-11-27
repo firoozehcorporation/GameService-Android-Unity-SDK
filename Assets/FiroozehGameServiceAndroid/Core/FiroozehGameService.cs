@@ -16,6 +16,7 @@
 
 
 using System;
+using System.IO;
 using FiroozehGameServiceAndroid.Builders;
 using FiroozehGameServiceAndroid.Builders.App;
 using FiroozehGameServiceAndroid.Builders.Native;
@@ -126,6 +127,17 @@ namespace FiroozehGameServiceAndroid.Core
             _actions.Second.Invoke(error);
         }
 
+        
+        /// <summary>
+        /// Download Asset With Tag
+        /// </summary>
+        /// <param name="tag">(Not NULL)Specifies the Asset tag that Set in Developers Panel.</param>
+        /// <param name="callback">(Not NULL)Return Asset File Path When Downloaded</param>
+        /// <param name="error">(Not NULL)Return Error When Error Happened</param>
+        public static void DownloadAsset(string tag,Action<string> callback,Action<string> error)
+        {
+            GameServiceDownloadInitializer.DownloadAsset(tag,Configuration,callback,error);
+        }
         
         /// <summary>
         /// Login To Game Service With LoginType
