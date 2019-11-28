@@ -26,22 +26,22 @@ namespace FiroozehGameServiceAndroid.Core.App
     /// <summary>
     /// Represents Game Service Plugin Provider In App Mode
     /// </summary>
-    public static class AppPluginProvider
+    internal static class AppPluginProvider
     {
 
-        public static AndroidJavaObject GetGameService()
+        internal static AndroidJavaObject GetGameService()
         {
             var unityInstanter = new AndroidJavaClass("ir.firoozehcorp.gameservice.android.unity.App.Handlers.UnityGameService");
             return unityInstanter.CallStatic<AndroidJavaObject>("GetInstance");
         }
 
-        public static AndroidJavaObject GetLoginService()
+        internal static AndroidJavaObject GetLoginService()
         {
             var unityInstanter = new AndroidJavaClass("ir.firoozehcorp.gameservice.android.unity.App.Handlers.UnityLoginService");
             return unityInstanter.CallStatic<AndroidJavaObject>("GetInstance");
         }
 
-        public static AndroidJavaObject GetUnityActivity()
+        internal static AndroidJavaObject GetUnityActivity()
         {
             var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             return unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");

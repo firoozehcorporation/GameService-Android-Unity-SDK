@@ -25,24 +25,24 @@ using UnityEngine;
 namespace FiroozehGameServiceAndroid.Core.GSLive
 {
 #if UNITY_ANDROID
-    public static class GSLiveProvider
+    internal static class GSLiveProvider
     {
         /// <summary>
         /// Represents GSLive Provider 
         /// </summary>
-        public static AndroidJavaObject GetGSLiveRT()
+        internal static AndroidJavaObject GetGSLiveRT()
         {
             var gsLive = new AndroidJavaClass("ir.firoozehcorp.gameservice.android.unity.GSLive.RT.Handlers.GSLiveRTHandler");
             return gsLive.CallStatic<AndroidJavaObject>("GetInstance");
         } 
         
-        public static AndroidJavaObject GetGSLiveTB()
+        internal static AndroidJavaObject GetGSLiveTB()
         {
             var gsLive = new AndroidJavaClass("ir.firoozehcorp.gameservice.android.unity.GSLive.TB.Handlers.GSLiveTBHandler");
             return gsLive.CallStatic<AndroidJavaObject>("GetInstance");
         } 
         
-        public static AndroidJavaObject GetGSLiveChat()
+        internal static AndroidJavaObject GetGSLiveChat()
         {
             var gsLive = new AndroidJavaClass("ir.firoozehcorp.gameservice.android.unity.Command.Handlers.ChatHandlers");
             return gsLive.CallStatic<AndroidJavaObject>("GetInstance");

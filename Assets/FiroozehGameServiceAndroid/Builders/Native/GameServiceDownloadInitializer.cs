@@ -33,13 +33,12 @@ namespace FiroozehGameServiceAndroid.Builders.Native
     /// Represents Game Data Download System
     /// </summary>
    
-    public static class GameServiceDownloadInitializer
+    internal static class GameServiceDownloadInitializer
     {
         private const string Tag = "GameServiceDownloadInitializer";
         private static AndroidJavaObject _objDownload;
 
-
-        public static void DownloadData(GameServiceClientConfiguration configuration , Action<string> callback,Action<string> error)
+        internal static void DownloadData(GameServiceClientConfiguration configuration , Action<string> callback,Action<string> error)
         {
             LogUtil.LogDebug(Tag,"DataDownloadStarted");
             _objDownload = NativePluginHandler.GetDownloadInstance();
@@ -49,7 +48,7 @@ namespace FiroozehGameServiceAndroid.Builders.Native
                 ,new IGameServiceCallback(callback.Invoke,error.Invoke));
         }
         
-        public static void DownloadAsset(string tag,GameServiceClientConfiguration configuration , Action<string> callback,Action<string> error)
+        internal static void DownloadAsset(string tag,GameServiceClientConfiguration configuration , Action<string> callback,Action<string> error)
         {
             LogUtil.LogDebug(Tag,"DownloadAssetStarted");
             _objDownload = NativePluginHandler.GetDownloadInstance();
@@ -59,8 +58,7 @@ namespace FiroozehGameServiceAndroid.Builders.Native
                 ,new IGameServiceCallback(callback.Invoke,error.Invoke));
         }
 
-        
-        public static bool CancelDownloadData()
+        internal static bool CancelDownloadData()
         {
             return _objDownload != null  && _objDownload.Call<bool>("CancelDownload");
         }

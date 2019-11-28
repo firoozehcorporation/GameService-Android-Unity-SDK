@@ -32,10 +32,10 @@ namespace FiroozehGameServiceAndroid.Builders.App
     /// Represents Login System To GameService In App Mode.
     /// </summary>
     
-    public static class FiroozehGameServiceAppLoginCheck
+    internal static class FiroozehGameServiceAppLoginCheck
     {
         
-        public static void CheckUserLoginStatus(
+        internal static void CheckUserLoginStatus(
              bool checkAppStatus
             ,bool checkOptionalUpdate
              ,bool isLogEnable
@@ -59,7 +59,7 @@ namespace FiroozehGameServiceAndroid.Builders.App
         }
       
         
-        public static void ShowLoginUI(
+        internal static void ShowLoginUI(
             bool checkAppStatus
             ,bool checkOptionalUpdate  
             ,bool isLogEnable

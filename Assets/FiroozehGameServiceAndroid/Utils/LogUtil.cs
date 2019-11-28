@@ -27,21 +27,21 @@ namespace FiroozehGameServiceAndroid.Utils
     /// <summary>
     /// Represents LogUtil In GameService System
     /// </summary>
-    public static class LogUtil
+    internal static class LogUtil
     {
 
  
-        public static void LogDebug(string where,string debug)
+        internal static void LogDebug(string where,string debug)
         {
            Debug.Log("LogHappenedIn : "+where +" ,With Text :"+debug);
         }
         
-        public static void LogWarning(string where,string warning)
+        internal static void LogWarning(string where,string warning)
         {
             Debug.LogWarning("WarningHappenedIn : "+where +" ,With Text :"+warning);
         }
 
-        public static void LogError(string where,string error)
+        internal static void LogError(string where,string error)
         {
             Debug.LogError("ErrorHappenedIn : "+where +" ,With Text :"+error);
         }

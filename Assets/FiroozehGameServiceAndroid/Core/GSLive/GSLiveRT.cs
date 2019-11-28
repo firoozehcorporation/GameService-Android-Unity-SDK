@@ -154,7 +154,8 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
                 option.MaxPlayer,
                 option.MinPlayer,
                 option.Role,
-                option.IsPrivate    
+                option.IsPrivate,
+                option.IsPersist
                 );                
         }
         
@@ -187,7 +188,8 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             rt.Call("AutoMatch",
                 option.MaxPlayer,
                 option.MinPlayer,
-                option.Role   
+                option.Role,
+                option.IsPersist
             );  
         }
         

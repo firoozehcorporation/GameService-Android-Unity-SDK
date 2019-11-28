@@ -36,6 +36,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             public int MaxPlayer { set; get; }
             public string Role { set; get; }
             public bool IsPrivate { set; get; }
+            public bool IsPersist { set; get; }
         }
         
         /// <summary>
@@ -46,6 +47,7 @@ namespace FiroozehGameServiceAndroid.Core.GSLive
             public int MinPlayer { set; get; }
             public int MaxPlayer { set; get; }
             public string Role { set; get; }
+            public bool IsPersist { set; get; }
         }
 
     }

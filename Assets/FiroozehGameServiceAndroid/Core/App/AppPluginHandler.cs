@@ -29,7 +29,7 @@ namespace FiroozehGameServiceAndroid.Core.App
     /// <summary>
     /// Represents Game Service Plugin Handler In App Mode
     /// </summary>
-    public static class AppPluginHandler {
+    internal static class AppPluginHandler {
 
         private static AndroidJavaObject GetGameServiceInstance()
         {
@@ -51,7 +51,7 @@ namespace FiroozehGameServiceAndroid.Core.App
             return loginService;
         }
 
-        public static void InitGameService(
+        internal static void InitGameService(
              string clientId
             ,string clientSecret
             ,bool logEnable
@@ -81,7 +81,7 @@ namespace FiroozehGameServiceAndroid.Core.App
                 }));
         }
 
-        public static void InitGameLoginService(
+        internal static void InitGameLoginService(
              bool checkAppStatus
             ,bool checkOptionalUpdate
              ,bool logEnable
