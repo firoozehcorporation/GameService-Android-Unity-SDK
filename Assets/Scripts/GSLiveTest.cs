@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using FiroozehGameServiceAndroid.Builders;
+using FiroozehGameServiceAndroid.Builders.App;
 using FiroozehGameServiceAndroid.Core;
 using FiroozehGameServiceAndroid.Core.GSLive;
 using FiroozehGameServiceAndroid.Enums;
@@ -53,6 +54,7 @@ public class GsLiveRealTimeTest : MonoBehaviour, GSLiveRealTimeListener
         
         FiroozehGameService.ConfigurationInstance(config);
         FiroozehGameService.Run(OnFirstInit,Debug.LogError);
+        
     }
 
   
@@ -70,7 +72,7 @@ public class GsLiveRealTimeTest : MonoBehaviour, GSLiveRealTimeListener
         {
             FiroozehGameService.Instance.GSLive.RealTime.CreateRoom(new GSLiveOption.CreateRoomOption
             {
-                RoomName = Name.text , Role = Role.text , MinPlayer = int.Parse(Min.text) , MaxPlayer = int.Parse(Max.text) , IsPrivate = false
+                RoomName = Name.text , Role = Role.text , MinPlayer = int.Parse(Min.text) , MaxPlayer = int.Parse(Max.text) , IsPrivate = false , IsPersist = false
             });
         });
         
@@ -93,7 +95,7 @@ public class GsLiveRealTimeTest : MonoBehaviour, GSLiveRealTimeListener
         {
             FiroozehGameService.Instance.GSLive.RealTime.AutoMatch(new GSLiveOption.AutoMatchOption
             {
-                 MinPlayer = int.Parse(Min.text) , MaxPlayer = int.Parse(Max.text) , Role = Role.text         
+                 MinPlayer = int.Parse(Min.text) , MaxPlayer = int.Parse(Max.text) , Role = Role.text  , IsPersist = false
             });
         });
         
